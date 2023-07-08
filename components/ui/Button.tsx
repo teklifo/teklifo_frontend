@@ -2,11 +2,11 @@
 
 import { ButtonProps } from "@/types";
 
-const Button = ({ title, containerStyles, onClick }: ButtonProps) => {
+const Button = ({ title, containerStyles, btnType, onClick }: ButtonProps) => {
   return (
     <button
       disabled={false}
-      type={"button"}
+      type={btnType || "button"}
       className={`custom-btn  ${containerStyles}`}
       onClick={onClick}
     >
