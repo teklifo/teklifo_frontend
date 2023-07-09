@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { getTranslator } from "next-intl/server";
-import Hero from "@/components/home/Hero";
-import Features from "@/components/home/Features";
+import LoginForm from "@/components/login/LoginForm";
 
 type Props = {
   params: { locale: string };
@@ -18,11 +17,10 @@ export async function generateMetadata({
   };
 }
 
-export default function Home() {
+export default function Login() {
   return (
     <main className="overflow-hidden mt-20">
-      <Hero />
-      <Features />
+      <LoginForm />
     </main>
   );
 }

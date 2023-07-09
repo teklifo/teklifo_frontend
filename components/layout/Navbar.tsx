@@ -6,7 +6,7 @@ const Navbar = () => {
   const t = useTranslations("Layout");
 
   return (
-    <header className="w-full fixed z-10 bg-white border-b border-zinc-100">
+    <header className="w-full fixed top-0 z-10 bg-white border-b border-zinc-100">
       <nav className="container flex items-center justify-between mx-auto px-6 py-1 md:py-2">
         <Link
           href="/"
