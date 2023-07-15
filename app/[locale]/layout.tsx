@@ -2,8 +2,6 @@ import "./globals.css";
 import { Rubik } from "next/font/google";
 import { useLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 const inter = Rubik({ subsets: ["latin"], weight: "400" });
 
@@ -36,10 +34,8 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Navbar />
           {children}
         </NextIntlClientProvider>
-        <Footer />
       </body>
     </html>
   );

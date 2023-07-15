@@ -17,7 +17,7 @@ const Hero = () => {
         <div className="flex justify-center md:justify-start">
           <Link
             href="/dashboard"
-            className="transition-colors duration-150 ease-in-out bg-sky-500 text-white rounded-full hover:bg-sky-600 py-3 px-6"
+            className="transition-colors duration-150 ease-in-out bg-sky-500 text-white rounded-full font-bold hover:bg-sky-600 py-3 px-6"
           >
             {t("getStartedBtn")}
           </Link>

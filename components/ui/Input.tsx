@@ -8,7 +8,7 @@ interface InputProps {
   type?: string;
   disabled?: boolean;
   formatPrice?: boolean;
-  required?: boolean;
+  required?: boolean | string;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
 }
@@ -25,50 +25,37 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div className="w-full relative">
+      <label
+        className="block text-zinc-400 text-sm font-bold mb-2"
+        htmlFor={id}
+      >
+        {label}
+      </label>
       <input
         id={id}
         disabled={disabled}
         {...register(id, { required })}
-        placeholder=" "
         type={type}
-        className={`
-          peer
+        className={`      
           w-full
           p-4
-          pt-6 
           font-light 
-          bg-white 
+          bg-zinc-100 
           border-2
-          rounded-md
+          rounded-2xl
           outline-none
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
+          focus:bg-white
           ${formatPrice ? "pl-9" : "pl-4"}
-          ${errors[id] ? "border-rose-500" : "border-neutral-300"}
-          ${errors[id] ? "focus:border-rose-500" : "focus:border-black"}
+          ${errors[id] ? "border-rose-500" : "border-zinc-100"}
+          ${errors[id] ? "focus:border-rose-500" : "focus:border-sky-500"}
         `}
       />
-      <label
-        className={`
-          absolute 
-          text-md
-          duration-150 
-          transform 
-          -translate-y-3 
-          top-5 
-          z-10 
-          origin-[0] 
-          ${formatPrice ? "left-9" : "left-4"}
-          peer-placeholder-shown:scale-100 
-          peer-placeholder-shown:translate-y-0 
-          peer-focus:scale-75
-          peer-focus:-translate-y-4
-          ${errors[id] ? "text-rose-500" : "text-zinc-400"}
-        `}
-      >
-        {label}
-      </label>
+      {errors[id] && (
+        <p className="text-rose-500">{`${errors[id]?.message}`}</p>
+      )}
     </div>
   );
 };

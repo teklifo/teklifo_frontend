@@ -27,7 +27,7 @@ const Navbar = () => {
         </div>
         <Link
           href="/dashboard"
-          className="hidden md:block transition-colors duration-150 ease-in-out bg-sky-500 text-white rounded-full hover:bg-sky-600 py-3 px-6"
+          className="hidden md:block transition-colors duration-150 ease-in-out bg-sky-500 text-white rounded-full font-bold hover:bg-sky-600 py-3 px-6"
         >
           {t("getStartedBtn")}
         </Link>
