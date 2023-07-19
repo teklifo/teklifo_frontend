@@ -1,6 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Link from "@/components/ui/Link";
 
 const Hero = () => {
   const t = useTranslations("Home");
@@ -15,10 +15,7 @@ const Hero = () => {
           {t("subtitle")}
         </p>
         <div className="flex justify-center md:justify-start">
-          <Link
-            href="/dashboard"
-            className="transition-colors duration-150 ease-in-out bg-sky-500 text-white rounded-full font-bold hover:bg-sky-600 py-3 px-6"
-          >
+          <Link href="/dashboard" type="primary">
             {t("getStartedBtn")}
           </Link>
         </div>

@@ -8,8 +8,8 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import request from "@/utils/request";
 
-const LoginForm = () => {
-  const t = useTranslations("Login");
+const RegistrationForm = () => {
+  const t = useTranslations("Registration");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -74,4 +74,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegistrationForm;

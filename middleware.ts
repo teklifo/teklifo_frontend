@@ -4,7 +4,7 @@ import createMiddleware from "next-intl/middleware";
 import { fetchUser } from "@/actions/auth";
 
 const locales = ["az", "ru"];
-const publicPages = ["/", "/login"];
+const publicPages = ["/", "/login", "/registration"];
 
 const intlMiddleware = createMiddleware({
   locales,

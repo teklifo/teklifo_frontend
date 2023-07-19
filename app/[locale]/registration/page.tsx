@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import Image from "next/image";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import LoginForm from "@/components/login/LoginForm";
+import RegistrationForm from "@/components/registration/RegistrationForm";
 
 type Props = {
   params: { locale: string };
@@ -15,21 +15,21 @@ export async function generateMetadata({
   const t = await getTranslator(locale, "Metadata");
 
   return {
-    title: t("loginTitle"),
-    description: t("loginDescription"),
+    title: t("registrationTitle"),
+    description: t("registrationDescription"),
   };
 }
 
-export default function Login() {
-  const t = useTranslations("Login");
+export default function Registration() {
+  const t = useTranslations("Registration");
 
   return (
     <main>
       <div className="flex flex-col h-screen md:flex-row">
         <div className="hidden flex-col justify-center items-center bg-zinc-100 w-full md:flex">
           <Image
-            src="/login.svg"
-            alt="login"
+            src="/registration.svg"
+            alt="registration"
             width="600"
             height="600"
             priority
@@ -41,11 +41,11 @@ export default function Login() {
           <p className="max-w-sm text-center text-zinc-400">
             {t("welcomeSubtitle")}
           </p>
-          <LoginForm />
+          <RegistrationForm />
           <span>
-            {`${t("registrationText")} `}
-            <NextLink href="/registration" className="underline">
-              {t("registration")}
+            {`${t("loginText")} `}
+            <NextLink href="/login" type="secondary" className="underline">
+              {t("login")}
             </NextLink>
           </span>
         </div>
