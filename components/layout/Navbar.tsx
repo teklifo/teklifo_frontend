@@ -7,7 +7,7 @@ const Navbar = () => {
   const t = useTranslations("Layout");
 
   return (
-    <header className="w-full fixed top-0 z-10 bg-white border-b border-zinc-100">
+    <header className="w-full fixed top-0 z-10 bg-white border-b border-zinc-200">
       <nav className="container flex items-center justify-between mx-auto px-6 py-1 md:py-2">
         <NextLink
           href="/"

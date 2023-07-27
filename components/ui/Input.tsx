@@ -43,7 +43,7 @@ const Input: React.FC<InputProps> = ({
           w-full
           p-4
           font-light 
-          bg-zinc-100 
+          bg-zinc-200 
           border-2
           rounded-2xl
           outline-none
@@ -52,7 +52,7 @@ const Input: React.FC<InputProps> = ({
           disabled:cursor-not-allowed
           focus:bg-white
           ${formatPrice ? "pl-9" : "pl-4"}
-          ${errors[id] ? "border-rose-500" : "border-zinc-100"}
+          ${errors[id] ? "border-rose-500" : "border-zinc-200"}
           ${errors[id] ? "focus:border-rose-500" : "focus:border-sky-500"}
         `}
       />

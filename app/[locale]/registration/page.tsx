@@ -26,7 +26,7 @@ export default function Registration() {
   return (
     <main>
       <div className="flex flex-col h-screen md:flex-row">
-        <div className="hidden flex-col justify-center items-center bg-zinc-100 w-full md:flex">
+        <div className="hidden flex-col justify-center items-center bg-sky-100 w-full md:flex">
           <Image
             src="/registration.svg"
             alt="registration"
@@ -34,7 +34,7 @@ export default function Registration() {
             height="600"
             priority
           />
-          <h1 className="text-5xl font-bold px-10 text-center">{t("title")}</h1>
+          <h1 className="text-5xl font-bold px-16 text-center">{t("title")}</h1>
         </div>
         <div className="flex flex-col w-full justify-center items-center space-y-8 px-8 my-auto md:my-0">
           <h3 className="text-4xl text-center">{t("welcome")}</h3>

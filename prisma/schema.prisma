@@ -23,15 +23,15 @@ model User {
   avatarUrl String @default("")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  comapnies UserAndCompanies[]
+  comapnies UsersAndCompanies[]
 }
 
 model Company {
   id Int @id @default(autoincrement())
-  users UserAndCompanies[]
+  users UsersAndCompanies[]
 }
 
-model UserAndCompanies {
+model UsersAndCompanies {
   user User @relation(fields: [userId], references: [id])
   userId Int
   company Company @relation(fields: [companyId], references: [id])
