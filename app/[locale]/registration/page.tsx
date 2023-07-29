@@ -26,7 +26,7 @@ export default function Registration() {
   return (
     <main>
       <div className="flex flex-col h-screen md:flex-row">
-        <div className="hidden flex-col justify-center items-center bg-sky-100 w-full md:flex">
+        <div className="hidden flex-col justify-center items-center bg-sky-200 w-full md:flex">
           <Image
             src="/registration.svg"
             alt="registration"

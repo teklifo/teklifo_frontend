@@ -15,9 +15,9 @@ const Link: FC<Props> = ({ href, type, children }) => {
     <NextLink
       href={href}
       className={`transition-colors duration-150 ease-in-out
-             ${type === "primary" ? "bg-sky-500" : "bg-zinc-200"}     
+             ${type === "primary" ? "bg-sky-500" : "bg-zinc-300"}     
               ${type === "primary" ? "text-white" : "text-black"} 
-              ${type === "primary" ? "hover:bg-sky-600" : "hover:bg-zinc-200"} 
+              ${type === "primary" ? "hover:bg-sky-600" : "hover:bg-zinc-300"} 
               rounded-full 
               font-bold
                py-3 

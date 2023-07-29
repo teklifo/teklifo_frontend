@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { getCookie } from "cookies-next";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import request from "@/utils/request";
@@ -19,6 +20,7 @@ const RegistrationForm = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
@@ -27,10 +29,15 @@ const RegistrationForm = () => {
   const onSumbit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
 
+    const locale = (getCookie("NEXT_LOCALE") as string) ?? "az";
+
     try {
       await request("/api/auth/login", {
         method: "post",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": locale,
+        },
         body: JSON.stringify(data),
       });
     } catch (error) {
@@ -46,10 +53,19 @@ const RegistrationForm = () => {
       onSubmit={handleSubmit(onSumbit)}
     >
       <Input
+        id="name"
+        label={t("name")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required={t("required")}
+      />
+      <Input
         id="email"
         label={t("email")}
         disabled={isLoading}
         register={register}
+        type="email"
         errors={errors}
         required={t("required")}
         autoComplete="username"
