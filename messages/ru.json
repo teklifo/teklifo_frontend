@@ -42,9 +42,13 @@
     "name": "Имя",
     "email": "Email",
     "password": "Пароль",
-    "required": "Пожалуйста, заполните это поле",
     "registerBtn": "Поехали!",
     "loginText": "Уже зарегистрированы?",
-    "login": "Войти"
+    "login": "Войти",
+    "nameIsRequired": "Пожалуйста, заполните имя",
+    "emailIsRequired": "Пожалуйста, заполните Email",
+    "passwordIsPassword": "Пароль должен содержать как минимум 6 символов",
+    "invalidPassword": "Пароль должен содержать как минимум 6 символов",
+    "emailIsTaken": "Пользователь с этим Email уже существует"
   }
 }
