@@ -10,7 +10,7 @@ declare module "next-auth" {
   }
 }
 
-export default NextAuth({
+const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -55,4 +55,8 @@ export default NextAuth({
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
