@@ -1,17 +1,23 @@
 import { MouseEventHandler } from "react";
 
+export type EmailType = "email_verification" | "reset_password";
+
+export interface EmailContextType {
+  [key: string]: string;
+}
+
 export interface User {
   id: number;
   name: string;
   email: string;
-  is_active: boolean;
-  activation_token?: string;
-  activation_token_expires?: Date;
-  reset_password_token?: string;
-  avatar_url: string;
+  isActive: boolean;
+  activationToken?: string;
+  activationTokenExpires?: Date;
+  resetPasswordToken?: string;
+  avatarUrl: string;
+  createdAt: Date;
+  updatedAt: Date;
   companies: Company[];
-  created_at: Date;
-  updated_at: Date;
 }
 
 export type CompanyType = "physical" | "entity";
@@ -34,12 +40,12 @@ export interface Company {
   name: string;
   tin: string;
   type: CompanyType;
-  logo_url: string;
+  logoUrl: string;
   description: string;
   contacts: CompanyContacts;
   socials: CompanySocials;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ButtonProps {

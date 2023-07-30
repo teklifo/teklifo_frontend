@@ -49,6 +49,7 @@
     "emailIsRequired": "Пожалуйста, заполните Email",
     "passwordIsPassword": "Пароль должен содержать как минимум 6 символов",
     "invalidPassword": "Пароль должен содержать как минимум 6 символов",
-    "emailIsTaken": "Пользователь с этим Email уже существует"
+    "emailIsTaken": "Пользователь с этим Email уже существует",
+    "subjectEmailVerification": "Завершите регистрацию на Tekliff.az"
   }
 }

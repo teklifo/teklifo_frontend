@@ -4,6 +4,7 @@ import randomstring from "randomstring";
 import prisma from "@/app/lib/prisma";
 import { registrationSchema, RegistrationData } from "@/schemas/registration";
 import serverTranslator from "@/utils/serverTranslator";
+import sendEmail from "@/utils/nodemailer/sendEmail";
 
 export async function POST(request: Request) {
   const t = await serverTranslator(request, "Registration");
@@ -61,6 +62,20 @@ export async function POST(request: Request) {
       },
     });
   }
+
+  // Send verification email
+  const locale = request.headers.get("Accept-Language") ?? "az";
+  await sendEmail({
+    locale,
+    emailType: "email_verification",
+    subject: t("subjectEmailVerification"),
+    receivers: email,
+    context: {
+      url: `${
+        process.env.CLIENT_URL ?? ""
+      }/verification?activationToken=${activationToken}`,
+    },
+  });
 
   return NextResponse.json({
     id: user.id,
