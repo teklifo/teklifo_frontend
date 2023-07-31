@@ -51,7 +51,7 @@ const LoginForm = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        required={t("required")}
+        required={t("emailIsRequired")}
         autoComplete="username"
       />
       <Input
@@ -61,7 +61,7 @@ const LoginForm = () => {
         register={register}
         type="password"
         errors={errors}
-        required={t("required")}
+        required={t("passwordIsPassword")}
         autoComplete="current-password"
       />
       <Button

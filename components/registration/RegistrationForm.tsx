@@ -58,7 +58,7 @@ const RegistrationForm = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        required={t("required")}
+        required={t("nameIsRequired")}
       />
       <Input
         id="email"
@@ -67,7 +67,7 @@ const RegistrationForm = () => {
         register={register}
         type="email"
         errors={errors}
-        required={t("required")}
+        required={t("emailIsRequired")}
         autoComplete="username"
       />
       <Input
@@ -77,7 +77,7 @@ const RegistrationForm = () => {
         register={register}
         type="password"
         errors={errors}
-        required={t("required")}
+        required={t("passwordIsPassword")}
         autoComplete="current-password"
       />
       <Button

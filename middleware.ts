@@ -1,7 +1,6 @@
-import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import createMiddleware from "next-intl/middleware";
-import { fetchUser } from "@/actions/auth";
+import { withAuth } from "next-auth/middleware";
 
 const locales = ["az", "ru"];
 const publicPages = ["/", "/login", "/registration"];
@@ -10,6 +9,20 @@ const intlMiddleware = createMiddleware({
   locales,
   defaultLocale: "az",
 });
+
+const authMiddleware = withAuth(
+  function onSuccess(req) {
+    return intlMiddleware(req);
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => token != null,
+    },
+    pages: {
+      signIn: "/login",
+    },
+  }
+);
 
 export default async function middleware(request: NextRequest) {
   const publicPathnameRegex = RegExp(
@@ -21,15 +34,7 @@ export default async function middleware(request: NextRequest) {
   if (isPublicPage) {
     return intlMiddleware(request);
   } else {
-    const token = request.cookies.get("token")?.value ?? "";
-    const locale = request.cookies.get("NEXT_LOCALE")?.value ?? "az";
-    const user = await fetchUser(token, locale);
-    if (user) {
-      return intlMiddleware(request);
-    } else {
-      request.cookies.delete("token");
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
+    return (authMiddleware as any)(request);
   }
 }
 
