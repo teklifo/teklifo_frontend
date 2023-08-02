@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { getCookie } from "cookies-next";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import request from "@/utils/request";
@@ -27,10 +28,15 @@ const LoginForm = () => {
   const onSumbit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
 
+    const locale = (getCookie("NEXT_LOCALE") as string) ?? "az";
+
     try {
       await request("/api/auth/login", {
         method: "post",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": locale,
+        },
         body: JSON.stringify(data),
       });
     } catch (error) {

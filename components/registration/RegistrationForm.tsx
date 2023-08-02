@@ -32,7 +32,7 @@ const RegistrationForm = () => {
     const locale = (getCookie("NEXT_LOCALE") as string) ?? "az";
 
     try {
-      await request("/api/auth/login", {
+      await request("/api/users", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -40,8 +40,9 @@ const RegistrationForm = () => {
         },
         body: JSON.stringify(data),
       });
+      router.push("/login");
     } catch (error) {
-      router.push("/dashboard");
+      console.log(error);
     }
 
     setIsLoading(false);
