@@ -52,12 +52,6 @@ export default function Login() {
             {t("welcomeSubtitle")}
           </p>
           <LoginForm />
-          <span>
-            {`${t("registrationText")} `}
-            <NextLink href="/registration" className="underline">
-              {t("registration")}
-            </NextLink>
-          </span>
         </div>
       </div>
     </main>

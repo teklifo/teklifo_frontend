@@ -1,5 +1,4 @@
 import nodemailer from "nodemailer";
-import mailgunTransport from "nodemailer-mailgun-transport";
 import emailTemplate from "@/utils/nodemailer/emailTemplate";
 import { EmailType, EmailContextType } from "@/types";
 
@@ -14,22 +13,21 @@ interface EmailParametersType {
 export default async function sendEmail(params: EmailParametersType) {
   const { emailType, locale, subject, receivers, context } = params;
   const { text, html } = await emailTemplate(emailType, locale, context);
-  const mailgunTransporter = mailgunTransport({
-    auth: {
-      api_key: process.env.MAILGUN_API_KEY ?? "",
-      domain: process.env.MAILGUN_DOMAIN,
-    },
-    host: process.env.MAILGUN_HOST,
-  });
-  const transporter = nodemailer.createTransport(mailgunTransporter);
 
-  const info = await transporter.sendMail({
-    from: "Tekliff <info@tekliff.az>",
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_SERVER_HOST,
+    port: Number(process.env.EMAIL_SERVER_PORT),
+    auth: {
+      user: process.env.EMAIL_SERVER_USER,
+      pass: process.env.EMAIL_SERVER_PASSWORD,
+    },
+  });
+
+  await transporter.sendMail({
+    from: process.env.EMAIL_FROM,
     to: receivers,
     subject,
     text,
     html,
   });
-
-  return info;
 }

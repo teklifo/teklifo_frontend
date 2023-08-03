@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 
-export type EmailType = "email_verification" | "reset_password";
+export type EmailType = "email_verification";
 
 export interface EmailContextType {
   [key: string]: string;

@@ -1,17 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { getCookie } from "cookies-next";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import request from "@/utils/request";
 
 const LoginForm = () => {
   const t = useTranslations("Login");
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -21,7 +19,6 @@ const LoginForm = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
@@ -31,16 +28,13 @@ const LoginForm = () => {
     const locale = (getCookie("NEXT_LOCALE") as string) ?? "az";
 
     try {
-      await request("/api/auth/login", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept-Language": locale,
-        },
-        body: JSON.stringify(data),
+      await signIn("email", {
+        email: data.email,
+        redirect: true,
+        callbackUrl: "/",
       });
     } catch (error) {
-      router.push("/dashboard");
+      // todo
     }
 
     setIsLoading(false);
@@ -59,16 +53,6 @@ const LoginForm = () => {
         errors={errors}
         required={t("emailIsRequired")}
         autoComplete="username"
-      />
-      <Input
-        id="password"
-        label={t("password")}
-        disabled={isLoading}
-        register={register}
-        type="password"
-        errors={errors}
-        required={t("passwordIsPassword")}
-        autoComplete="current-password"
       />
       <Button
         title={t("loginBtn")}

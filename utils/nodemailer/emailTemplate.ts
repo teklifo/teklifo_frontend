@@ -1,21 +1,25 @@
-import handlebars from "handlebars";
-import fs from "fs";
-import path from "path";
 import { EmailType, EmailContextType } from "@/types";
+import {
+  emailVerificationAz,
+  emailVerificationRu,
+} from "@/utils/nodemailer/emails/email_verification";
 
 export default async function emailTemplate(
   emailType: EmailType,
   locale: string,
   context: EmailContextType
 ) {
-  const filePath = path.join(
-    process.cwd(),
-    `utils/nodemailer/emails/${locale}/${emailType}.html`
-  );
+  let html = "";
 
-  const source = (await fs.promises.readFile(filePath, "utf-8")).toString();
-  const template = handlebars.compile(source);
-  const html = template(context);
+  if (emailType === "email_verification") {
+    switch (locale) {
+      case "ru":
+        html = emailVerificationRu(context.url);
+      case "az":
+      default:
+        html = emailVerificationAz(context.url);
+    }
+  }
 
   return {
     text: "",
