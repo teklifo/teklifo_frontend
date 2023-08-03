@@ -53,5 +53,6 @@ export interface ButtonProps {
   containerStyles?: string;
   btnType?: "submit" | "button";
   disabled?: boolean;
+  loading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }

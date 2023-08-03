@@ -84,7 +84,7 @@ const RegistrationForm = () => {
       <Button
         title={t("registerBtn")}
         btnType="submit"
-        disabled={isLoading}
+        loading={isLoading}
         containerStyles="transition-colors duration-150 ease-in-out bg-sky-500 text-white rounded-full font-bold hover:bg-sky-600 py-3 px-6"
       />
     </form>

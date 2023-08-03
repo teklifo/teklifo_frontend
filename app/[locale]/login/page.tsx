@@ -27,6 +27,16 @@ export default function Login() {
     <main>
       <div className="flex flex-col h-screen md:flex-row">
         <div className="hidden flex-col justify-center items-center bg-sky-200 w-full md:flex">
+          <div className="absolute top-0 left-0 px-8 py-4">
+            <NextLink href="/" className="text-sky-500">
+              <Image
+                src="/logo.svg"
+                alt="Tekliff Logo"
+                width="48"
+                height="18"
+              />
+            </NextLink>
+          </div>
           <Image
             src="/login.svg"
             alt="login"
@@ -36,7 +46,7 @@ export default function Login() {
           />
           <h1 className="text-5xl font-bold px-16 text-center">{t("title")}</h1>
         </div>
-        <div className="flex flex-col w-full justify-center items-center space-y-8 px-8 my-auto md:my-0">
+        <div className="flex flex-col w-full justify-center items-center space-y-4 px-8 my-8 md:my-0 md:space-y-8">
           <h3 className="text-4xl text-center">{t("welcome")}</h3>
           <p className="max-w-sm text-center text-zinc-400">
             {t("welcomeSubtitle")}
