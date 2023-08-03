@@ -2,6 +2,7 @@ import NextAuth, { AuthOptions } from "next-auth";
 import EmailProvider, {
   SendVerificationRequestParams,
 } from "next-auth/providers/email";
+import { cookies } from "next/headers";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/app/lib/prisma";
 import sendEmail from "@/utils/nodemailer/sendEmail";
@@ -12,15 +13,28 @@ declare module "next-auth" {
   }
 }
 
+const getEmailSubject = (locale: string) => {
+  switch (locale) {
+    case "ru":
+      return "Авторизация на Tekliff.az";
+    case "az":
+    default:
+      return "Avtorizasiya | Tekliff.az";
+  }
+};
+
 const sendVerificationRequest = async ({
   identifier,
   url,
 }: SendVerificationRequestParams) => {
+  const cookieStore = cookies();
+  const locale = cookieStore.get("NEXT_LOCALE")?.value ?? "az";
+
   await sendEmail({
-    locale: "ru",
+    locale,
     emailType: "email_verification",
     receivers: identifier,
-    subject: "Email",
+    subject: getEmailSubject(locale),
     context: {
       url,
     },

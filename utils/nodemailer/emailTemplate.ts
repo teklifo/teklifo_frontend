@@ -15,9 +15,11 @@ export default async function emailTemplate(
     switch (locale) {
       case "ru":
         html = emailVerificationRu(context.url);
+        break;
       case "az":
       default:
         html = emailVerificationAz(context.url);
+        break;
     }
   }
 

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { getCookie } from "cookies-next";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
@@ -25,13 +24,11 @@ const LoginForm = () => {
   const onSumbit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
 
-    const locale = (getCookie("NEXT_LOCALE") as string) ?? "az";
-
     try {
       await signIn("email", {
         email: data.email,
         redirect: true,
-        callbackUrl: "/",
+        callbackUrl: "/dashboard",
       });
     } catch (error) {
       // todo

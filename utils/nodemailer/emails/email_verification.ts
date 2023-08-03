@@ -25,7 +25,7 @@ export function emailVerificationAz(url: string) {
     >
       <h2>Добро пожаловать на Tekliff.az!</h2>
       <p>
-        Чтобы начать работу подтвердите, пожалуйста, свой Email, нажав на кнопку
+        AZƏRBAYCAN!
         ниже
       </p>
       <p>
