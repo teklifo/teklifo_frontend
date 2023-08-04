@@ -5,7 +5,9 @@
     "loginTitle": "Авторизация | Tekliff",
     "loginDescription": "Войдите, чтобы приступить к работе на Tekliff",
     "registrationTitle": "Регистрация | Tekliff",
-    "registrationDescription": "Зарегистрируйтесь на Tekliff, чтобы найти лучшие предложения от надежных партнеров"
+    "registrationDescription": "Зарегистрируйтесь на Tekliff, чтобы найти лучшие предложения от надежных партнеров",
+    "verifyEmailTitle": "Завершите авторизацию на Tekliff.az",
+    "verifyEmailDescription": "На вашу почту отправлено письмо с ссылкой для авторизации"
   },
   "Layout": {
     "getStartedBtn": "Начать",
@@ -31,5 +33,10 @@
     "email": "Email",
     "emailIsRequired": "Пожалуйста, укажите Email",
     "loginBtn": "Поехали!"
+  },
+  "VerifyEmail": {
+    "title": "Вам письмо!",
+    "subtitle": "На ваш почтовый ящик отправлено письмо с ссылкой для завершения авторизации",
+    "home": "На главную страницу"
   }
 }
