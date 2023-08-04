@@ -50,9 +50,18 @@ const Input: React.FC<InputProps> = ({
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
+          dark:bg-black
           ${formatPrice ? "pl-9" : "pl-4"}
-          ${errors[id] ? "border-rose-500" : "border-zinc-300"}
-          ${errors[id] ? "focus:border-rose-500" : "focus:border-sky-500"}
+          ${
+            errors[id]
+              ? "border-rose-500"
+              : "border-zinc-300 dark:border-zinc-800"
+          }
+          ${
+            errors[id]
+              ? "focus:border-rose-500"
+              : "focus:border-sky-500 dark:focus:border-sky-500"
+          }
         `}
       />
       {errors[id] && (

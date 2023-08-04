@@ -8,12 +8,14 @@ const Feature: FC<{ number: string; title: string; text: string }> = ({
 }) => {
   return (
     <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
-      <div className="rounded-full bg-sky-100 md:bg-transparent">
+      <div className="rounded-full bg-sky-100 md:bg-transparent dark:bg-sky-400 dark:md:bg-transparent">
         <div className="flex items-center space-x-2">
-          <div className="px-4 py-2 text-white rounded-full md:py-1 bg-sky-500">
+          <div className="px-4 py-2 text-white rounded-full md:py-1 bg-sky-500 dark:text-black">
             {number}
           </div>
-          <h3 className="text-base font-bold md:mb-4 md:hidden">{title}</h3>
+          <h3 className="text-base font-bold md:mb-4 md:hidden dark:text-black">
+            {title}
+          </h3>
         </div>
       </div>
       <div>

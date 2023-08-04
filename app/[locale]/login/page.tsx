@@ -26,7 +26,7 @@ export default function Login() {
   return (
     <main>
       <div className="flex flex-col h-screen md:flex-row">
-        <div className="hidden flex-col justify-center items-center bg-sky-200 w-full md:flex">
+        <div className="hidden flex-col justify-center items-center bg-sky-300 w-full md:flex text-white dark:text-black">
           <div className="absolute top-0 left-0 px-8 py-4">
             <NextLink href="/" className="text-sky-500">
               <Image

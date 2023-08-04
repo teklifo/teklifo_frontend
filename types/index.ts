@@ -56,3 +56,12 @@ export interface ButtonProps {
   loading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
+
+export interface GroupButtonProps {
+  title: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface GroupButtonsProps {
+  buttons: GroupButtonProps[];
+}
