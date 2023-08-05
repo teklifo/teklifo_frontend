@@ -29,7 +29,7 @@ const GroupButtons = ({ buttons }: GroupButtonsProps) => {
             ${roundedClass}
             hover:text-sky-500
             focus:z-10
-            dark:bg-black
+            dark:bg-zinc-900
             dark:border-zinc-800
             `}
             onClick={button.onClick}

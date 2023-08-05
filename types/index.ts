@@ -65,3 +65,14 @@ export interface GroupButtonProps {
 export interface GroupButtonsProps {
   buttons: GroupButtonProps[];
 }
+
+export interface SidebarProps {
+  display: boolean;
+  children: React.ReactNode;
+}
+
+export interface SidebarItemProps {
+  href: string;
+  title: string;
+  isActive: boolean;
+}
