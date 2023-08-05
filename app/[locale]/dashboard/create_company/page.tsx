@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import Link from "@/components/ui/Link";
+import EditCompanyForm from "@/components/edit_company/EditCompanyForm";
 
 type Props = {
   params: { locale: string };
@@ -13,20 +13,19 @@ export async function generateMetadata({
   const t = await getTranslator(locale, "Metadata");
 
   return {
-    title: t("userCompaniesTitle"),
-    description: t("userCompaniesDescription"),
+    title: t("createCompanyTitle"),
+    description: t("createCompanyDescription"),
   };
 }
 
-export default function UserCompanies() {
-  const t = useTranslations("UserCompanies");
+export default function CreateCompany() {
+  const t = useTranslations("CreateEditCompany");
 
   return (
     <main className="overflow-hidden mt-20">
-      <div className="">
-        <Link href="/dashboard/create_company" type="primary">
-          {t("createNewCompany")}
-        </Link>
+      <div className="mx-8">
+        <h1 className="text-2xl font-bold mb-4">{t("createTitle")}</h1>
+        <EditCompanyForm />
       </div>
     </main>
   );

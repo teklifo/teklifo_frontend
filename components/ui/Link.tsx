@@ -14,7 +14,7 @@ const Link: FC<Props> = ({ href, type, children }) => {
   return (
     <NextLink
       href={href}
-      className={`transition-colors duration-150 ease-in-out
+      className={`inline-block transition-colors duration-150 ease-in-out
              ${type === "primary" ? "bg-sky-500" : "bg- dark:bg-zinc-600"}     
               ${
                 type === "primary"

@@ -7,7 +7,13 @@
     "registrationTitle": "Регистрация | Tekliff",
     "registrationDescription": "Зарегистрируйтесь на Tekliff, чтобы найти лучшие предложения от надежных партнеров",
     "verifyEmailTitle": "Завершите авторизацию на Tekliff.az",
-    "verifyEmailDescription": "На вашу почту отправлено письмо с ссылкой для авторизации"
+    "verifyEmailDescription": "На вашу почту отправлено письмо с ссылкой для авторизации",
+    "dashboardTitle": "Главное | Tekliff.az",
+    "dashboardDescription": "На этой странице отображается вся основная информация",
+    "userCompaniesTitle": "Мои организации | Tekliff.az",
+    "userCompaniesDescription": "Здесь отображается список организаций, в которых вы состоите",
+    "createCompanyTitle": "Новая организация | Tekliff.az",
+    "createCompanyDescription": "Заполните информацию о своей организации"
   },
   "Layout": {
     "getStartedBtn": "Начать",
@@ -43,5 +49,15 @@
   "DashboardLayout": {
     "dashboard": "Главное",
     "userCompanies": "Мои организации"
+  },
+  "Dashboard": {},
+  "UserCompanies": {
+    "createNewCompany": "Создать новую организацию"
+  },
+  "CreateEditCompany": {
+    "createTitle": "Новая организация",
+    "name": "Наименование организации",
+    "nameIsRequired": "Пожалуйста, заполните наименование организации",
+    "createBtn": "Создать организацию"
   }
 }
