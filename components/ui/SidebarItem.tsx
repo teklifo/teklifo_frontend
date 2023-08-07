@@ -9,7 +9,7 @@ const SidebarItem = ({ href, title, isActive }: SidebarItemProps) => {
         className={`flex items-center p-2 text-gray-900 ${
           isActive
             ? "bg-sky-200 dark:bg-sky-600"
-            : "hover:bg-zinc-100 dark:hover:bg-zinc-500 dark:text-white"
+            : "hover:bg-zinc-200 dark:hover:bg-zinc-500 dark:text-white"
         } rounded-lg group`}
       >
         <svg

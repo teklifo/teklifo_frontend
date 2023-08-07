@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import LoginForm from "@/components/login/LoginForm";
+import Logo from "@/components/layout/Logo";
 
 type Props = {
   params: { locale: string };
@@ -26,15 +27,10 @@ export default function Login() {
   return (
     <main>
       <div className="flex flex-col h-screen md:flex-row">
-        <div className="hidden flex-col justify-center items-center bg-sky-300 w-full md:flex text-white dark:text-black">
+        <div className="hidden flex-col justify-center items-center bg-sky-400 w-full md:flex text-white dark:text-black">
           <div className="absolute top-0 left-0 px-8 py-4">
             <NextLink href="/" className="text-sky-500">
-              <Image
-                src="/logo.svg"
-                alt="Tekliff Logo"
-                width="48"
-                height="18"
-              />
+              <Logo className="text-white dark:text-zinc-900" />
             </NextLink>
           </div>
           <Image

@@ -1,19 +1,19 @@
 import NextLink from "next/link";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "@/components/ui/Link";
+import Logo from "@/components/layout/Logo";
 
 const Navbar = () => {
   const t = useTranslations("Layout");
 
   return (
-    <header className="w-full fixed top-0 z-50 bg-white border-b border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800">
+    <header className="w-full fixed top-0 z-50 bg-white border-b border-zinc-300 dark:bg-zinc-900 dark:border-zinc-800">
       <nav className="container flex items-center justify-between mx-auto px-6 py-1 md:py-2">
         <NextLink
           href="/"
           className="flex justify-center items-center text-sky-500"
         >
-          <Image src="/logo.svg" alt="Tekliff Logo" width="48" height="18" />
+          <Logo />
         </NextLink>
         <div className="hidden md:flex space-x-6">
           <a className="hover:text-sky-500" href="#features">

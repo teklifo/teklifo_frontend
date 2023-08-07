@@ -1,6 +1,6 @@
 import NextLink from "next/link";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Logo from "@/components/layout/Logo";
 
 interface DashboardNavbarProps {
   toggleSidebar: () => void;
@@ -10,7 +10,7 @@ const DashboardNavbar = ({ toggleSidebar }: DashboardNavbarProps) => {
   const t = useTranslations("Layout");
 
   return (
-    <header className="w-full fixed top-0 z-50 bg-white border-b border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800">
+    <header className="w-full fixed top-0 z-50 bg-white border-b border-zinc-300 dark:bg-zinc-900 dark:border-zinc-800">
       <nav className="flex items-center justify-between px-6 py-1 md:py-2">
         <div className="flex items-center justify-start">
           <button
@@ -38,7 +38,7 @@ const DashboardNavbar = ({ toggleSidebar }: DashboardNavbarProps) => {
             href="/"
             className="flex justify-center items-center text-sky-500 ml-2"
           >
-            <Image src="/logo.svg" alt="Tekliff Logo" width="48" height="18" />
+            <Logo />
           </NextLink>
         </div>
       </nav>

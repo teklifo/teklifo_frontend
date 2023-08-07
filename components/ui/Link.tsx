@@ -24,7 +24,7 @@ const Link: FC<Props> = ({ href, type, children }) => {
               ${
                 type === "primary"
                   ? "hover:bg-sky-600"
-                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800"
+                  : "hover:bg-zinc-300 dark:hover:bg-zinc-800"
               } 
               rounded-full 
               font-bold

@@ -55,7 +55,7 @@ const Input: React.FC<InputProps> = ({
           ${
             errors[id]
               ? "border-rose-500"
-              : "border-zinc-200 dark:border-zinc-800"
+              : "border-zinc-300 dark:border-zinc-800"
           }
           ${
             errors[id]

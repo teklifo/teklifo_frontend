@@ -25,7 +25,7 @@ const GroupButtons = ({ buttons }: GroupButtonsProps) => {
             font-medium
             bg-white
             ${borderClass}
-            border-zinc-200
+            border-zinc-300
             ${roundedClass}
             hover:text-sky-500
             focus:z-10
