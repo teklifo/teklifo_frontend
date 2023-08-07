@@ -36,7 +36,7 @@ const DashboardNavbar = ({ toggleSidebar }: DashboardNavbarProps) => {
           </button>
           <NextLink
             href="/"
-            className="flex justify-center items-center text-sky-500 ml-2"
+            className="flex justify-center items-center text-sky-500 ml-2 my-2"
           >
             <Logo />
           </NextLink>

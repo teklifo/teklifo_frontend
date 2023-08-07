@@ -18,10 +18,13 @@ const EditCompanyForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CompanyType>({
+  } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       name: "",
+      tin: "",
+      description: "",
+      shortDescription: "",
     },
   });
 
@@ -42,7 +45,13 @@ const EditCompanyForm = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        required={t("nameIsRequired")}
+      />
+      <Input
+        id="tin"
+        label={t("tin")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
       />
       <Button
         title={t("createBtn")}

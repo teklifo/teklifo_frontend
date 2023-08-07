@@ -6,46 +6,19 @@ export interface EmailContextType {
   [key: string]: string;
 }
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  isActive: boolean;
-  activationToken?: string;
-  activationTokenExpires?: Date;
-  resetPasswordToken?: string;
-  avatarUrl: string;
-  createdAt: Date;
-  updatedAt: Date;
-  companies: Company[];
-}
+export type EntityType = "physical" | "legal";
 
-export type CompanyType = "physical" | "entity";
-
-export interface CompanyContacts {
+export interface ContactsType {
   phone: string[];
   email: string[];
   address: string[];
   website: string[];
 }
 
-export interface CompanySocials {
+export interface SocialsType {
   facebook: string;
-  instragram: string;
+  instagram: string;
   youtube: string;
-}
-
-export interface Company {
-  id: number;
-  name: string;
-  tin: string;
-  type: CompanyType;
-  logoUrl: string;
-  description: string;
-  contacts: CompanyContacts;
-  socials: CompanySocials;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 export interface ButtonProps {

@@ -41,8 +41,22 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+enum EntityType {
+  physical
+  legal
+}
+
 model Company {
   id Int @id @default(autoincrement())
+  tin String @unique
+  entityType EntityType
+  image String?
+  description String
+  shortDescription String
+  contacts Json?
+  socials Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   users UsersAndCompanies[]
 }
 
