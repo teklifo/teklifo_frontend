@@ -6,14 +6,14 @@ const SidebarItem = ({ href, title, isActive }: SidebarItemProps) => {
     <li>
       <Link
         href={href}
-        className={`flex items-center p-2 text-gray-900 ${
+        className={`flex items-center p-2 ${
           isActive
-            ? "bg-sky-200 dark:bg-sky-600"
-            : "hover:bg-zinc-200 dark:hover:bg-zinc-500 dark:text-white"
+            ? "bg-white text-black dark:bg-zinc-900 dark:text-white"
+            : "text-white hover:bg-sky-200 hover:text-zinc-900 dark:text-black"
         } rounded-lg group`}
       >
         <svg
-          className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
