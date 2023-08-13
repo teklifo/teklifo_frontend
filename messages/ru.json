@@ -66,6 +66,7 @@
     "physical": "Физическое лицо",
     "legal": "Юридическое лицо",
     "description": "Описание",
+    "descriptionIsRequired": "Пожалуйста, уажите описание вашей организации",
     "invalidDescription": "Описание должно состоять как минимум из 200 символов",
     "shortDescription": "Краткое описание",
     "invalidShortDescription": "Описание должно состоять как минимум из 100 символов",
@@ -76,6 +77,8 @@
     "facebook": "Facebook",
     "instagram": "Instagram",
     "youtube": "Youtube",
-    "createBtn": "Создать организацию"
+    "createBtn": "Создать организацию",
+    "notSelected": "Не указано",
+    "invalidImage": "некорректная ссылка на изображение"
   }
 }

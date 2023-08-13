@@ -5,3 +5,10 @@
 .custom-btn {
   @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
 }
+
+.select-arrow {
+  background: url(https://i.ibb.co/fCsFTVL/icn-dropdown-chevron.png) no-repeat;
+  width: 15px;
+  height: 8px;
+  background-size: contain;
+}

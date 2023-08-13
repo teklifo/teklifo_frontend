@@ -1,4 +1,5 @@
 import { MouseEventHandler } from "react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 export type EmailType = "email_verification";
 
@@ -48,4 +49,19 @@ export interface SidebarItemProps {
   href: string;
   title: string;
   isActive: boolean;
+}
+
+export interface SelectOptionType {
+  value: string;
+  title: string;
+}
+
+export interface SelectType {
+  id: string;
+  label: string;
+  disabled?: boolean;
+  required?: boolean | string;
+  register: UseFormRegister<any>;
+  errors: FieldErrors;
+  children: React.ReactNode;
 }

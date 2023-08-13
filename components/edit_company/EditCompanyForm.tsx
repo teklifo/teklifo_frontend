@@ -5,8 +5,7 @@ import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { companySchema, CompanyType } from "@/schemas/company";
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
+import { Input, Button, Select, SelectOption } from "@/components/ui";
 
 const EditCompanyForm = () => {
   const t = useTranslations("CreateEditCompany");
@@ -53,6 +52,17 @@ const EditCompanyForm = () => {
         register={register}
         errors={errors}
       />
+      <Select
+        id="entityType"
+        label={t("entityType")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      >
+        <SelectOption value="" title={t("notSelected")} />
+        <SelectOption value="physical" title={t("physical")} />
+        <SelectOption value="legal" title={t("legal")} />
+      </Select>
       <Button
         title={t("createBtn")}
         btnType="submit"
