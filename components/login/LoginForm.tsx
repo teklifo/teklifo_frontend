@@ -55,7 +55,7 @@ const LoginForm = () => {
         title={t("loginBtn")}
         btnType="submit"
         loading={isLoading}
-        containerStyles="transition-colors duration-150 ease-in-out bg-sky-500 text-white rounded-full font-bold hover:bg-sky-600 py-3 px-6 dark:text-black"
+        btnstyle="primary"
       />
     </form>
   );

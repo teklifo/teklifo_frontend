@@ -1,11 +1,12 @@
-import { FC } from "react";
 import { useTranslations } from "next-intl";
 
-const Feature: FC<{ number: string; title: string; text: string }> = ({
-  number,
-  title,
-  text,
-}) => {
+interface FeatureProps {
+  number: string;
+  title: string;
+  text: string;
+}
+
+const Feature = ({ number, title, text }: FeatureProps) => {
   return (
     <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
       <div className="rounded-full bg-sky-100 md:bg-transparent dark:bg-sky-400 dark:md:bg-transparent">

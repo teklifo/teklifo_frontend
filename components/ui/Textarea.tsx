@@ -1,18 +1,15 @@
-"use client";
+import { TextareaProps } from "@/types";
 
-import { InputProps } from "@/types";
-
-const Input: React.FC<InputProps> = ({
+const Textarea = ({
   id,
   label,
-  type = "text",
+  col,
+  row,
   disabled,
-  formatPrice,
   register,
   required,
   errors,
-  autoComplete,
-}) => {
+}: TextareaProps) => {
   return (
     <div className="w-full relative">
       <label
@@ -21,12 +18,12 @@ const Input: React.FC<InputProps> = ({
       >
         {label}
       </label>
-      <input
+      <textarea
         id={id}
+        cols={col}
+        rows={row}
         disabled={disabled}
         {...register(id, { required })}
-        type={type}
-        autoComplete={autoComplete}
         className={`      
           w-full
           p-4
@@ -39,7 +36,6 @@ const Input: React.FC<InputProps> = ({
           disabled:opacity-70
           disabled:cursor-not-allowed
           dark:bg-zinc-900
-          ${formatPrice ? "pl-9" : "pl-4"}
           ${
             errors[id]
               ? "border-rose-500"
@@ -51,7 +47,7 @@ const Input: React.FC<InputProps> = ({
               : "focus:border-sky-500 dark:focus:border-sky-500"
           }
         `}
-      />
+      ></textarea>
       {errors[id] && (
         <p className="text-rose-500">{`${errors[id]?.message}`}</p>
       )}
@@ -59,4 +55,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default Textarea;

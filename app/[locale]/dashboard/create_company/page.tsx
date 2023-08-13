@@ -22,7 +22,7 @@ export default function CreateCompany() {
   const t = useTranslations("CreateEditCompany");
 
   return (
-    <main className="overflow-hidden mt-20">
+    <main className="overflow-hidden my-10">
       <div className="mx-8">
         <h1 className="text-2xl font-bold mb-4">{t("createTitle")}</h1>
         <EditCompanyForm />

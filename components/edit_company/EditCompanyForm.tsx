@@ -5,11 +5,21 @@ import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { companySchema, CompanyType } from "@/schemas/company";
-import { Input, Button, Select, SelectOption } from "@/components/ui";
+import CompanyContacts from "@/components/edit_company/CompanyContacts";
+import {
+  Input,
+  Button,
+  Divider,
+  Select,
+  SelectOption,
+  Textarea,
+} from "@/components/ui";
+import { ContactsType } from "@/types";
 
 const EditCompanyForm = () => {
   const t = useTranslations("CreateEditCompany");
   const [isLoading, setIsLoading] = useState(false);
+  const [contacts, setContacts] = useState<ContactsType[]>([]);
 
   const schema = companySchema(t);
 
@@ -63,11 +73,32 @@ const EditCompanyForm = () => {
         <SelectOption value="physical" title={t("physical")} />
         <SelectOption value="legal" title={t("legal")} />
       </Select>
+      <Textarea
+        id="description"
+        label={t("description")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      />
+      <Textarea
+        id="shortDescription"
+        label={t("shortDescription")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      />
+      <Divider />
+      <CompanyContacts
+        contacts={contacts}
+        setContacts={setContacts}
+        isLoading={isLoading}
+      />
+      <Divider />
       <Button
         title={t("createBtn")}
         btnType="submit"
         loading={isLoading}
-        containerStyles="transition-colors duration-150 ease-in-out bg-sky-500 text-white rounded-full font-bold hover:bg-sky-600 py-3 px-6 dark:text-black"
+        btnstyle="primary"
       />
     </form>
   );

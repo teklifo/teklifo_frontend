@@ -1,4 +1,4 @@
-import { SelectType } from "@/types";
+import { SelectProps } from "@/types";
 
 const Select = ({
   id,
@@ -8,7 +8,7 @@ const Select = ({
   required,
   errors,
   children,
-}: SelectType) => {
+}: SelectProps) => {
   return (
     <div className="w-full relative">
       <label

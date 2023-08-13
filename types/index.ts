@@ -24,7 +24,7 @@ export interface SocialsType {
 
 export interface ButtonProps {
   title: string;
-  containerStyles?: string;
+  btnstyle: "primary" | "secondary";
   btnType?: "submit" | "button";
   disabled?: boolean;
   loading?: boolean;
@@ -51,12 +51,24 @@ export interface SidebarItemProps {
   isActive: boolean;
 }
 
-export interface SelectOptionType {
+export interface InputProps {
+  id: string;
+  label: string;
+  type?: string;
+  disabled?: boolean;
+  formatPrice?: boolean;
+  required?: boolean | string;
+  register: UseFormRegister<any>;
+  errors: FieldErrors;
+  autoComplete?: string;
+}
+
+export interface SelectOptionProps {
   value: string;
   title: string;
 }
 
-export interface SelectType {
+export interface SelectProps {
   id: string;
   label: string;
   disabled?: boolean;
@@ -64,4 +76,15 @@ export interface SelectType {
   register: UseFormRegister<any>;
   errors: FieldErrors;
   children: React.ReactNode;
+}
+
+export interface TextareaProps {
+  id: string;
+  label: string;
+  col?: number;
+  row?: number;
+  disabled?: boolean;
+  required?: boolean | string;
+  register: UseFormRegister<any>;
+  errors: FieldErrors;
 }
