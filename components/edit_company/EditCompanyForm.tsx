@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { companySchema, CompanyType } from "@/schemas/company";
 import CompanyContacts from "@/components/edit_company/CompanyContacts";
 import {
   Input,
@@ -14,14 +14,30 @@ import {
   SelectOption,
   Textarea,
 } from "@/components/ui";
-import { ContactsType } from "@/types";
+import { EntityType, ContactsType, SocialsType } from "@/types";
 
 const EditCompanyForm = () => {
   const t = useTranslations("CreateEditCompany");
   const [isLoading, setIsLoading] = useState(false);
   const [contacts, setContacts] = useState<ContactsType[]>([]);
 
-  const schema = companySchema(t);
+  const schema = object({
+    name: string().required(t("nameIsRequired")),
+    tin: string()
+      .required(t("tinIsRequired"))
+      .matches(/^\d+$/, t("invalidTin"))
+      .length(10, t("invalidTin")),
+    entityType: string<EntityType>().required(t("entityTypeIsRequired")),
+    image: string().url(t("invalidImage")),
+    description: string()
+      .required(t("descriptionIsRequired"))
+      .min(100, t("invalidDescription")),
+    shortDescription: string()
+      .required(t("descriptionIsRequired"))
+      .min(200, t("invalidShortDescription")),
+    contacts: object<ContactsType>(),
+    socials: object<SocialsType>(),
+  });
 
   const {
     register,
@@ -37,7 +53,7 @@ const EditCompanyForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<CompanyType> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
 
     setIsLoading(false);

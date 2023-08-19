@@ -1,10 +1,14 @@
 import { MouseEventHandler } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
-export type EmailType = "email_verification";
-
-export interface EmailContextType {
-  [key: string]: string;
+export interface UserType {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+  image: string | null;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export type EntityType = "physical" | "legal";

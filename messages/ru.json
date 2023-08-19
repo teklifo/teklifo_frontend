@@ -39,7 +39,19 @@
     "welcomeSubtitle": "Авторизуйтесь на Tekliff, чтобы найти лучшие предложения от надежных партнеров",
     "email": "Email",
     "emailIsRequired": "Пожалуйста, укажите Email",
+    "password": "Пароль",
+    "passwordIsRequired": "Пожалуйста, укажите пароль",
     "loginBtn": "Поехали!"
+  },
+  "Register": {
+    "name": "Имя",
+    "nameIsRequired": "Пожалуйста, заполните свое имя",
+    "email": "Email",
+    "emailIsRequired": "Пожалуйста, укажите Email",
+    "invalidEmail": "Пожалуйста, укажите правильный Email",
+    "password": "Пароль",
+    "passwordIsRequired": "Пожалуйста, укажите пароль",
+    "invalidPassword": "Пароль должен содержать как минимум 6 символов"
   },
   "VerifyEmail": {
     "title": "Вам письмо!",
@@ -79,7 +91,7 @@
     "youtube": "Youtube",
     "createBtn": "Создать организацию",
     "notSelected": "Не указано",
-    "invalidImage": "некорректная ссылка на изображение",
+    "invalidImage": "Некорректная ссылка на изображение",
     "contacts": "Контактная информация",
     "addContacts": "Добавить контактную информацию"
   }
