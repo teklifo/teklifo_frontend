@@ -6,19 +6,21 @@ import { useTranslations } from "next-intl";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { setCookie } from "cookies-next";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import request from "@/utils/request";
 
-const LoginForm = () => {
-  const t = useTranslations("Login");
+const RegisterForm = () => {
+  const t = useTranslations("Register");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const schema = object({
-    email: string().required(t("emailIsRequired")),
-    password: string().required(t("passwordIsRequired")),
+    name: string().required(t("nameIsRequired")),
+    email: string().email(t("invalidEmail")).required(t("emailIsRequired")),
+    password: string()
+      .min(6, t("invalidPassword"))
+      .required(t("passwordIsRequired")),
   });
 
   const {
@@ -37,13 +39,12 @@ const LoginForm = () => {
     setIsLoading(true);
 
     try {
-      const result = await request<{ token: string }>("/api/auth", {
+      await request("/api/users", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      setCookie("token", result.token);
-      router.push("/dashboard");
+      router.push("/verify_email");
     } catch (error) {
       // todo
     }
@@ -56,6 +57,13 @@ const LoginForm = () => {
       className="flex flex-col w-full space-y-6 md:w-2/3"
       onSubmit={handleSubmit(onSumbit)}
     >
+      <Input
+        id="name"
+        label={t("name")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      />
       <Input
         id="email"
         label={t("email")}
@@ -74,7 +82,7 @@ const LoginForm = () => {
         autoComplete="current-password"
       />
       <Button
-        title={t("loginBtn")}
+        title={t("registerBtn")}
         btnType="submit"
         loading={isLoading}
         btnstyle="primary"
@@ -83,4 +91,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

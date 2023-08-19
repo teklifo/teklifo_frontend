@@ -9,6 +9,7 @@ const publicPages = [
   "/register",
   "/user_verification",
   "/verify_email",
+  "/email_verification",
 ];
 
 const intlMiddleware = createMiddleware({
@@ -17,6 +18,8 @@ const intlMiddleware = createMiddleware({
 });
 
 export default async function middleware(request: NextRequest) {
+  console.log(1);
+
   const publicPathnameRegex = RegExp(
     `^(/(${locales.join("|")}))?(${publicPages.join("|")})?/?$`,
     "i"

@@ -43,7 +43,7 @@ const DashboardLayout = () => {
             <div className="py-2">
               <NextLink
                 href="/"
-                className="flex justify-center items-center text-white ml-2 my-2 dark:text-zinc-800"
+                className="flex justify-center items-center text-zinc-900 ml-2 my-2 dark:text-white"
               >
                 <Logo />
               </NextLink>

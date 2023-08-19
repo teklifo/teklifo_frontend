@@ -9,6 +9,7 @@ export const fetchUser = async (token: string, locale: string) => {
       Authorization: `JWT ${token}`,
       "Accept-Language": locale,
     },
+    cache: "no-cache",
   };
 
   try {
