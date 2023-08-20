@@ -73,7 +73,7 @@ function EmailVerificationContent({
         </h3>
         <div className="flex justify-center">
           {verificationResult ? (
-            <Link href="/dashboard" type="primary" prefetch={false}>
+            <Link href="/dashboard" type="primary">
               {t("dashboard")}
             </Link>
           ) : (

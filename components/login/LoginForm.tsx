@@ -43,6 +43,7 @@ const LoginForm = () => {
         body: JSON.stringify(data),
       });
       setCookie("token", result.token);
+      router.refresh();
       router.push("/dashboard");
     } catch (error) {
       // todo

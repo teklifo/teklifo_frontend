@@ -26,7 +26,7 @@ const Navbar = () => {
             About us
           </a>
         </div>
-        <Link href="/dashboard" type="primary" prefetch={false}>
+        <Link href="/dashboard" type="primary">
           {t("getStartedBtn")}
         </Link>
       </nav>
