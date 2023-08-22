@@ -15,7 +15,8 @@ const Button = ({
   if (btnstyle === "primary") {
     styles = "bg-sky-500 text-white hover:bg-sky-600 dark:text-black";
   } else if (btnstyle === "secondary") {
-    styles = "bg-zinc-100 text-black hover:bg-zinc-200 dark:text-white";
+    styles =
+      "bg-zinc-100 text-black hover:bg-zinc-200 dark:text-white dark:bg-zinc-800";
   }
 
   return (

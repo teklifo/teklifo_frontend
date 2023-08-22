@@ -6,8 +6,7 @@ import { useTranslations } from "next-intl";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
+import { Input, Button } from "@/components/ui";
 import request from "@/utils/request";
 
 const RegisterForm = () => {

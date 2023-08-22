@@ -24,7 +24,7 @@ const CompanyContacts = ({
     setOpen(true);
   };
 
-  const onSubmit = (contact: ContactsType | null) => {
+  const onSubmit = (contact: ContactsType) => {
     setOpen(false);
     if (contact) {
       setContacts((prevState) => {
@@ -39,7 +39,7 @@ const CompanyContacts = ({
 
   return (
     <>
-      <ContactModal isOpen={open} onClose={onClose} />
+      <ContactModal isOpen={open} onFormSubmit={onSubmit} onClose={onClose} />
       <div>
         <h5 className="text-xl font-bold mb-4">{t("contacts")}</h5>
         <Button

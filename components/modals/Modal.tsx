@@ -85,6 +85,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, body }) => {
               bg-white 
               outline-none 
               focus:outline-none
+              dark:bg-zinc-800
             "
             >
               {/*header*/}

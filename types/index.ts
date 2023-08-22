@@ -1,61 +1,75 @@
 import { MouseEventHandler } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
-export interface UserType {
+export type UserType = {
   id: number;
   name: string;
   email: string;
   isActive: boolean;
   image: string | null;
-  created_at: Date;
-  updated_at: Date;
-}
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 export type EntityType = "physical" | "legal";
 
-export interface ContactsType {
-  phone: string[];
-  email: string[];
-  address: string[];
-  website: string[];
-}
+export type TypeOfContact = "phone" | "email" | "address" | "website";
 
-export interface SocialsType {
+export type ContactsType = {
+  type: TypeOfContact;
+  value: string;
+};
+
+export type SocialsType = {
   facebook: string;
   instagram: string;
   youtube: string;
-}
+};
 
-export interface ButtonProps {
+export type CompanyType = {
+  id: number;
+  name: string;
+  tin: string;
+  entityType: EntityType;
+  image: string | null;
+  description: string;
+  shortDescription: string | null;
+  contacts: ContactsType | null;
+  socials: SocialsType | SocialsType;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type ButtonProps = {
   title: string;
   btnstyle: "primary" | "secondary";
   btnType?: "submit" | "button";
   disabled?: boolean;
   loading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+};
 
-export interface GroupButtonProps {
+export type GroupButtonProps = {
   title: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+};
 
-export interface GroupButtonsProps {
+export type GroupButtonsProps = {
   buttons: GroupButtonProps[];
-}
+};
 
-export interface SidebarProps {
+export type SidebarProps = {
   display: boolean;
   children: React.ReactNode;
-}
+};
 
-export interface SidebarItemProps {
+export type SidebarItemProps = {
   href: string;
   title: string;
   isActive: boolean;
-}
+};
 
-export interface InputProps {
+export type InputProps = {
   id: string;
   label: string;
   type?: string;
@@ -65,14 +79,14 @@ export interface InputProps {
   register: UseFormRegister<any>;
   errors: FieldErrors;
   autoComplete?: string;
-}
+};
 
-export interface SelectOptionProps {
+export type SelectOptionProps = {
   value: string;
   title: string;
-}
+};
 
-export interface SelectProps {
+export type SelectProps = {
   id: string;
   label: string;
   disabled?: boolean;
@@ -80,9 +94,9 @@ export interface SelectProps {
   register: UseFormRegister<any>;
   errors: FieldErrors;
   children: React.ReactNode;
-}
+};
 
-export interface TextareaProps {
+export type TextareaProps = {
   id: string;
   label: string;
   col?: number;
@@ -91,4 +105,4 @@ export interface TextareaProps {
   required?: boolean | string;
   register: UseFormRegister<any>;
   errors: FieldErrors;
-}
+};

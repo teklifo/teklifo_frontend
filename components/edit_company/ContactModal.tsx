@@ -1,16 +1,79 @@
-import React, { useState } from "react";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { object, string, mixed, InferType } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Input, Select, SelectOption, Button } from "@/components/ui";
 import Modal from "@/components/modals/Modal";
+import { ContactsType } from "@/types";
 
 interface ContactModalProps {
   isOpen: boolean;
+  onFormSubmit: (contact: ContactsType) => void;
   onClose: () => void;
 }
 
-const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
-  const bodyContent = <h1>Hello!</h1>;
+const ContactModal = ({ isOpen, onFormSubmit, onClose }: ContactModalProps) => {
+  const t = useTranslations("CreateEditCompany");
+
+  const schema = object({
+    type: mixed().oneOf(["phone", "address", "email", "website"]).required(""),
+    value: string().required(""),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      type: "phone",
+      value: "",
+    },
+  });
+
+  const onSumbit: SubmitHandler<InferType<typeof schema>> = async (data) => {
+    onFormSubmit(data as ContactsType);
+  };
+
+  const bodyContent = (
+    <form className="flex flex-col w-full mx-auto space-y-6 md:w-2/3">
+      <Select
+        id="type"
+        label={t("contactType")}
+        register={register}
+        errors={errors}
+      >
+        <SelectOption value="phone" title={t("phone")} />
+        <SelectOption value="email" title={t("email")} />
+        <SelectOption value="address" title={t("address")} />
+        <SelectOption value="website" title={t("website")} />
+      </Select>
+      <Input
+        id="value"
+        label={t("contactValue")}
+        register={register}
+        type="text"
+        errors={errors}
+      />
+      <Button
+        title={t("saveContact")}
+        btnType="button"
+        btnstyle="primary"
+        onClick={handleSubmit(onSumbit)}
+      />
+    </form>
+  );
 
   return (
-    <Modal isOpen={isOpen} title="Login" onClose={onClose} body={bodyContent} />
+    <Modal
+      isOpen={isOpen}
+      title={t("contacts")}
+      onClose={onClose}
+      body={bodyContent}
+    />
   );
 };
 
