@@ -17,9 +17,28 @@ interface ContactModalProps {
 const ContactModal = ({ isOpen, onFormSubmit, onClose }: ContactModalProps) => {
   const t = useTranslations("CreateEditCompany");
 
+  const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
+  const websaitRegExp =
+    /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
+
   const schema = object({
-    type: mixed().oneOf(["phone", "address", "email", "website"]).required(""),
-    value: string().required(""),
+    type: mixed()
+      .oneOf(["phone", "address", "email", "website"])
+      .required("contactTypeIsRequired"),
+    value: string()
+      .required(t("contactValueIsRequired"))
+      .when("type", {
+        is: "email",
+        then: (schema) => schema.email(t("invalidEmail")),
+      })
+      .when("type", {
+        is: "website",
+        then: (schema) => schema.matches(websaitRegExp, t("invalidWebsait")),
+      })
+      .when("type", {
+        is: "phone",
+        then: (schema) => schema.matches(phoneRegExp, t("invalidPhone")),
+      }),
   });
 
   const {
