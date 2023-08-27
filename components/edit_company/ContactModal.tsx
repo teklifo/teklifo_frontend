@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { object, string, mixed, InferType } from "yup";
@@ -8,13 +9,19 @@ import { Input, Select, SelectOption, Button } from "@/components/ui";
 import Modal from "@/components/modals/Modal";
 import { ContactsType } from "@/types";
 
-interface ContactModalProps {
+type ContactModalProps = {
   isOpen: boolean;
+  defaultValues?: ContactsType;
   onFormSubmit: (contact: ContactsType) => void;
   onClose: () => void;
-}
+};
 
-const ContactModal = ({ isOpen, onFormSubmit, onClose }: ContactModalProps) => {
+const ContactModal = ({
+  isOpen,
+  defaultValues,
+  onFormSubmit,
+  onClose,
+}: ContactModalProps) => {
   const t = useTranslations("CreateEditCompany");
 
   const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
@@ -44,21 +51,27 @@ const ContactModal = ({ isOpen, onFormSubmit, onClose }: ContactModalProps) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      type: "phone",
-      value: "",
+      type: defaultValues ? "email" : "phone",
+      value: defaultValues ? defaultValues.value : "",
     },
   });
 
+  useEffect(() => {
+    reset(defaultValues);
+  }, [defaultValues, reset]);
+
   const onSumbit: SubmitHandler<InferType<typeof schema>> = async (data) => {
     onFormSubmit(data as ContactsType);
+    reset();
   };
 
   const bodyContent = (
-    <form className="flex flex-col w-full mx-auto space-y-6 md:w-2/3">
+    <div className="flex flex-col w-full mx-auto space-y-6 md:w-2/3">
       <Select
         id="type"
         label={t("contactType")}
@@ -83,7 +96,7 @@ const ContactModal = ({ isOpen, onFormSubmit, onClose }: ContactModalProps) => {
         btnstyle="primary"
         onClick={handleSubmit(onSumbit)}
       />
-    </form>
+    </div>
   );
 
   return (

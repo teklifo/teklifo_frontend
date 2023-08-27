@@ -2,7 +2,7 @@
 
 import { InputProps } from "@/types";
 
-const Input: React.FC<InputProps> = ({
+const Input = ({
   id,
   label,
   type = "text",
@@ -12,7 +12,7 @@ const Input: React.FC<InputProps> = ({
   required,
   errors,
   autoComplete,
-}) => {
+}: InputProps) => {
   return (
     <div className="w-full relative">
       <label
@@ -43,7 +43,7 @@ const Input: React.FC<InputProps> = ({
           ${
             errors[id]
               ? "border-rose-500"
-              : "border-zinc-300 dark:border-zinc-800"
+              : "border-zinc-300 dark:border-zinc-700"
           }
           ${
             errors[id]

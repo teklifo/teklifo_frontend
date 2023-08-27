@@ -62,7 +62,7 @@ const EditCompanyForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="container w-full space-y-6 md:max-w-md"
+      className="container w-full space-y-6 md:max-w-5xl"
     >
       <Input
         id="name"
@@ -115,6 +115,7 @@ const EditCompanyForm = () => {
         btnType="submit"
         loading={isLoading}
         btnstyle="primary"
+        btnClass="w-full"
       />
     </form>
   );

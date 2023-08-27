@@ -39,7 +39,7 @@ const Textarea = ({
           ${
             errors[id]
               ? "border-rose-500"
-              : "border-zinc-300 dark:border-zinc-800"
+              : "border-zinc-300 dark:border-zinc-700"
           }
           ${
             errors[id]

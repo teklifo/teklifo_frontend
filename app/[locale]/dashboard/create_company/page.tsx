@@ -23,8 +23,9 @@ export default function CreateCompany() {
 
   return (
     <main className="overflow-hidden my-10">
-      <div className="mx-8">
-        <h1 className="text-2xl font-bold mb-4">{t("createTitle")}</h1>
+      <div className="mx-4 md:mx-8">
+        <h1 className="text-3xl font-bold">{t("createTitle")}</h1>
+        <h3 className="text-zinc-400 mt-1 mb-4">{t("createSubtitle")}</h3>
         <EditCompanyForm />
       </div>
     </main>

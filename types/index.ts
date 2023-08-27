@@ -47,10 +47,11 @@ export type ButtonProps = {
   disabled?: boolean;
   loading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  btnClass?: string;
 };
 
 export type GroupButtonProps = {
-  title: string;
+  content: JSX.Element;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -67,6 +68,7 @@ export type SidebarItemProps = {
   href: string;
   title: string;
   isActive: boolean;
+  icon?: JSX.Element;
 };
 
 export type InputProps = {

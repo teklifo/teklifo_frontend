@@ -10,6 +10,7 @@ const Button = ({
   disabled,
   loading,
   onClick,
+  btnClass,
 }: ButtonProps) => {
   let styles = "";
   if (btnstyle === "primary") {
@@ -32,6 +33,7 @@ const Button = ({
       py-3
       px-6
       ${styles}
+      ${btnClass ?? ""}
       `}
       onClick={onClick}
     >

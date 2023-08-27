@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import NextLink from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
+import { LayoutDashboard, Briefcase } from "lucide-react";
 import DashboardNavbar from "@/components/layout/DashboardNavbar";
 import ThemeSwitcher from "@/components/layout/ThemeSwitcher";
 import Logo from "@/components/layout/Logo";
@@ -52,15 +53,19 @@ const DashboardLayout = () => {
                   href="/dashboard"
                   title={t("dashboard")}
                   isActive={pathname === `/${locale}/dashboard`}
+                  icon={<LayoutDashboard />}
                 />
                 <SidebarItem
                   href="/dashboard/user_companies"
                   title={t("userCompanies")}
                   isActive={pathname === `/${locale}/dashboard/user_companies`}
+                  icon={<Briefcase />}
                 />
               </ul>
             </div>
-            <ThemeSwitcher />
+            <div className="flex justify-center items-center">
+              <ThemeSwitcher />
+            </div>
           </div>
         </Sidebar>
       </div>

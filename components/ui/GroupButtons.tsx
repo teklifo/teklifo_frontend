@@ -2,7 +2,7 @@ import { GroupButtonsProps } from "@/types";
 
 const GroupButtons = ({ buttons }: GroupButtonsProps) => {
   return (
-    <div className="inline-flex rounded-md shadow-sm" role="group">
+    <div className="inline-flex rounded-md" role="group">
       {buttons.map((button, index) => {
         const firstButton = index === 0;
         const lastButton = index === buttons.length - 1;
@@ -34,7 +34,7 @@ const GroupButtons = ({ buttons }: GroupButtonsProps) => {
             `}
             onClick={button.onClick}
           >
-            {button.title}
+            {button.content}
           </button>
         );
       })}

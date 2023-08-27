@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { Sun, Moon, Laptop2 } from "lucide-react";
 import GroupButtons from "@/components/ui/GroupButtons";
 import { GroupButtonProps } from "@/types";
 
@@ -19,19 +20,19 @@ const ThemeSwitcher = () => {
 
   const buttons: GroupButtonProps[] = [
     {
-      title: "Light",
+      content: <Sun />,
       onClick: () => {
         setTheme("light");
       },
     },
     {
-      title: "Dark",
+      content: <Moon />,
       onClick: () => {
         setTheme("dark");
       },
     },
     {
-      title: "System",
+      content: <Laptop2 />,
       onClick: () => {
         setTheme("system");
       },

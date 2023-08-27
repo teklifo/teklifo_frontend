@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { X } from "lucide-react";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -98,6 +99,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, body }) => {
                 justify-center
                 relative
                 border-b-[1px]
+                border-zinc-300
+                dark:border-zinc-600
                 "
               >
                 <div className="text-lg font-semibold">{title}</div>
@@ -113,7 +116,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, body }) => {
                   "
                   onClick={handleClose}
                 >
-                  Close
+                  <X />
                 </button>
               </div>
               {/*body*/}
