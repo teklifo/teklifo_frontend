@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { getCookie } from "cookies-next";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,10 +16,14 @@ import {
   SelectOption,
   Textarea,
 } from "@/components/ui";
-import { EntityType, ContactsType, SocialsType } from "@/types";
+import request from "@/utils/request";
+import { EntityType, ContactsType, SocialsType, CompanyType } from "@/types";
 
 const EditCompanyForm = () => {
   const t = useTranslations("CreateEditCompany");
+
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
   const [contacts, setContacts] = useState<ContactsType[]>([]);
 
@@ -31,11 +37,15 @@ const EditCompanyForm = () => {
     image: string().url(t("invalidImage")),
     description: string()
       .required(t("descriptionIsRequired"))
-      .min(100, t("invalidDescription")),
+      .min(200, t("invalidDescription")),
     shortDescription: string()
-      .required(t("descriptionIsRequired"))
-      .min(200, t("invalidShortDescription")),
+      .required(t("shortDescriptionIsRequired"))
+      .min(100, t("invalidShortDescription")),
     contacts: object<ContactsType>(),
+    instagram: string().url(t("invalidWebsait")),
+    facebook: string().url(t("invalidWebsait")),
+    youtube: string().url(t("invalidWebsait")),
+    linkedin: string().url(t("invalidWebsait")),
     socials: object<SocialsType>(),
   });
 
@@ -55,6 +65,23 @@ const EditCompanyForm = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
+
+    const config = {
+      method: "post",
+      headers: {
+        Authorization: `JWT ${getCookie("token") ?? ""}`,
+        "Accept-Language": getCookie("NEXT_LOCALE") ?? "az",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    try {
+      await request<CompanyType>("/api/companies", config);
+      router.push("/dashboard/user_companies");
+    } catch (error) {
+      // todo
+    }
 
     setIsLoading(false);
   };
@@ -108,6 +135,36 @@ const EditCompanyForm = () => {
         contacts={contacts}
         setContacts={setContacts}
         isLoading={isLoading}
+      />
+      <Divider />
+      <h5 className="text-xl font-bold mb-4">{t("socials")}</h5>
+      <Input
+        id="instagram"
+        label={t("instagram")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      />
+      <Input
+        id="facebook"
+        label={t("facebook")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      />
+      <Input
+        id="youtube"
+        label={t("youtube")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      />
+      <Input
+        id="linkedin"
+        label={t("linkedin")}
+        disabled={isLoading}
+        register={register}
+        errors={errors}
       />
       <Divider />
       <Button
