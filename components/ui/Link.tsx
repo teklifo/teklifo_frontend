@@ -17,7 +17,11 @@ const Link: FC<Props> = ({ href, type, prefetch = true, children }) => {
       href={href}
       prefetch={prefetch}
       className={`inline-block transition-colors duration-150 ease-in-out
-             ${type === "primary" ? "bg-sky-500" : "bg- dark:bg-zinc-600"}     
+             ${
+               type === "primary"
+                 ? "bg-sky-500"
+                 : "bg-zinc-100 dark:bg-zinc-800"
+             }     
               ${
                 type === "primary"
                   ? "text-white dark:text-black"
@@ -26,7 +30,7 @@ const Link: FC<Props> = ({ href, type, prefetch = true, children }) => {
               ${
                 type === "primary"
                   ? "hover:bg-sky-600"
-                  : "hover:bg-zinc-300 dark:hover:bg-zinc-800"
+                  : "hover:bg-zinc-200 dark:hover:bg-zinc-700"
               } 
               rounded-full 
               font-bold

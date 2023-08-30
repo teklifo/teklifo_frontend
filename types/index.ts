@@ -108,3 +108,13 @@ export type TextareaProps = {
   register: UseFormRegister<any>;
   errors: FieldErrors;
 };
+
+export type DividerProps = {
+  classes?: string;
+};
+
+export type PaginationType = {
+  skipped: number;
+  current: number;
+  total: number;
+};

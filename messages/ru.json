@@ -82,7 +82,10 @@
   },
   "Dashboard": {},
   "UserCompanies": {
-    "createNewCompany": "Создать новую организацию"
+    "title": "Мои организации",
+    "subtitle": "В этом списке отображается список всех организаций, в которых вы состоите",
+    "createNewCompany": "Создать новую организацию",
+    "noCompanies": "Вы пока не состоите ни в одной организации"
   },
   "CreateEditCompany": {
     "createTitle": "Новая организация",

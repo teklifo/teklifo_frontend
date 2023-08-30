@@ -73,7 +73,15 @@ const EditCompanyForm = () => {
         "Accept-Language": getCookie("NEXT_LOCALE") ?? "az",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        ...data,
+        socials: {
+          instagram: data.instagram,
+          facebook: data.facebook,
+          youtube: data.youtube,
+          linkedin: data.linkedin,
+        },
+      }),
     };
 
     try {

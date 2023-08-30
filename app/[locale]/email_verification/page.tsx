@@ -21,7 +21,7 @@ export async function generateMetadata({
   };
 }
 
-export async function verifyToken(activationToken: string) {
+async function verifyToken(activationToken: string) {
   try {
     const result = await request<{ token: string }>("/api/auth/verification", {
       method: "post",
