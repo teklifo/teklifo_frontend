@@ -40,7 +40,7 @@ const EditCompanyForm = () => {
       .min(200, t("invalidDescription")),
     shortDescription: string()
       .required(t("shortDescriptionIsRequired"))
-      .min(100, t("invalidShortDescription")),
+      .max(100, t("invalidShortDescription")),
     contacts: object<ContactsType>(),
     instagram: string().url(t("invalidWebsait")),
     facebook: string().url(t("invalidWebsait")),
