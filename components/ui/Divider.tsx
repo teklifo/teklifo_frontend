@@ -3,7 +3,7 @@ import { DividerProps } from "@/types";
 const Divider = ({ classes }: DividerProps) => {
   return (
     <hr
-      className={`border border-zinc-200 dark:border-zinc-800 ${
+      className={`border-zinc-200 dark:border-zinc-800 ${
         classes ? classes : ""
       }`}
     />

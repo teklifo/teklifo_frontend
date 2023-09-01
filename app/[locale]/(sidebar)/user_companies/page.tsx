@@ -6,12 +6,16 @@ import { useTranslations } from "next-intl";
 import Divider from "@/components/ui/Divider";
 import Link from "@/components/ui/Link";
 import Card from "@/components/ui/Card";
+import Pagination from "@/components/ui/Pagination";
 import { fetchUser } from "@/app/actions/auth";
 import request from "@/utils/request";
 import { CompanyType, PaginationType } from "@/types";
 
 type Props = {
   params: { locale: string };
+  searchParams: {
+    page?: number;
+  };
 };
 
 type PaginatedData = {
@@ -30,7 +34,7 @@ export async function generateMetadata({
   };
 }
 
-async function getUserCompanies() {
+async function getUserCompanies(page: number) {
   const nextCookies = cookies();
   const token = nextCookies.get("token")?.value ?? "";
   const locale = nextCookies.get("NEXT_LOCALE")?.value ?? "az";
@@ -42,14 +46,19 @@ async function getUserCompanies() {
   try {
     const user = await fetchUser(token, locale);
     if (!user) throw new Error("No user");
-    return await request<PaginatedData>(`/api/companies?page=${1}&limit=10`);
+    return await request<PaginatedData>(
+      `/api/companies?page=${page}&limit=10`,
+      {
+        cache: "no-cache",
+      }
+    );
   } catch (error) {
     throw error;
   }
 }
 
-export default async function UserCompanies() {
-  const data = await getUserCompanies();
+export default async function UserCompanies({ searchParams: { page } }: Props) {
+  const data = await getUserCompanies(page ?? 1);
   return <UserCompaniesContent data={data} />;
 }
 
@@ -81,10 +90,10 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
           <h5 className="text-2xl text-center">{t("noCompanies")}</h5>
         </div>
       ) : (
-        <div className="grid place-items-center grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {result.map((company) => (
-            <Card key={company.id}>
-              <div className="flex flex-col items-center py-10">
+            <Card key={company.id} classes="h-full">
+              <div className="flex flex-col items-center py-10 px-2">
                 {company.image ? (
                   <Image
                     className="mb-3 rounded-full shadow-lg"
@@ -119,6 +128,9 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
           ))}
         </div>
       )}
+      <div className="w-full flex flex-row justify-center items-center py-10">
+        <Pagination href="/user_companies?page=" pagination={pagination} />
+      </div>
     </main>
   );
 }
