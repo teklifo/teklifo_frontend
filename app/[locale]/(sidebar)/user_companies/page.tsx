@@ -8,7 +8,7 @@ import Link from "@/components/ui/Link";
 import Card from "@/components/ui/Card";
 import { fetchUser } from "@/app/actions/auth";
 import request from "@/utils/request";
-import { CompanyType, PaginationType } from "@/types/";
+import { CompanyType, PaginationType } from "@/types";
 
 type Props = {
   params: { locale: string };
@@ -64,7 +64,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
       <h3 className="text-zinc-400 mt-1 mb-4">{t("subtitle")}</h3>
       <Divider classes="my-4" />
       <div className="w-full flex flex-row justify-center items-center md:justify-start">
-        <Link href="/dashboard/create_company" type="secondary">
+        <Link href="/create_company" type="secondary">
           {t("createNewCompany")}
         </Link>
       </div>
@@ -81,7 +81,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
           <h5 className="text-2xl text-center">{t("noCompanies")}</h5>
         </div>
       ) : (
-        <div>
+        <div className="grid place-items-center grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {result.map((company) => (
             <Card key={company.id}>
               <div className="flex flex-col items-center py-10">
@@ -107,13 +107,10 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
                   {company.tin}
                 </span>
                 <span className="mt-3 text-sm text-center text-zinc-500 dark:text-zinc-400">
-                  {company.shortDescription.slice(0, 100)}
+                  {company.shortDescription?.slice(0, 100)}
                 </span>
                 <div className="flex mt-4 space-x-3 md:mt-6">
-                  <Link
-                    href={`/dashboard/companies/${company.id}`}
-                    type="primary"
-                  >
+                  <Link href={`/company/${company.id}`} type="primary">
                     {t("more")}
                   </Link>
                 </div>

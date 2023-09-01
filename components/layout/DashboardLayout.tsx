@@ -56,9 +56,9 @@ const DashboardLayout = () => {
                   icon={<LayoutDashboard />}
                 />
                 <SidebarItem
-                  href="/dashboard/user_companies"
+                  href="/user_companies"
                   title={t("userCompanies")}
-                  isActive={pathname === `/${locale}/dashboard/user_companies`}
+                  isActive={pathname === `/${locale}/user_companies`}
                   icon={<Briefcase />}
                 />
               </ul>
