@@ -90,47 +90,49 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
           <h5 className="text-2xl text-center">{t("noCompanies")}</h5>
         </div>
       ) : (
-        <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {result.map((company) => (
-            <Card key={company.id} classes="h-full">
-              <div className="flex flex-col items-center py-10 px-2">
-                {company.image ? (
-                  <Image
-                    className="mb-3 rounded-full shadow-lg"
-                    src="/docs/images/people/profile-picture-3.jpg"
-                    width="96"
-                    height="96"
-                    alt={company.name}
-                  />
-                ) : (
-                  <div className="w-24 h-24 mb-3 rounded-full shadow-lg flex justify-center items-center bg-sky-500 text-white dark:text-black">
-                    <span className="text-3xl font-extrabold">
-                      {company.name[0].toUpperCase()}
-                    </span>
+        <>
+          <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {result.map((company) => (
+              <Card key={company.id} classes="h-full">
+                <div className="flex flex-col items-center py-10 px-2">
+                  {company.image ? (
+                    <Image
+                      className="mb-3 rounded-full shadow-lg"
+                      src="/docs/images/people/profile-picture-3.jpg"
+                      width="96"
+                      height="96"
+                      alt={company.name}
+                    />
+                  ) : (
+                    <div className="w-24 h-24 mb-3 rounded-full shadow-lg flex justify-center items-center bg-sky-500 text-white dark:text-black">
+                      <span className="text-3xl font-extrabold">
+                        {company.name[0].toUpperCase()}
+                      </span>
+                    </div>
+                  )}
+                  <h5 className="mb-1 text-xl font-medium text-zinc-900 dark:text-white">
+                    {company.name}
+                  </h5>
+                  <span className="text-sm text-zinc-500 dark:text-zinc-400">
+                    {company.tin}
+                  </span>
+                  <span className="mt-3 text-sm text-center text-zinc-500 dark:text-zinc-400">
+                    {company.shortDescription?.slice(0, 100)}
+                  </span>
+                  <div className="flex mt-4 space-x-3 md:mt-6">
+                    <Link href={`/company/${company.id}`} type="primary">
+                      {t("more")}
+                    </Link>
                   </div>
-                )}
-                <h5 className="mb-1 text-xl font-medium text-zinc-900 dark:text-white">
-                  {company.name}
-                </h5>
-                <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                  {company.tin}
-                </span>
-                <span className="mt-3 text-sm text-center text-zinc-500 dark:text-zinc-400">
-                  {company.shortDescription?.slice(0, 100)}
-                </span>
-                <div className="flex mt-4 space-x-3 md:mt-6">
-                  <Link href={`/company/${company.id}`} type="primary">
-                    {t("more")}
-                  </Link>
                 </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+              </Card>
+            ))}
+          </div>
+          <div className="w-full flex flex-row justify-center items-center py-10">
+            <Pagination href="/user_companies?page=" pagination={pagination} />
+          </div>
+        </>
       )}
-      <div className="w-full flex flex-row justify-center items-center py-10">
-        <Pagination href="/user_companies?page=" pagination={pagination} />
-      </div>
     </main>
   );
 }

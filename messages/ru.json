@@ -130,5 +130,13 @@
     "editContact": "Изменить",
     "deleteContact": "Удалить",
     "socials": "Социальные сети"
+  },
+  "Company": {
+    "aboutSupplier": "О поставщике",
+    "contacts": "Контактная информация",
+    "phones": "Телефон",
+    "emails": "Электронная почта",
+    "addresses": "Адрес",
+    "websites": "Сайт"
   }
 }

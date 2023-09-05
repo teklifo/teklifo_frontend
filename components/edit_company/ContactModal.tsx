@@ -67,7 +67,6 @@ const ContactModal = ({
 
   const onSumbit: SubmitHandler<InferType<typeof schema>> = async (data) => {
     onFormSubmit(data as ContactsType);
-    reset();
   };
 
   const bodyContent = (

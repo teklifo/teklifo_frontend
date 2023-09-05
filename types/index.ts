@@ -34,7 +34,7 @@ export type CompanyType = {
   image: string | null;
   description: string;
   shortDescription: string | null;
-  contacts: ContactsType | null;
+  contacts: ContactsType[] | null;
   socials: SocialsType | SocialsType;
   createdAt: Date;
   updatedAt: Date;

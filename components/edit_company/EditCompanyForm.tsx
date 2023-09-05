@@ -75,6 +75,7 @@ const EditCompanyForm = () => {
       },
       body: JSON.stringify({
         ...data,
+        contacts,
         socials: {
           instagram: data.instagram,
           facebook: data.facebook,
@@ -85,8 +86,9 @@ const EditCompanyForm = () => {
     };
 
     try {
-      await request<CompanyType>("/api/companies", config);
-      router.push("/user_companies");
+      const company = await request<CompanyType>("/api/companies", config);
+      router.refresh();
+      router.push(`/company/${company.id}`);
     } catch (error) {
       // todo
     }

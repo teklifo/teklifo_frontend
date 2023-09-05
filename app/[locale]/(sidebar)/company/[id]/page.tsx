@@ -1,12 +1,11 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import { cookies } from "next/headers";
+import Image from "next/image";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import Link from "@/components/ui/Link";
 import { fetchUser } from "@/app/actions/auth";
 import request from "@/utils/request";
-import { CompanyType, PaginationType } from "@/types";
+import { CompanyType, ContactsType } from "@/types";
 
 type Props = {
   params: { locale: string; id: string };
@@ -49,28 +48,87 @@ export default async function Company({ params: { id } }: Props) {
 function CompanyContent({ company }: { company: CompanyType }) {
   const t = useTranslations("Company");
 
+  const phones = company.contacts?.filter(
+    (contact) => contact.type === "phone"
+  );
+  const emails = company.contacts?.filter(
+    (contact) => contact.type === "email"
+  );
+  const addresses = company.contacts?.filter(
+    (contact) => contact.type === "address"
+  );
+  const websites = company.contacts?.filter(
+    (contact) => contact.type === "website"
+  );
+
   return (
-    <main>
-      <div className="flex flex-col-reverse justify-center items-center h-screen m-4 lg:flex-row">
-        <div className="space-y-6">
-          <h1 className="text-5xl font-bold px-16 text-center">{t("title")}</h1>
-          <h3 className="max-w-sm text-center mx-auto text-zinc-400">
-            {t("subtitle")}
+    <main className="my-10 mx-4 md:mx-8 space-y-6">
+      <div className="flex flex-col justify-start space-x-0 items-center w-full py-4 px-8 bg-white border border-zinc-200 rounded-lg dark:bg-zinc-800 dark:border-zinc-700 md:flex-row md:justify-start md:space-x-6">
+        <div>
+          {company.image ? (
+            <Image
+              className="mb-3 rounded-full shadow-lg"
+              src="/docs/images/people/profile-picture-3.jpg"
+              width="96"
+              height="96"
+              alt={company.name}
+            />
+          ) : (
+            <div className="w-24 h-24 mb-3 rounded-full shadow-lg flex justify-center items-center bg-sky-500 text-white dark:text-black">
+              <span className="text-3xl font-extrabold">
+                {company.name[0].toUpperCase()}
+              </span>
+            </div>
+          )}
+        </div>
+        <div>
+          <h1 className="text-center text-3xl font-bold md:text-start">
+            {company.name}
+          </h1>
+          <h3 className="text-center text-zinc-400 mt-1 mb-4 md:text-start">
+            {company.shortDescription}
           </h3>
-          <div className="flex justify-center">
-            <Link href="/" type="primary">
-              {t("home")}
-            </Link>
+        </div>
+      </div>
+      <div className="flex flex-col justify-start items-start space-y-3 w-full py-4 px-8 bg-white border border-zinc-200 rounded-lg dark:bg-zinc-800 dark:border-zinc-700">
+        <h5 className="text-lg font-extrabold text-start">
+          {t("aboutSupplier")}
+        </h5>
+        <h2 className="text-start text-zinc-400">{company.description}</h2>
+      </div>
+      {company.contacts && (
+        <div className="flex flex-col justify-start items-start space-y-3 w-full py-4 px-8 bg-white border border-zinc-200 rounded-lg dark:bg-zinc-800 dark:border-zinc-700">
+          <h5 className="text-lg font-extrabold text-start">{t("contacts")}</h5>
+          <div className="grid grid-cols-1 gap-4 pt-4  md:grid-cols-2 md:w-2/3">
+            <ContactsBlock array={phones} label={t("phones")} />
+            <ContactsBlock array={emails} label={t("emails")} />
+            <ContactsBlock array={addresses} label={t("addresses")} />
+            <ContactsBlock array={websites} label={t("websites")} />
           </div>
         </div>
-        <Image
-          src="/verify_email.svg"
-          alt="verify_email"
-          width="600"
-          height="600"
-          priority
-        />
-      </div>
+      )}
     </main>
+  );
+}
+
+function ContactsBlock({
+  array,
+  label,
+}: {
+  array: ContactsType[] | undefined;
+  label: String;
+}) {
+  return (
+    array &&
+    array.length > 0 && (
+      <div className="space-y-1">
+        <h6 className="text-sm text-zinc-400">{label}</h6>
+        {array.map((element, index) => (
+          <span key={index} className="block">
+            {element.value}
+          </span>
+        ))}
+      </div>
+    )
   );
 }
