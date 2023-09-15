@@ -3,6 +3,7 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import Avatar from "@/components/utils/Avatar";
 import Divider from "@/components/ui/Divider";
 import Link from "@/components/ui/Link";
 import Card from "@/components/ui/Card";
@@ -95,21 +96,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
             {result.map((company) => (
               <Card key={company.id} classes="h-full">
                 <div className="flex flex-col items-center py-10 px-2">
-                  {company.image ? (
-                    <Image
-                      className="mb-3 rounded-full shadow-lg"
-                      src="/docs/images/people/profile-picture-3.jpg"
-                      width="96"
-                      height="96"
-                      alt={company.name}
-                    />
-                  ) : (
-                    <div className="w-24 h-24 mb-3 rounded-full shadow-lg flex justify-center items-center bg-sky-500 text-white dark:text-black">
-                      <span className="text-3xl font-extrabold">
-                        {company.name[0].toUpperCase()}
-                      </span>
-                    </div>
-                  )}
+                  <Avatar image={company.image} name={company.name} />
                   <h5 className="mb-1 text-xl font-medium text-zinc-900 dark:text-white">
                     {company.name}
                   </h5>

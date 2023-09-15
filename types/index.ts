@@ -26,6 +26,11 @@ export type SocialsType = {
   youtube: string;
 };
 
+export type UserAndCompanyType = {
+  userId: number;
+  companyId: number;
+};
+
 export type CompanyType = {
   id: number;
   name: string;
@@ -38,6 +43,7 @@ export type CompanyType = {
   socials: SocialsType | SocialsType;
   createdAt: Date;
   updatedAt: Date;
+  users?: UserAndCompanyType[];
 };
 
 export type ButtonProps = {

@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { cookies } from "next/headers";
-import Image from "next/image";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { fetchUser } from "@/app/actions/auth";
+import AvatarUpload from "@/components/utils/AvatarUpload";
+import Avatar from "@/components/utils/Avatar";
 import request from "@/utils/request";
 import { CompanyType, ContactsType } from "@/types";
 
@@ -12,29 +13,28 @@ type Props = {
 };
 
 export async function generateMetadata({
-  params: { locale },
+  params: { locale, id },
 }: Props): Promise<Metadata> {
   const t = await getTranslator(locale, "Metadata");
 
+  const company = await getCompany(id);
+
   return {
-    title: "Some company",
-    description: "Some company",
+    title: `${company.name} | ${t("projectName")}`,
+    description: company.description,
   };
 }
 
 async function getCompany(companyId: string) {
   const nextCookies = cookies();
-  const token = nextCookies.get("token")?.value ?? "";
   const locale = nextCookies.get("NEXT_LOCALE")?.value ?? "az";
 
-  if (!token) {
-    throw new Error("No user");
-  }
-
   try {
-    const user = await fetchUser(token, locale);
-    if (!user) throw new Error("No user");
-    return await request<CompanyType>(`/api/companies/${companyId}`);
+    return await request<CompanyType>(`/api/companies/${companyId}`, {
+      headers: {
+        "Accept-Language": locale,
+      },
+    });
   } catch (error) {
     throw error;
   }
@@ -42,10 +42,28 @@ async function getCompany(companyId: string) {
 
 export default async function Company({ params: { id } }: Props) {
   const company = await getCompany(id);
-  return <CompanyContent company={company} />;
+
+  const nextCookies = cookies();
+  const token = nextCookies.get("token")?.value ?? "";
+  const locale = nextCookies.get("NEXT_LOCALE")?.value ?? "az";
+
+  const user = token ? await fetchUser(token, locale) : null;
+
+  const isMember = user
+    ? (company.users?.filter((element) => element.userId === user.id) ?? [])
+        .length > 0 ?? false
+    : false;
+
+  return <CompanyContent company={company} isMember={isMember} />;
 }
 
-function CompanyContent({ company }: { company: CompanyType }) {
+function CompanyContent({
+  company,
+  isMember,
+}: {
+  company: CompanyType;
+  isMember: boolean;
+}) {
   const t = useTranslations("Company");
 
   const phones = company.contacts?.filter(
@@ -65,20 +83,10 @@ function CompanyContent({ company }: { company: CompanyType }) {
     <main className="my-10 mx-4 md:mx-8 space-y-6">
       <div className="flex flex-col justify-start space-x-0 items-center w-full py-4 px-8 bg-white border border-zinc-200 rounded-lg dark:bg-zinc-800 dark:border-zinc-700 md:flex-row md:justify-start md:space-x-6">
         <div>
-          {company.image ? (
-            <Image
-              className="mb-3 rounded-full shadow-lg"
-              src="/docs/images/people/profile-picture-3.jpg"
-              width="96"
-              height="96"
-              alt={company.name}
-            />
+          {isMember ? (
+            <AvatarUpload image={company.image} name={company.name} />
           ) : (
-            <div className="w-24 h-24 mb-3 rounded-full shadow-lg flex justify-center items-center bg-sky-500 text-white dark:text-black">
-              <span className="text-3xl font-extrabold">
-                {company.name[0].toUpperCase()}
-              </span>
-            </div>
+            <Avatar image={company.image} name={company.name} />
           )}
         </div>
         <div>

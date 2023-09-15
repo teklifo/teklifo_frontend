@@ -10,6 +10,7 @@ const publicPages = [
   "/user_verification",
   "/verify_email",
   "/email_verification",
+  "/company/*",
 ];
 
 const intlMiddleware = createMiddleware({
@@ -19,7 +20,9 @@ const intlMiddleware = createMiddleware({
 
 export default async function middleware(request: NextRequest) {
   const publicPathnameRegex = RegExp(
-    `^(/(${locales.join("|")}))?(${publicPages.join("|")})?/?$`,
+    `^(/(${locales.join("|")}))?(${publicPages
+      .map((page) => page.replace(/\*/, ".*"))
+      .join("|")})?/?$`,
     "i"
   );
   const isPublicPage = publicPathnameRegex.test(request.nextUrl.pathname);
