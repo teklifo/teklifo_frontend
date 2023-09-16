@@ -3,10 +3,10 @@ import { cookies } from "next/headers";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { fetchUser } from "@/app/actions/auth";
-import AvatarUpload from "@/components/utils/AvatarUpload";
+import CompanyAvatar from "@/components/company/CompanyAvatar";
 import Avatar from "@/components/utils/Avatar";
 import request from "@/utils/request";
-import { CompanyType, ContactsType } from "@/types";
+import { CompanyType, ContactsType, ImageType } from "@/types";
 
 type Props = {
   params: { locale: string; id: string };
@@ -84,7 +84,7 @@ function CompanyContent({
       <div className="flex flex-col justify-start space-x-0 items-center w-full py-4 px-8 bg-white border border-zinc-200 rounded-lg dark:bg-zinc-800 dark:border-zinc-700 md:flex-row md:justify-start md:space-x-6">
         <div>
           {isMember ? (
-            <AvatarUpload image={company.image} name={company.name} />
+            <CompanyAvatar company={company} />
           ) : (
             <Avatar image={company.image} name={company.name} />
           )}

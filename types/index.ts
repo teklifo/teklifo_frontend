@@ -1,12 +1,17 @@
 import { MouseEventHandler } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
+export type ImageType = {
+  id: string;
+  url: string;
+};
+
 export type UserType = {
   id: number;
   name: string;
   email: string;
   isActive: boolean;
-  image: string | null;
+  image: ImageType | null;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -36,7 +41,7 @@ export type CompanyType = {
   name: string;
   tin: string;
   entityType: EntityType;
-  image: string | null;
+  image: ImageType | null;
   description: string;
   shortDescription: string | null;
   contacts: ContactsType[] | null;

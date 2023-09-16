@@ -3,6 +3,9 @@ const nextConfig = {
   env: {
     BACKEND_URL: process.env.BACKEND_URL,
   },
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
 };
 
 const withNextIntl = require("next-intl/plugin")(

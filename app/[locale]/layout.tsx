@@ -12,18 +12,11 @@ type Props = {
 
 export default async function RootLayout({
   children,
-  params,
+  params: { locale },
 }: {
   children: React.ReactNode;
   params: Props;
 }) {
-  const locale = useLocale();
-
-  // Show a 404 error if the user requests an unknown locale
-  if (params.locale !== locale) {
-    notFound();
-  }
-
   let messages;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
@@ -32,7 +25,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={locale}>
+    <html>
       <body className={`${inter.className} dark:bg-zinc-900`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>{children}</Providers>
