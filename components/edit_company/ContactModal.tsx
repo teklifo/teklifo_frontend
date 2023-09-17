@@ -55,18 +55,18 @@ const ContactModal = ({
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      type: defaultValues ? "email" : "phone",
-      value: defaultValues ? defaultValues.value : "",
-    },
   });
 
   useEffect(() => {
-    reset(defaultValues);
+    reset({
+      type: defaultValues ? defaultValues.type : "phone",
+      value: defaultValues ? defaultValues.value : "",
+    });
   }, [defaultValues, reset]);
 
   const onSumbit: SubmitHandler<InferType<typeof schema>> = async (data) => {
     onFormSubmit(data as ContactsType);
+    reset();
   };
 
   const bodyContent = (
