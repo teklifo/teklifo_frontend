@@ -22,12 +22,12 @@ export default function CreateCompany() {
   const t = useTranslations("CreateEditCompany");
 
   return (
-    <main className="overflow-hidden my-10">
+    <div className="flex flex-col items-center my-0 md:my-5">
       <div className="mx-4 md:mx-8">
         <h1 className="text-3xl font-bold">{t("createTitle")}</h1>
         <h3 className="text-zinc-400 mt-1 mb-4">{t("createSubtitle")}</h3>
         <EditCompanyForm />
       </div>
-    </main>
+    </div>
   );
 }

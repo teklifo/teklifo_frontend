@@ -30,8 +30,8 @@ export default function EmailVerificationContent({
         </h3>
         <div className="flex justify-center">
           {token ? (
-            <Link href="/dashboard" type="primary">
-              {t("dashboard")}
+            <Link href="/" type="primary">
+              {t("home")}
             </Link>
           ) : (
             <Link href="/register" type="primary">

@@ -69,7 +69,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
   const { result, pagination } = data;
 
   return (
-    <main className="my-10 mx-4 md:mx-8">
+    <div className="my-5 mx-4 md:my-10 md:mx-8">
       <h1 className="text-3xl font-bold">{t("title")}</h1>
       <h3 className="text-zinc-400 mt-1 mb-4">{t("subtitle")}</h3>
       <Divider classes="my-4" />
@@ -120,6 +120,6 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
           </div>
         </>
       )}
-    </main>
+    </div>
   );
 }

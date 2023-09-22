@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Rubik } from "next/font/google";
-import { useLocale, NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Providers from "@/app/[locale]/providers";
 

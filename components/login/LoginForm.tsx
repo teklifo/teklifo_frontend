@@ -43,7 +43,7 @@ const LoginForm = () => {
       });
       setCookie("token", result.token);
       router.refresh();
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       // todo
     }

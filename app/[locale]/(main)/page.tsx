@@ -20,9 +20,9 @@ export async function generateMetadata({
 
 export default function Home() {
   return (
-    <main className="overflow-hidden mt-20">
+    <>
       <Hero />
       <Features />
-    </main>
+    </>
   );
 }

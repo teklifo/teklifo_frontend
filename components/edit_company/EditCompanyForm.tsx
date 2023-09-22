@@ -97,10 +97,7 @@ const EditCompanyForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="container w-full space-y-6 md:max-w-5xl"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 md:max-w-5xl">
       <Input
         id="name"
         label={t("name")}

@@ -80,7 +80,7 @@ function CompanyContent({
   );
 
   return (
-    <main className="my-10 mx-4 md:mx-8 space-y-6">
+    <div className="my-5 mx-4 md:my-10 md:mx-8 space-y-6">
       <div className="flex flex-col justify-start space-x-0 items-center w-full py-4 px-8 bg-white border border-zinc-200 rounded-lg dark:bg-zinc-800 dark:border-zinc-700 md:flex-row md:justify-start md:space-x-6">
         <div>
           {isMember ? (
@@ -115,7 +115,7 @@ function CompanyContent({
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }
 

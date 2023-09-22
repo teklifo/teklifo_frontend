@@ -11,15 +11,13 @@
     "verifyEmailDescription": "На вашу почту отправлено письмо с ссылкой для авторизации",
     "emailVerificationTitle": "Подтверждение Email | Teklifo",
     "emailVerificationDescription": "Завершение авторизации на Teklifo",
-    "dashboardTitle": "Главное | Teklifo",
-    "dashboardDescription": "На этой странице отображается вся основная информация",
     "userCompaniesTitle": "Мои организации | Teklifo",
     "userCompaniesDescription": "Здесь отображается список организаций, в которых вы состоите",
     "createCompanyTitle": "Новая организация | Teklifo",
     "createCompanyDescription": "Заполните информацию о своей организации"
   },
   "Layout": {
-    "getStartedBtn": "Начать",
+    "getStartedBtn": "Войти",
     "features": "Почему мы?"
   },
   "Home": {
@@ -74,12 +72,8 @@
     "subtitleSuccess": "Готовы приступить к работе?",
     "titleError": "Хм...Что-то пошло не так",
     "subtitleError": "Кажется, вы перешли по неправильной ссылке подтверждения Email. Давайте попробуйем еще раз",
-    "dashboard": "Всегда готов!",
+    "home": "Всегда готов!",
     "register": "Зарегистрироваться"
-  },
-  "DashboardLayout": {
-    "dashboard": "Главное",
-    "userCompanies": "Мои организации"
   },
   "Dashboard": {},
   "UserCompanies": {

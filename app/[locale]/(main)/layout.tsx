@@ -9,7 +9,9 @@ export default async function Layout({
   return (
     <>
       <Navbar />
-      {children}
+      <main className="overflow-hidden container mx-auto mt-20">
+        {children}
+      </main>
       <Footer />
     </>
   );
