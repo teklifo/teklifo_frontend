@@ -1,12 +1,12 @@
 import React from "react";
 
-type MenuButton = {
+type MenuButtonProps = {
   label: string;
   icon: JSX.Element;
   onClick: () => void;
 };
 
-const MenuButton = ({ label, icon, onClick }: MenuButton) => {
+const MenuButton = ({ label, icon, onClick }: MenuButtonProps) => {
   return (
     <button
       type="button"

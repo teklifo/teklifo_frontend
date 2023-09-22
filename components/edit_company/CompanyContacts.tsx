@@ -3,7 +3,7 @@ import { MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui";
 import { useTranslations } from "next-intl";
 import ContactModal from "@/components/edit_company/ContactModal";
-import MenuButton from "@/components/edit_company/MenuButton";
+import MenuButton from "@/components/utils/MenuButton";
 import {
   Table,
   TableBody,

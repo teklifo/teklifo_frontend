@@ -2,8 +2,14 @@ import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import Link from "@/components/ui/Link";
 import Logo from "@/components/layout/Logo";
+import UserDropdown from "@/components/layout/UserDropdown";
+import { UserType } from "@/types";
 
-const Navbar = () => {
+type NavbarProps = {
+  user: UserType | null;
+};
+
+const Navbar = ({ user }: NavbarProps) => {
   const t = useTranslations("Layout");
 
   return (
@@ -26,9 +32,13 @@ const Navbar = () => {
             About us
           </a>
         </div>
-        <Link href="/login" type="primary">
-          {t("getStartedBtn")}
-        </Link>
+        {user ? (
+          <UserDropdown user={user} />
+        ) : (
+          <Link href="/login" type="primary">
+            {t("getStartedBtn")}
+          </Link>
+        )}
       </nav>
     </header>
   );

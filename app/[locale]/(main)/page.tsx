@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { getTranslator } from "next-intl/server";
 import Hero from "@/components/home/Hero";
 import Features from "@/components/home/Features";
+import ExchangeInfo from "@/components/home/ExchangeInfo";
 
 type Props = {
   params: { locale: string };
@@ -23,6 +24,7 @@ export default function Home() {
     <>
       <Hero />
       <Features />
+      <ExchangeInfo />
     </>
   );
 }
