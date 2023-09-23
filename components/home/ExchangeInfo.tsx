@@ -12,13 +12,13 @@ const Exchange = () => {
       <h2 className="text-4xl font-bold text-center mb-4">
         {t("1cExchangeTitle")}
       </h2>
-      <div className="flex flex-col-reverse justify-center items-center md:flex-row">
+      <div className="flex flex-col justify-center items-center px-8 space-y-12 md:flex-row md:space-y-0 md:space-x-12">
         <div className="max-w-sm">
           <Image
             src="/1c_exchange.svg"
             alt="hero"
-            width="500"
-            height="500"
+            width="300"
+            height="300"
             priority
           />
         </div>
