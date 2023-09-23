@@ -135,6 +135,10 @@
     "phones": "Телефон",
     "emails": "Электронная почта",
     "addresses": "Адрес",
-    "websites": "Сайт"
+    "websites": "Сайт",
+    "products": "Товары поставщика"
+  },
+  "ProductCard": {
+    "more": "Подробнее"
   }
 }

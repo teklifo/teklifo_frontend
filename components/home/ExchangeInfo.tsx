@@ -5,7 +5,10 @@ const Exchange = () => {
   const t = useTranslations("Home");
 
   return (
-    <section id="features" className="my-20 py-10 bg-sky-100 rounded-3xl">
+    <section
+      id="features"
+      className="my-20 py-10 mx-2 bg-sky-100 rounded-3xl dark:bg-sky-500"
+    >
       <h2 className="text-4xl font-bold text-center mb-4">
         {t("1cExchangeTitle")}
       </h2>
@@ -19,7 +22,7 @@ const Exchange = () => {
             priority
           />
         </div>
-        <p className="max-w-lg text-center text-zinc-800 font-medium text-xl md:text-left">
+        <p className="px-2 max-w-lg text-center text-black font-medium text-xl md:text-left dark:text-white">
           {t("1cExchangeText")}
         </p>
       </div>

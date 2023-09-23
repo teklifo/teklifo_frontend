@@ -88,7 +88,7 @@ const EditCompanyForm = () => {
     try {
       const company = await request<CompanyType>("/api/companies", config);
       router.refresh();
-      router.push(`/company/${company.id}`);
+      router.push(`/companies/${company.id}`);
     } catch (error) {
       // todo
     }

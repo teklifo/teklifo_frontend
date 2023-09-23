@@ -107,7 +107,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
                     {company.shortDescription?.slice(0, 100)}
                   </span>
                   <div className="flex mt-4 space-x-3 md:mt-6">
-                    <Link href={`/company/${company.id}`} type="primary">
+                    <Link href={`/companies/${company.id}`} type="primary">
                       {t("more")}
                     </Link>
                   </div>

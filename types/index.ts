@@ -4,6 +4,7 @@ import { FieldErrors, UseFormRegister } from "react-hook-form";
 export type ImageType = {
   id: string;
   url: string;
+  commerceMl?: boolean;
 };
 
 export type UserType = {
@@ -49,6 +50,24 @@ export type CompanyType = {
   createdAt: Date;
   updatedAt: Date;
   users?: UserAndCompanyType[];
+};
+
+export type ProductType = {
+  id: number;
+  externalId: string;
+  productId: string;
+  characteristicId: string;
+  number: string;
+  barcode: string;
+  name: string;
+  unit: string;
+  vat: string;
+  sellPrice: number;
+  inStock: number;
+  images: ImageType[];
+  createdAt: Date;
+  updatedAt: Date;
+  companyId: number;
 };
 
 export type ButtonProps = {
