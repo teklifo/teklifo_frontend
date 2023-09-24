@@ -7,6 +7,7 @@ import { getCookie } from "cookies-next";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
 import CompanyContacts from "@/components/edit_company/CompanyContacts";
 import {
   Input,
@@ -90,7 +91,10 @@ const EditCompanyForm = () => {
       router.refresh();
       router.push(`/companies/${company.id}`);
     } catch (error) {
-      // todo
+      let message;
+      if (error instanceof Error) message = error.message;
+      else message = String(error);
+      toast.error(message);
     }
 
     setIsLoading(false);

@@ -148,3 +148,12 @@ export type PaginationType = {
   current: number;
   total: number;
 };
+
+export type ApiError = {
+  errors: [
+    {
+      msg: string;
+      param?: string;
+    }
+  ];
+};

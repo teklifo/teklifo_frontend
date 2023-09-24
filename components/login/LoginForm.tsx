@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
 import { setCookie } from "cookies-next";
 import { Input, Button } from "@/components/ui";
 import request from "@/utils/request";
@@ -45,7 +46,10 @@ const LoginForm = () => {
       router.refresh();
       router.push("/");
     } catch (error) {
-      // todo
+      let message;
+      if (error instanceof Error) message = error.message;
+      else message = String(error);
+      toast.error(message);
     }
 
     setIsLoading(false);
