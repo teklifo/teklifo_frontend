@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { cookies } from "next/headers";
+import Image from "next/image";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { fetchUser } from "@/app/actions/auth";
@@ -171,14 +172,32 @@ function CompanyContent({
         <h4 className="text-center text-2xl font-extrabold md:text-start">
           {t("products")}
         </h4>
-        <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </div>
-      <div className="w-full flex flex-row justify-center items-center py-10">
-        <Pagination href="/user_companies?page=" pagination={pagination} />
+        {products.length > 0 ? (
+          <>
+            <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+            <div className="w-full flex flex-row justify-center items-center py-10">
+              <Pagination
+                href="/user_companies?page="
+                pagination={pagination}
+              />
+            </div>
+          </>
+        ) : (
+          <div className="flex flex-col justify-center items-center my-10 space-y-12">
+            <Image
+              src="/no_products.svg"
+              alt="no_products"
+              width="400"
+              height="400"
+              priority
+            />
+            <h5 className="max-w-md text-2xl text-center">{t("noProducts")}</h5>
+          </div>
+        )}
       </div>
     </div>
   );
