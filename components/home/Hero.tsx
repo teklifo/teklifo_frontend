@@ -19,7 +19,7 @@ const Hero = () => {
           {t("subtitle")}
         </p>
         <div className="flex justify-center md:justify-start">
-          <Link href="/login" type="primary">
+          <Link href="/user_companies" type="primary">
             {t("getStartedBtn")}
           </Link>
         </div>

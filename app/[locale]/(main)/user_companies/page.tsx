@@ -3,6 +3,7 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import { Briefcase } from "lucide-react";
 import Avatar from "@/components/utils/Avatar";
 import Divider from "@/components/ui/Divider";
 import Link from "@/components/ui/Link";
@@ -70,7 +71,10 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
 
   return (
     <div className="my-5 mx-4 md:my-10 md:mx-8">
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
+      <div className="flex flex-row items-start space-x-3">
+        <Briefcase size={36} />
+        <h1 className="text-3xl font-bold">{t("title")}</h1>
+      </div>
       <h3 className="text-zinc-400 mt-1 mb-4">{t("subtitle")}</h3>
       <Divider classes="my-4" />
       <div className="w-full flex flex-row justify-center items-center md:justify-start">

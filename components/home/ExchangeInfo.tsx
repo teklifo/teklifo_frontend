@@ -1,14 +1,12 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Link from "@/components/ui/Link";
 
 const Exchange = () => {
   const t = useTranslations("Home");
 
   return (
-    <section
-      id="features"
-      className="my-20 py-10 mx-2 bg-sky-100 rounded-3xl dark:bg-sky-700"
-    >
+    <section id="features" className="my-20 py-10 mx-2">
       <h2 className="text-4xl font-bold text-center mb-4">
         {t("1cExchangeTitle")}
       </h2>
@@ -22,9 +20,17 @@ const Exchange = () => {
             priority
           />
         </div>
-        <p className="px-2 max-w-lg text-center text-black font-medium text-xl md:text-left dark:text-white">
-          {t("1cExchangeText")}
-        </p>
+        <div className="text-center space-y-6 md:text-left">
+          <p className="px-2 max-w-lg text-black font-medium text-xl dark:text-white">
+            {t("1cExchangeTextSubtitle")}
+          </p>
+          <p className="px-2 max-w-lg text-black font-medium text-xl dark:text-white">
+            {t("1cExchangeText")}
+          </p>
+          <Link href="/1c_exchange" type="primary">
+            {t("1cExchangeMore")}
+          </Link>
+        </div>
       </div>
     </section>
   );
