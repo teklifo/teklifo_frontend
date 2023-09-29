@@ -141,5 +141,11 @@
   },
   "ProductCard": {
     "more": "Подробнее"
+  },
+  "Product": {
+    "number": "Артикул",
+    "barcode": "Штрихкод",
+    "vatPrc": "Ставка НДС",
+    "inStock": "В наличии"
   }
 }

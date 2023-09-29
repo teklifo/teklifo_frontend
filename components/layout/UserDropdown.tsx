@@ -17,8 +17,9 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
   return (
     <Dropdown
       trigger={
-        <button type="button">
+        <button type="button" className="flex flex-row items-center space-x-2">
           <Avatar image={user.image} name={user.name} size="sm" />
+          <span className="hidden md:block">{user.name}</span>
         </button>
       }
       menu={[

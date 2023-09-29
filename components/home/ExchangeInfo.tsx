@@ -7,7 +7,7 @@ const Exchange = () => {
   return (
     <section
       id="features"
-      className="my-20 py-10 mx-2 bg-sky-100 rounded-3xl dark:bg-sky-500"
+      className="my-20 py-10 mx-2 bg-sky-100 rounded-3xl dark:bg-sky-700"
     >
       <h2 className="text-4xl font-bold text-center mb-4">
         {t("1cExchangeTitle")}

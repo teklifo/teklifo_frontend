@@ -68,6 +68,7 @@ export type ProductType = {
   createdAt: Date;
   updatedAt: Date;
   companyId: number;
+  company: CompanyType;
 };
 
 export type ButtonProps = {

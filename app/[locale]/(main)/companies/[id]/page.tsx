@@ -127,7 +127,7 @@ function CompanyContent({
   return (
     <div className="my-5 mx-4 md:mx-8">
       {/* About company */}
-      <div className="px-8 border space-y-3 py-4 border-zinc-200 rounded-lg dark:border-zinc-700">
+      <div className="px-8 py-4 space-y-3 border border-zinc-200 rounded-lg dark:border-zinc-700">
         <div className="flex flex-col justify-start space-x-0 items-center w-full bg-whitedark:bg-zinc-800 md:flex-row md:justify-start md:space-x-6">
           <div>
             {isMember ? (
