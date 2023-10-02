@@ -3,7 +3,7 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import Carousel from "@/components/ui/Carousel";
+import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
 import request from "@/utils/request";
 import { ProductType } from "@/types";
@@ -54,27 +54,11 @@ function ProductContent({ product }: ProductContentProps) {
   const t = useTranslations("Product");
 
   return (
-    <div className="w-full my-5 flex flex-col space-y-3 md:flex-row md:space-x-6">
-      <div className="w-2/3">
-        <Carousel>
-          {product.images.map((image) => (
-            <div
-              key={image.id}
-              className="w-[500px] h-[500px] relative overflow-hidden"
-            >
-              <Image
-                src={image.url}
-                alt={product.name}
-                width="500"
-                height="500"
-                priority
-                className="absolute w-full h-full inset-0 object-contain bg-transparent"
-              />
-            </div>
-          ))}
-        </Carousel>
+    <div className="w-full my-0 px-4 flex flex-col space-y-6 lg:flex-row lg:space-x-6 md:my-5 md:px-8">
+      <div className="lg:w-2/3">
+        <ProductGallery images={product.images} name={product.name} />
       </div>
-      <div className="w-1/3">
+      <div className="lg:w-1/3">
         <ProductInfo product={product} />
       </div>
     </div>

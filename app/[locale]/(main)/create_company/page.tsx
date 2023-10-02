@@ -23,15 +23,13 @@ export default function CreateCompany() {
   const t = useTranslations("CreateEditCompany");
 
   return (
-    <div className="flex flex-col items-center my-0 md:my-5">
-      <div className="mx-4 md:mx-8">
-        <div className="flex flex-row items-start space-x-3">
-          <Briefcase size={36} />
-          <h1 className="text-3xl font-bold">{t("createTitle")}</h1>
-        </div>
-        <h3 className="text-zinc-400 mt-1 mb-4">{t("createSubtitle")}</h3>
-        <EditCompanyForm />
+    <div className="flex flex-col items-center my-0 mx-4 md:my-5 md:mx-8">
+      <div className="flex flex-row items-start space-x-3">
+        <Briefcase size={36} />
+        <h1 className="text-3xl font-bold">{t("createTitle")}</h1>
       </div>
+      <h3 className="text-zinc-400 mt-1 mb-4">{t("createSubtitle")}</h3>
+      <EditCompanyForm />
     </div>
   );
 }
