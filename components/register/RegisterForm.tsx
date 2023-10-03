@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { getCookie } from "cookies-next";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -41,7 +42,10 @@ const RegisterForm = () => {
     try {
       await request("/api/users", {
         method: "post",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": getCookie("NEXT_LOCALE") ?? "az",
+        },
         body: JSON.stringify(data),
       });
       router.push("/verify_email");

@@ -18,15 +18,21 @@ import {
   Textarea,
 } from "@/components/ui";
 import request from "@/utils/request";
-import { EntityType, ContactsType, SocialsType, CompanyType } from "@/types";
+import { EntityType, ContactsType, CompanyType, ImageType } from "@/types";
 
-const EditCompanyForm = () => {
+type EditCompanyFormProps = {
+  company?: CompanyType;
+};
+
+const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
   const t = useTranslations("CreateEditCompany");
 
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [contacts, setContacts] = useState<ContactsType[]>([]);
+  const [contacts, setContacts] = useState<ContactsType[]>(
+    company?.contacts ?? []
+  );
 
   const schema = object({
     name: string().required(t("nameIsRequired")),
@@ -35,7 +41,7 @@ const EditCompanyForm = () => {
       .matches(/^\d+$/, t("invalidTin"))
       .length(10, t("invalidTin")),
     entityType: string<EntityType>().required(t("entityTypeIsRequired")),
-    image: string().url(t("invalidImage")),
+    image: object<ImageType>(),
     description: string()
       .required(t("descriptionIsRequired"))
       .min(200, t("invalidDescription")),
@@ -47,7 +53,6 @@ const EditCompanyForm = () => {
     facebook: string().url(t("invalidWebsait")),
     youtube: string().url(t("invalidWebsait")),
     linkedin: string().url(t("invalidWebsait")),
-    socials: object<SocialsType>(),
   });
 
   const {
@@ -57,10 +62,16 @@ const EditCompanyForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: "",
-      tin: "",
-      description: "",
-      shortDescription: "",
+      name: company?.name,
+      tin: company?.tin,
+      description: company?.description,
+      shortDescription: company?.shortDescription ?? "",
+      entityType: company?.entityType,
+      image: company?.image ?? undefined,
+      facebook: company?.socials.facebook,
+      instagram: company?.socials.instagram,
+      linkedin: company?.socials.linkedin,
+      youtube: company?.socials.youtube,
     },
   });
 
@@ -68,7 +79,7 @@ const EditCompanyForm = () => {
     setIsLoading(true);
 
     const config = {
-      method: "post",
+      method: company ? "put" : "post",
       headers: {
         Authorization: `JWT ${getCookie("token") ?? ""}`,
         "Accept-Language": getCookie("NEXT_LOCALE") ?? "az",
@@ -87,9 +98,13 @@ const EditCompanyForm = () => {
     };
 
     try {
-      const company = await request<CompanyType>("/api/companies", config);
+      const editedCompany = await request<CompanyType>(
+        `/api/companies/${company ? `${company.id}/` : ""}`,
+        config
+      );
+      toast.success(company ? t("companyUpdated") : t("companyCreated"));
       router.refresh();
-      router.push(`/companies/${company.id}`);
+      router.push(`/companies/${editedCompany.id}`);
     } catch (error) {
       let message;
       if (error instanceof Error) message = error.message;
@@ -179,7 +194,7 @@ const EditCompanyForm = () => {
       />
       <Divider />
       <Button
-        title={t("createBtn")}
+        title={company ? t("editBtn") : t("createBtn")}
         btnType="submit"
         loading={isLoading}
         btnstyle="primary"

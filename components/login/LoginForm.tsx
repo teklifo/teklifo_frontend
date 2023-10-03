@@ -7,7 +7,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { Input, Button } from "@/components/ui";
 import request from "@/utils/request";
 
@@ -39,7 +39,10 @@ const LoginForm = () => {
     try {
       const result = await request<{ token: string }>("/api/auth", {
         method: "post",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": getCookie("NEXT_LOCALE") ?? "az",
+        },
         body: JSON.stringify(data),
       });
       setCookie("token", result.token);

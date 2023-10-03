@@ -30,6 +30,7 @@ export type SocialsType = {
   facebook: string;
   instagram: string;
   youtube: string;
+  linkedin: string;
 };
 
 export type UserAndCompanyType = {

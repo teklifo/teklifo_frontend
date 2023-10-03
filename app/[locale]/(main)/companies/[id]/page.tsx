@@ -1,11 +1,14 @@
 import { Metadata } from "next";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import { Pencil } from "lucide-react";
 import { fetchUser } from "@/app/actions/auth";
 import CompanyAvatar from "@/components/company/CompanyAvatar";
 import Pagination from "@/components/ui/Pagination";
+import Link from "@/components/ui/Link";
 import Avatar from "@/components/utils/Avatar";
 import ProductCard from "@/components/utils/ProductCard";
 import request from "@/utils/request";
@@ -34,6 +37,11 @@ export async function generateMetadata({
   const t = await getTranslator(locale, "Metadata");
 
   const company = await getCompany(id);
+  if (!company)
+    return {
+      title: `${t("projectName")}`,
+      description: "",
+    };
 
   return {
     title: `${company.name} | ${t("projectName")}`,
@@ -52,7 +60,7 @@ async function getCompany(companyId: string) {
       },
     });
   } catch (error) {
-    throw error;
+    return undefined;
   }
 }
 
@@ -76,6 +84,8 @@ export default async function Company({
   searchParams: { page },
 }: Props) {
   const company = await getCompany(id);
+  if (!company) return notFound();
+
   const productsData = await getProducts(page ?? 1);
 
   const nextCookies = cookies();
@@ -128,23 +138,36 @@ function CompanyContent({
     <div className="my-5 mx-4 md:mx-8">
       {/* About company */}
       <div className="px-8 py-4 space-y-3 border border-zinc-200 rounded-lg dark:border-zinc-700">
-        <div className="flex flex-col justify-start space-x-0 items-center w-full bg-whitedark:bg-zinc-800 md:flex-row md:justify-start md:space-x-6">
-          <div>
-            {isMember ? (
-              <CompanyAvatar company={company} />
-            ) : (
-              <Avatar image={company.image} name={company.name} />
-            )}
+        <div className="flex justify-between">
+          <div className="flex flex-col justify-start space-x-0 items-center w-full bg-whitedark:bg-zinc-800 md:flex-row md:justify-start md:space-x-6">
+            <div>
+              {isMember ? (
+                <CompanyAvatar company={company} />
+              ) : (
+                <Avatar image={company.image} name={company.name} />
+              )}
+            </div>
+            <div>
+              <h1 className="text-center text-3xl font-bold md:text-start">
+                {company.name}
+              </h1>
+              <h3 className="text-center text-zinc-400 mt-1 mb-4 md:text-start">
+                {company.shortDescription}
+              </h3>
+            </div>
           </div>
-          <div>
-            <h1 className="text-center text-3xl font-bold md:text-start">
-              {company.name}
-            </h1>
-            <h3 className="text-center text-zinc-400 mt-1 mb-4 md:text-start">
-              {company.shortDescription}
-            </h3>
-          </div>
+          {isMember && (
+            <div className="h-fit">
+              <Link href={`/edit_company/${company.id}`} type="secondary">
+                <div className="flex space-x-2">
+                  <Pencil />
+                  <span>{t("edit")}</span>
+                </div>
+              </Link>
+            </div>
+          )}
         </div>
+
         <div className="flex flex-col justify-start items-start space-y-3 w-full bg-whitedark:bg-zinc-800">
           <h4 className="text-lg font-extrabold text-start">
             {t("aboutSupplier")}

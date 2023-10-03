@@ -52,6 +52,7 @@ async function getUserCompanies(page: number) {
       `/api/companies?page=${page}&limit=10`,
       {
         cache: "no-cache",
+        headers: { "Accept-Language": locale },
       }
     );
   } catch (error) {

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 import { getTranslator } from "next-intl/server";
 import request from "@/utils/request";
 import EmailVerificationContent from "@/components/email_verification/EmailVerificationContent";
@@ -22,10 +23,15 @@ export async function generateMetadata({
 }
 
 async function verifyToken(activationToken: string) {
+  const nextCookies = cookies();
+  const locale = nextCookies.get("NEXT_LOCALE")?.value ?? "az";
   try {
     const result = await request<{ token: string }>("/api/auth/verification", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept-Language": locale,
+      },
       cache: "no-cache",
       body: JSON.stringify({ activationToken }),
     });
@@ -43,7 +49,7 @@ export default async function EmailVerification({
 
   return (
     <main>
-      <div className="flex flex-col-reverse justify-center items-center h-screen m-4 lg:flex-row">
+      <div className="flex flex-col-reverse justify-center items-center h-[80vh] m-4 lg:flex-row">
         <EmailVerificationContent token={token} />
       </div>
     </main>

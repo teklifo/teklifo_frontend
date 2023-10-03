@@ -66,7 +66,10 @@ const ContactModal = ({
 
   const onSumbit: SubmitHandler<InferType<typeof schema>> = async (data) => {
     onFormSubmit(data as ContactsType);
-    reset();
+    reset({
+      type: defaultValues ? defaultValues.type : "phone",
+      value: defaultValues ? defaultValues.value : "",
+    });
   };
 
   const bodyContent = (
