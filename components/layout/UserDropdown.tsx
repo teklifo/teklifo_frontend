@@ -1,9 +1,12 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Briefcase } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { deleteCookie } from "cookies-next";
+import { Briefcase, LogOut } from "lucide-react";
 import Dropdown from "@/components/ui/Dropdown";
 import MenuLink from "@/components/utils/MenuLink";
+import MenuButton from "@/components/utils/MenuButton";
 import Avatar from "@/components/utils/Avatar";
 import { UserType } from "@/types";
 
@@ -13,6 +16,13 @@ type UserDropdownProps = {
 
 const UserDropdown = ({ user }: UserDropdownProps) => {
   const t = useTranslations("Layout");
+  const router = useRouter();
+
+  const logout = () => {
+    deleteCookie("token");
+    router.refresh();
+    router.push("/");
+  };
 
   return (
     <Dropdown
@@ -29,6 +39,12 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
           icon={<Briefcase size={18} />}
           label={t("userCompanies")}
           onClick={() => {}}
+        />,
+        <MenuButton
+          key={1}
+          icon={<LogOut size={18} />}
+          label={t("logout")}
+          onClick={logout}
         />,
       ]}
     />

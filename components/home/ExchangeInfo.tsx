@@ -7,11 +7,8 @@ const Exchange = () => {
 
   return (
     <section id="features" className="my-20 py-10 mx-2">
-      <h2 className="text-4xl font-bold text-center mb-4">
-        {t("1cExchangeTitle")}
-      </h2>
       <div className="flex flex-col justify-center items-center px-8 space-y-12 md:flex-row md:space-y-0 md:space-x-12">
-        <div className="max-w-sm">
+        <div className="md:w-1/2 flex justify-center items-center">
           <Image
             src="/1c_exchange.svg"
             alt="hero"
@@ -20,13 +17,12 @@ const Exchange = () => {
             priority
           />
         </div>
-        <div className="text-center space-y-6 md:text-left">
-          <p className="px-2 max-w-lg text-black font-medium text-xl dark:text-white">
+        <div className="md:w-1/2 text-center space-y-6 md:text-left">
+          <h2 className="text-4xl font-bold">{t("1cExchangeTitle")}</h2>
+          <p className="px-2 max-w-lg text-zinc-400">
             {t("1cExchangeTextSubtitle")}
           </p>
-          <p className="px-2 max-w-lg text-black font-medium text-xl dark:text-white">
-            {t("1cExchangeText")}
-          </p>
+          <p className="px-2 max-w-lg text-zinc-400">{t("1cExchangeText")}</p>
           <Link href="/1c_exchange" type="primary">
             {t("1cExchangeMore")}
           </Link>

@@ -30,7 +30,7 @@ const GroupButtons = ({ buttons }: GroupButtonsProps) => {
             hover:text-sky-500
             focus:z-10
             dark:bg-zinc-900
-            dark:border-zinc-800
+            dark:border-zinc-700
             `}
             onClick={button.onClick}
           >

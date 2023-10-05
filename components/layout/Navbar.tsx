@@ -1,5 +1,7 @@
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
+import { LogIn } from "lucide-react";
+import NavbarLinks from "@/components/layout/NavbarLinks";
 import Link from "@/components/ui/Link";
 import Logo from "@/components/layout/Logo";
 import UserDropdown from "@/components/layout/UserDropdown";
@@ -21,22 +23,15 @@ const Navbar = ({ user }: NavbarProps) => {
         >
           <Logo />
         </NextLink>
-        <div className="hidden md:flex space-x-6">
-          <a className="hover:text-sky-500" href="#features">
-            {t("features")}
-          </a>
-          <a className="hover:text-sky-500" href="#">
-            Prices
-          </a>
-          <a className="hover:text-sky-500" href="#">
-            About us
-          </a>
-        </div>
+        <NavbarLinks />
         {user ? (
           <UserDropdown user={user} />
         ) : (
           <Link href="/login" type="primary">
-            {t("getStartedBtn")}
+            <div className="flex space-x-2">
+              <span>{t("getStartedBtn")}</span>
+              <LogIn />
+            </div>
           </Link>
         )}
       </nav>

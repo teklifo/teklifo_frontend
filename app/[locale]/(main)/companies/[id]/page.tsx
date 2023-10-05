@@ -64,16 +64,19 @@ async function getCompany(companyId: string) {
   }
 }
 
-async function getProducts(page: number) {
+async function getProducts(companyId: number, page: number) {
   const nextCookies = cookies();
   const locale = nextCookies.get("NEXT_LOCALE")?.value ?? "az";
 
   try {
-    return await request<PaginatedData>(`/api/products?page=${page}&limit=10`, {
-      headers: {
-        "Accept-Language": locale,
-      },
-    });
+    return await request<PaginatedData>(
+      `/api/products?companyId=${companyId}&page=${page}&limit=10`,
+      {
+        headers: {
+          "Accept-Language": locale,
+        },
+      }
+    );
   } catch (error) {
     throw error;
   }
@@ -86,7 +89,7 @@ export default async function Company({
   const company = await getCompany(id);
   if (!company) return notFound();
 
-  const productsData = await getProducts(page ?? 1);
+  const productsData = await getProducts(company.id, page ?? 1);
 
   const nextCookies = cookies();
   const token = nextCookies.get("token")?.value ?? "";
@@ -135,10 +138,10 @@ function CompanyContent({
   );
 
   return (
-    <div className="my-5 mx-4 md:mx-8">
+    <div className="my-2 mx-4 md:my-5 md:mx-8">
       {/* About company */}
       <div className="px-8 py-4 space-y-3 border border-zinc-200 rounded-lg dark:border-zinc-700">
-        <div className="flex justify-between">
+        <div className="flex flex-col items-center md:justify-between md:flex-row">
           <div className="flex flex-col justify-start space-x-0 items-center w-full bg-whitedark:bg-zinc-800 md:flex-row md:justify-start md:space-x-6">
             <div>
               {isMember ? (
@@ -167,7 +170,6 @@ function CompanyContent({
             </div>
           )}
         </div>
-
         <div className="flex flex-col justify-start items-start space-y-3 w-full bg-whitedark:bg-zinc-800">
           <h4 className="text-lg font-extrabold text-start">
             {t("aboutSupplier")}
@@ -197,7 +199,7 @@ function CompanyContent({
         </h4>
         {products.length > 0 ? (
           <>
-            <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 gap-4 pt-4 md:place-items-start md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -218,7 +220,9 @@ function CompanyContent({
               height="400"
               priority
             />
-            <h5 className="max-w-md text-2xl text-center">{t("noProducts")}</h5>
+            <h5 className="max-w-md text-xl text-center text-zinc-400">
+              {t("noProducts")}
+            </h5>
           </div>
         )}
       </div>

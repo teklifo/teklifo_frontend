@@ -17,7 +17,7 @@ export default async function Layout({
   return (
     <>
       <Navbar user={user} />
-      <main className="overflow-hidden container mx-auto mt-20">
+      <main className="overflow-hidden container mx-auto mt-14 md:mt-20">
         {children}
       </main>
       <Footer />

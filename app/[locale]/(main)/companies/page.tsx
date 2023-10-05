@@ -5,10 +5,8 @@ import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Briefcase } from "lucide-react";
 import Divider from "@/components/ui/Divider";
-import Link from "@/components/ui/Link";
 import Pagination from "@/components/ui/Pagination";
 import CompanyCard from "@/components/utils/CompanyCard";
-import { fetchUser } from "@/app/actions/auth";
 import request from "@/utils/request";
 import { CompanyType, PaginationType } from "@/types";
 
@@ -30,25 +28,18 @@ export async function generateMetadata({
   const t = await getTranslator(locale, "Metadata");
 
   return {
-    title: t("userCompaniesTitle"),
-    description: t("userCompaniesDescription"),
+    title: t("companiesTitle"),
+    description: t("companiesDescription"),
   };
 }
 
-async function getUserCompanies(page: number) {
+async function getCompanies(page: number) {
   const nextCookies = cookies();
-  const token = nextCookies.get("token")?.value ?? "";
   const locale = nextCookies.get("NEXT_LOCALE")?.value ?? "az";
 
-  if (!token) {
-    throw new Error("No user");
-  }
-
   try {
-    const user = await fetchUser(token, locale);
-    if (!user) throw new Error("No user");
     return await request<PaginatedData>(
-      `/api/companies?userId=${user.id}&page=${page}&limit=10`,
+      `/api/companies?page=${page}&limit=10`,
       {
         cache: "no-cache",
         headers: { "Accept-Language": locale },
@@ -59,13 +50,13 @@ async function getUserCompanies(page: number) {
   }
 }
 
-export default async function UserCompanies({ searchParams: { page } }: Props) {
-  const data = await getUserCompanies(page ?? 1);
-  return <UserCompaniesContent data={data} />;
+export default async function Companies({ searchParams: { page } }: Props) {
+  const data = await getCompanies(page ?? 1);
+  return <CompaniesContent data={data} />;
 }
 
-function UserCompaniesContent({ data }: { data: PaginatedData }) {
-  const t = useTranslations("UserCompanies");
+function CompaniesContent({ data }: { data: PaginatedData }) {
+  const t = useTranslations("Companies");
 
   const { result, pagination } = data;
 
@@ -77,12 +68,6 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
       </div>
       <h3 className="text-zinc-400 mt-1 mb-4">{t("subtitle")}</h3>
       <Divider classes="my-4" />
-      <div className="w-full flex flex-row justify-center items-center md:justify-start">
-        <Link href="/create_company" type="secondary">
-          {t("createNewCompany")}
-        </Link>
-      </div>
-      <Divider classes="my-4" />
       {result.length === 0 ? (
         <div className="flex flex-col justify-center items-center my-10 space-y-12">
           <Image
@@ -92,9 +77,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
             height="400"
             priority
           />
-          <h5 className="max-w-md text-xl text-center text-zinc-400">
-            {t("noCompanies")}
-          </h5>
+          <h5 className="text-2xl text-center">{t("noCompanies")}</h5>
         </div>
       ) : (
         <>
@@ -104,7 +87,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
             ))}
           </div>
           <div className="w-full flex flex-row justify-center items-center py-10">
-            <Pagination href="/user_companies?page=" pagination={pagination} />
+            <Pagination href="/companies?page=" pagination={pagination} />
           </div>
         </>
       )}

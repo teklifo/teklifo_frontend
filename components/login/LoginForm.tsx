@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
+import { Rocket } from "lucide-react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { getCookie, setCookie } from "cookies-next";
@@ -82,6 +83,7 @@ const LoginForm = () => {
       />
       <Button
         title={t("loginBtn")}
+        icon={<Rocket />}
         btnType="submit"
         loading={isLoading}
         btnstyle="primary"

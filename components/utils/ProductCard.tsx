@@ -17,8 +17,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Link href={`/products/${product.id}`}>
-      <Card classes="h-full overflow-auto transition-all ease-in-out duration-200 hover:shadow-md">
-        <div className="w-[300px] h-[300px] relative overflow-hidden">
+      <Card classes="h-full overflow-auto transition-all ease-in-out duration-200 hover:shadow-md dark:hover:bg-zinc-600">
+        <div className="w-[300px] h-[300px] relative overflow-hidden bg-white">
           {image ? (
             <Image
               src={image}

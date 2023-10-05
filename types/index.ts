@@ -74,6 +74,7 @@ export type ProductType = {
 
 export type ButtonProps = {
   title: string;
+  icon?: JSX.Element;
   btnstyle: "primary" | "secondary";
   btnType?: "submit" | "button";
   disabled?: boolean;

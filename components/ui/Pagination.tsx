@@ -31,7 +31,7 @@ const PageLink = ({
         ${
           isCurrent
             ? "bg-sky-500 border-sky-500 text-white dark:text-black"
-            : "text-zinc-900 bg-white border-zinc-200 hover:bg-zinc-200 dark:bg-zinc-900 dark:border-zinc-800 dark:text-white dark:hover:bg-zinc-800"
+            : "text-zinc-900 bg-white border-zinc-200 hover:bg-zinc-200 dark:bg-zinc-900 dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-800"
         }
         `}
       >

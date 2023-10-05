@@ -2,7 +2,7 @@
   "Metadata": {
     "projectName": "Teklifo",
     "homeTitle": "Поиск товаров, услуг и проверенных партнеров | Teklifo",
-    "homeDescription": "Поиск товаров, услуг, номенклатуры, поставщиков",
+    "homeDescription": "Поиск товаров, услуг, номенклатуры, поставщиков. Оптовые продажи и покупки",
     "loginTitle": "Авторизация | Teklifo",
     "loginDescription": "Войдите, чтобы приступить к работе на Teklifo",
     "registerTitle": "Регистрация | Teklifo",
@@ -16,12 +16,18 @@
     "createCompanyTitle": "Новая организация | Teklifo",
     "createCompanyDescription": "Заполните информацию о своей организации",
     "editCompanyTitle": "Изменить организацию | Teklifo",
-    "editCompanyDescription": "Обновите информацию о своей организации"
+    "editCompanyDescription": "Обновите информацию о своей организации",
+    "productsTitle": "Поиск товаров | Teklifo",
+    "productsDescription": "Поиск товаров, услуг, номенклатуры на Teklifo. Оптовые продажи и покупки",
+    "companiesTitle": "Поиск поставщиков | Teklifo",
+    "companiesDescription": "Поиск поставщиков на Teklifo. Оптовые продажи и покупки"
   },
   "Layout": {
     "getStartedBtn": "Войти",
-    "features": "Почему мы?",
-    "userCompanies": "Мои организации"
+    "products": "Товары",
+    "companies": "Поставщики",
+    "userCompanies": "Мои организации",
+    "logout": "Выйти"
   },
   "NotFound": {
     "title": "Ничего нет :(",
@@ -160,6 +166,18 @@
     "number": "Артикул",
     "barcode": "Штрихкод",
     "vatPrc": "Ставка НДС",
-    "inStock": "В наличии"
+    "inStock": "В наличии",
+    "noImage": "Поставщик не предоставил изображение данного товара"
+  },
+  "Products": {
+    "title": "Поиск товаров",
+    "subtitle": "Каталог товаров на Teklifo",
+    "noProducts": "Не удалось найти товары по вашему запросу. Попробуйте изменить параметры поиска"
+  },
+  "Companies": {
+    "title": "Поиск поставщиков",
+    "subtitle": "Ищите проверенных партнеров на Teklifo",
+    "noProducts": "Не удалось найти поставщиков по вашему запросу. Попробуйте изменить параметры поиска",
+    "more": "Подробнее"
   }
 }

@@ -15,7 +15,7 @@ const MenuButton = ({ label, icon, onClick }: MenuButtonProps) => {
     >
       <div className="flex flexrow justify-start items-center space-x-5">
         {icon}
-        <span>{label}</span>
+        <span className="font-semibold">{label}</span>
       </div>
     </button>
   );

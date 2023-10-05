@@ -5,6 +5,7 @@ import Spiner from "@/components/ui/Spiner";
 
 const Button = ({
   title,
+  icon,
   btnstyle,
   btnType,
   disabled,
@@ -37,7 +38,16 @@ const Button = ({
       `}
       onClick={onClick}
     >
-      {loading ? <Spiner /> : <span className={`flex-1`}>{title}</span>}
+      {loading ? (
+        <Spiner />
+      ) : icon ? (
+        <div className="flex space-x-2">
+          <span>{title}</span>
+          {icon}
+        </div>
+      ) : (
+        <span className={`flex-1`}>{title}</span>
+      )}
     </button>
   );
 };
