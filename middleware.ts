@@ -10,7 +10,10 @@ const publicPages = [
   "/user_verification",
   "/verify_email",
   "/email_verification",
+  "/companies",
   "/companies/*",
+  "/products",
+  "/products/*",
 ];
 
 const intlMiddleware = createMiddleware({
