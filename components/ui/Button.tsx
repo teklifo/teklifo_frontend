@@ -19,6 +19,8 @@ const Button = ({
   } else if (btnstyle === "secondary") {
     styles =
       "bg-zinc-100 text-black hover:bg-zinc-200 dark:text-white dark:bg-zinc-800 dark:hover:bg-zinc-700";
+  } else if (btnstyle === "danger") {
+    styles = "bg-red-500 text-white hover:bg-red-600 dark:text-black";
   }
 
   return (

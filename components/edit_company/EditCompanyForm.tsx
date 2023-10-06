@@ -8,6 +8,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
+import DeleteCompanyModal from "@/components/edit_company/DeleteCompanyModal";
 import CompanyContacts from "@/components/edit_company/CompanyContacts";
 import {
   Input,
@@ -29,6 +30,7 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
 
   const router = useRouter();
 
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const [contacts, setContacts] = useState<ContactsType[]>(
     company?.contacts ?? []
@@ -115,92 +117,122 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
     setIsLoading(false);
   };
 
+  const onDeleteModalClick = () => {
+    setOpenDeleteModal(true);
+  };
+
+  const onDeleteModalClose = () => {
+    setOpenDeleteModal(false);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 md:max-w-5xl">
-      <Input
-        id="name"
-        label={t("name")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-      <Input
-        id="tin"
-        label={t("tin")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-      <Select
-        id="entityType"
-        label={t("entityType")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
+    <>
+      {company && (
+        <DeleteCompanyModal
+          company={company}
+          isOpen={openDeleteModal}
+          onClose={onDeleteModalClose}
+        />
+      )}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-6 md:max-w-5xl"
       >
-        <SelectOption value="" title={t("notSelected")} />
-        <SelectOption value="physical" title={t("physical")} />
-        <SelectOption value="legal" title={t("legal")} />
-      </Select>
-      <Textarea
-        id="description"
-        label={t("description")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-      <Textarea
-        id="shortDescription"
-        label={t("shortDescription")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-      <Divider />
-      <CompanyContacts
-        contacts={contacts}
-        setContacts={setContacts}
-        isLoading={isLoading}
-      />
-      <Divider />
-      <h5 className="text-xl font-bold mb-4">{t("socials")}</h5>
-      <Input
-        id="instagram"
-        label={t("instagram")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-      <Input
-        id="facebook"
-        label={t("facebook")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-      <Input
-        id="youtube"
-        label={t("youtube")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-      <Input
-        id="linkedin"
-        label={t("linkedin")}
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-      <Divider />
-      <Button
-        title={company ? t("editBtn") : t("createBtn")}
-        btnType="submit"
-        loading={isLoading}
-        btnstyle="primary"
-        btnClass="w-full"
-      />
-    </form>
+        <Input
+          id="name"
+          label={t("name")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Input
+          id="tin"
+          label={t("tin")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Select
+          id="entityType"
+          label={t("entityType")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        >
+          <SelectOption value="" title={t("notSelected")} />
+          <SelectOption value="physical" title={t("physical")} />
+          <SelectOption value="legal" title={t("legal")} />
+        </Select>
+        <Textarea
+          id="description"
+          label={t("description")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Textarea
+          id="shortDescription"
+          label={t("shortDescription")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Divider />
+        <CompanyContacts
+          contacts={contacts}
+          setContacts={setContacts}
+          isLoading={isLoading}
+        />
+        <Divider />
+        <h5 className="text-xl font-bold mb-4">{t("socials")}</h5>
+        <Input
+          id="instagram"
+          label={t("instagram")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Input
+          id="facebook"
+          label={t("facebook")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Input
+          id="youtube"
+          label={t("youtube")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Input
+          id="linkedin"
+          label={t("linkedin")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Divider />
+        <Button
+          title={company ? t("editBtn") : t("createBtn")}
+          btnType="submit"
+          loading={isLoading}
+          btnstyle="primary"
+          btnClass="w-full"
+        />
+      </form>
+      {company && (
+        <Button
+          title={t("deleteCompanyBtn")}
+          btnType="button"
+          loading={isLoading}
+          btnstyle="secondary"
+          btnClass="w-full mt-4"
+          onClick={onDeleteModalClick}
+        />
+      )}
+    </>
   );
 };
 

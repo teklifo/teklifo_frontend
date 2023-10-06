@@ -77,7 +77,9 @@ function CompaniesContent({ data }: { data: PaginatedData }) {
             height="400"
             priority
           />
-          <h5 className="text-2xl text-center">{t("noCompanies")}</h5>
+          <h5 className="max-w-md text-xl text-center text-zinc-400">
+            {t("noCompanies")}
+          </h5>
         </div>
       ) : (
         <>
