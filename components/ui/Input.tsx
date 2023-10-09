@@ -16,7 +16,7 @@ const Input = ({
   return (
     <div className="w-full relative">
       <label
-        className="block text-zinc-400 text-sm font-bold mb-2"
+        className="block text-zinc-500 text-sm font-bold mb-2"
         htmlFor={id}
       >
         {label}

@@ -18,10 +18,10 @@ const CompanyCard = ({ company }: CompanyCardProps) => {
         <h5 className="mt-3 mb-1 text-xl font-medium text-zinc-900 dark:text-white">
           {company.name}
         </h5>
-        <span className="text-sm text-zinc-500 dark:text-zinc-400">
+        <span className="text-sm text-zinc-500 dark:text-zinc-500">
           {company.tin}
         </span>
-        <span className="mt-3 text-sm text-center text-zinc-500 dark:text-zinc-400">
+        <span className="mt-3 text-sm text-center text-zinc-500 dark:text-zinc-500">
           {company.shortDescription?.slice(0, 100)}
         </span>
         <div className="flex mt-4 space-x-3 md:mt-6">

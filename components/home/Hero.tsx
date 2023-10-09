@@ -15,7 +15,7 @@ const Hero = () => {
             {t("projectName")}
           </span>
         </h1>
-        <p className="max-w-sm text-center text-zinc-400 md:text-left">
+        <p className="max-w-sm text-center text-zinc-500 md:text-left">
           {t("subtitle")}
         </p>
         <div className="flex justify-center md:justify-start">

@@ -29,7 +29,7 @@ export default function CreateCompany() {
           <Briefcase size={36} />
           <h1 className="text-3xl font-bold">{t("createTitle")}</h1>
         </div>
-        <h3 className="text-zinc-400 mt-1 mb-4">{t("createSubtitle")}</h3>
+        <h3 className="text-zinc-500 mt-1 mb-4">{t("createSubtitle")}</h3>
         <EditCompanyForm />
       </div>
     </div>

@@ -44,7 +44,7 @@ export default function Login() {
         </div>
         <div className="flex flex-col w-full justify-center items-center space-y-4 px-8 my-8 md:my-0 md:space-y-8">
           <h3 className="text-4xl text-center">{t("welcome")}</h3>
-          <p className="max-w-sm text-center text-zinc-400">
+          <p className="max-w-sm text-center text-zinc-500">
             {t("welcomeSubtitle")}
           </p>
           <LoginForm />

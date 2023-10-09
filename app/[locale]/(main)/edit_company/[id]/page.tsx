@@ -80,7 +80,7 @@ function EditCompanyContent({ company }: CompanyContentProps) {
           <Briefcase size={36} />
           <h1 className="text-3xl font-bold">{t("editTitle")}</h1>
         </div>
-        <h3 className="text-zinc-400 mt-1 mb-4">{t("editSubtitle")}</h3>
+        <h3 className="text-zinc-500 mt-1 mb-4">{t("editSubtitle")}</h3>
         <EditCompanyForm company={company} />
       </div>
     </div>

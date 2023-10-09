@@ -66,7 +66,7 @@ function CompaniesContent({ data }: { data: PaginatedData }) {
         <Briefcase size={36} />
         <h1 className="text-3xl font-bold">{t("title")}</h1>
       </div>
-      <h3 className="text-zinc-400 mt-1 mb-4">{t("subtitle")}</h3>
+      <h3 className="text-zinc-500 mt-1 mb-4">{t("subtitle")}</h3>
       <Divider classes="my-4" />
       {result.length === 0 ? (
         <div className="flex flex-col justify-center items-center my-10 space-y-12">
@@ -77,7 +77,7 @@ function CompaniesContent({ data }: { data: PaginatedData }) {
             height="400"
             priority
           />
-          <h5 className="max-w-md text-xl text-center text-zinc-400">
+          <h5 className="max-w-md text-xl text-center text-zinc-500">
             {t("noCompanies")}
           </h5>
         </div>

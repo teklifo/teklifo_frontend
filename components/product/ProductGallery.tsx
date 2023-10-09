@@ -68,8 +68,8 @@ const ProductGallery = ({ images, name }: ProductGalleryProps) => {
         </Carousel>
       ) : (
         <div className="w-full h-full flex justify-center items-center">
-          <PackageSearch size={64} className="text-zinc-400" />
-          <span className="max-w-md text-xl text-center text-zinc-400">
+          <PackageSearch size={64} className="text-zinc-500" />
+          <span className="max-w-md text-xl text-center text-zinc-500">
             {t("noImage")}
           </span>
         </div>

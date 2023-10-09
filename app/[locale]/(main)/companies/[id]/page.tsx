@@ -140,7 +140,7 @@ function CompanyContent({
   return (
     <div className="my-2 mx-4 md:my-5 md:mx-8">
       {/* About company */}
-      <div className="px-8 py-4 space-y-3 border border-zinc-200 rounded-lg dark:border-zinc-700">
+      <div className="px-8 py-4 space-y-3 border border-zinc-300 rounded-lg dark:border-zinc-700">
         <div className="flex flex-col items-center md:justify-between md:flex-row">
           <div className="flex flex-col justify-start space-x-0 items-center w-full bg-whitedark:bg-zinc-800 md:flex-row md:justify-start md:space-x-6">
             <div>
@@ -150,11 +150,17 @@ function CompanyContent({
                 <Avatar image={company.image} name={company.name} />
               )}
             </div>
-            <div>
-              <h1 className="text-center text-3xl font-bold md:text-start">
-                {company.name}
-              </h1>
-              <h3 className="text-center text-zinc-400 mt-1 mb-4 md:text-start">
+            <div className="space-y-3">
+              <div>
+                <h1 className="text-center text-3xl font-bold md:text-start">
+                  <span>{company.name}</span>
+                </h1>
+                <h2 className="flex flex-col text-sm text-center text-zinc-500 md:text-start">
+                  <span>{`${t("tin")}: ${company.tin}`}</span>
+                  <span>{t(company.entityType)}</span>
+                </h2>
+              </div>
+              <h3 className="text-center text-zinc-500 mb-4 md:text-start">
                 {company.shortDescription}
               </h3>
             </div>
@@ -174,7 +180,7 @@ function CompanyContent({
           <h4 className="text-lg font-extrabold text-start">
             {t("aboutSupplier")}
           </h4>
-          <h2 className="text-sm text-start text-zinc-400">
+          <h2 className="text-sm text-start text-zinc-500">
             {company.description}
           </h2>
         </div>
@@ -220,7 +226,7 @@ function CompanyContent({
               height="400"
               priority
             />
-            <h5 className="max-w-md text-xl text-center text-zinc-400">
+            <h5 className="max-w-md text-xl text-center text-zinc-500">
               {t("noProducts")}
             </h5>
           </div>
@@ -241,7 +247,7 @@ function ContactsBlock({
     array &&
     array.length > 0 && (
       <div className="space-y-1">
-        <h6 className="text-sm text-zinc-400">{label}</h6>
+        <h6 className="text-sm text-zinc-500">{label}</h6>
         {array.map((element, index) => (
           <span key={index} className="block">
             {element.value}

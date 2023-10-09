@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import ProductGallery from "@/components/product/ProductGallery";
@@ -22,10 +22,15 @@ export async function generateMetadata({
   const t = await getTranslator(locale, "Metadata");
 
   const company = await getProduct(id);
+  if (!company)
+    return {
+      title: `${t("projectName")}`,
+      description: "",
+    };
 
   return {
     title: `${company.name} | ${t("projectName")}`,
-    description: `${company.name}, ${company.number}`,
+    description: `${company.name}, ${company.number} | ${company.description}`,
   };
 }
 
@@ -40,12 +45,13 @@ async function getProduct(productId: string) {
       },
     });
   } catch (error) {
-    throw error;
+    return undefined;
   }
 }
 
 export default async function Product({ params: { id } }: Props) {
   const product = await getProduct(id);
+  if (!product) return notFound();
 
   return <ProductContent product={product} />;
 }
@@ -54,13 +60,23 @@ function ProductContent({ product }: ProductContentProps) {
   const t = useTranslations("Product");
 
   return (
-    <div className="w-full my-0 px-4 flex flex-col space-y-6 lg:flex-row lg:space-x-6 md:my-5 md:px-8">
-      <div className="lg:w-2/3">
-        <ProductGallery images={product.images} name={product.name} />
+    <div className="my-0 px-4 md:my-5 md:px-8">
+      <div className="w-full flex flex-col space-y-6 lg:flex-row lg:space-x-6">
+        <div className="lg:w-2/3">
+          <ProductGallery images={product.images} name={product.name} />
+        </div>
+        <div className="lg:w-1/3">
+          <ProductInfo product={product} />
+        </div>
       </div>
-      <div className="lg:w-1/3">
-        <ProductInfo product={product} />
-      </div>
+      {product.description && (
+        <div className="my-6">
+          <h4 className="text-center text-2xl font-extrabold md:text-start">
+            {t("description")}
+          </h4>
+          <p>{product.description}</p>
+        </div>
+      )}
     </div>
   );
 }

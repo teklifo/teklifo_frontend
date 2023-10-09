@@ -66,6 +66,7 @@ export type ProductType = {
   sellPrice: number;
   inStock: number;
   images: ImageType[];
+  description: string;
   createdAt: Date;
   updatedAt: Date;
   companyId: number;

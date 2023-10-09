@@ -13,7 +13,7 @@ const Select = ({
     <div className="w-full relative">
       <label
         htmlFor={id}
-        className="block text-zinc-400 text-sm font-bold mb-2"
+        className="block text-zinc-500 text-sm font-bold mb-2"
       >
         {label}
       </label>

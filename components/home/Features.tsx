@@ -21,7 +21,7 @@ const Feature = ({ number, title, text }: FeatureProps) => {
       </div>
       <div>
         <h3 className="hidden mb-4 text-lg font-bold md:block">{title}</h3>
-        <p className="text-zinc-400">{text}</p>
+        <p className="text-zinc-500">{text}</p>
       </div>
     </div>
   );
@@ -39,7 +39,7 @@ const Features = () => {
         <h2 className="max-w-md text-4xl font-bold text-center md:text-left">
           {t("featuresTitle")}
         </h2>
-        <p className="max-w-sm text-center text-zinc-400 md:text-left">
+        <p className="max-w-sm text-center text-zinc-500 md:text-left">
           {t("featuresText")}
         </p>
       </div>

@@ -5,6 +5,7 @@ import NavbarLinks from "@/components/layout/NavbarLinks";
 import Link from "@/components/ui/Link";
 import Logo from "@/components/layout/Logo";
 import UserDropdown from "@/components/layout/UserDropdown";
+import LanguageSwitch from "@/components/layout/LanguageSwitch";
 import { UserType } from "@/types";
 
 type NavbarProps = {
@@ -24,16 +25,19 @@ const Navbar = ({ user }: NavbarProps) => {
           <Logo />
         </NextLink>
         <NavbarLinks />
-        {user ? (
-          <UserDropdown user={user} />
-        ) : (
-          <Link href="/login" type="primary">
-            <div className="flex space-x-2">
-              <span>{t("getStartedBtn")}</span>
-              <LogIn />
-            </div>
-          </Link>
-        )}
+        <div className="flex justify-center items-center space-x-12">
+          {user ? (
+            <UserDropdown user={user} />
+          ) : (
+            <Link href="/login" type="primary">
+              <div className="flex space-x-2">
+                <span>{t("getStartedBtn")}</span>
+                <LogIn />
+              </div>
+            </Link>
+          )}
+          <LanguageSwitch />
+        </div>
       </nav>
     </header>
   );
