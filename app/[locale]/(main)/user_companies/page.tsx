@@ -73,7 +73,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
     <div className="my-2 mx-4 md:my-5 md:mx-8">
       <div className="flex flex-row items-start space-x-3">
         <Briefcase size={36} />
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
+        <h1 className="text-2xl font-bold md:text-3xl">{t("title")}</h1>
       </div>
       <h3 className="text-zinc-500 mt-1 mb-4">{t("subtitle")}</h3>
       <Divider classes="my-4" />

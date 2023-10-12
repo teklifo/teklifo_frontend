@@ -4,9 +4,10 @@ import useOutsideClick from "@/utils/hooks/useOutsideClick";
 type DropdownType = {
   trigger: JSX.Element;
   menu: JSX.Element[];
+  classes?: string;
 };
 
-const Dropdown = ({ trigger, menu }: DropdownType) => {
+const Dropdown = ({ trigger, menu, classes }: DropdownType) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -25,7 +26,9 @@ const Dropdown = ({ trigger, menu }: DropdownType) => {
       {open ? (
         <div
           ref={ref}
-          className="z-10 mt-2 absolute transform:translate3d(82.5px, 70px, 0px) bg-white divide-y divide-zinc-200 rounded-lg shadow w-64 dark:bg-zinc-700 right-0"
+          className={`z-10 mt-2 absolute transform:translate3d(82.5px, 70px, 0px) bg-white divide-y divide-zinc-200 rounded-lg shadow w-64 dark:bg-zinc-700 right-0 ${
+            classes || ""
+          }`}
         >
           <ul className="py-2 text-sm text-zinc-700 dark:text-zinc-200">
             {menu.map((menuItem, index) => (

@@ -21,16 +21,16 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const t = await getTranslator(locale, "Metadata");
 
-  const company = await getProduct(id);
-  if (!company)
+  const product = await getProduct(id);
+  if (!product)
     return {
       title: `${t("projectName")}`,
       description: "",
     };
 
   return {
-    title: `${company.name} | ${t("projectName")}`,
-    description: `${company.name}, ${company.number} | ${company.description}`,
+    title: `${product.name} | ${t("projectName")}`,
+    description: `${product.name}, ${product.number} | ${product.description}`,
   };
 }
 

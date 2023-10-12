@@ -26,7 +26,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       </div>
       <Divider classes="w-full" />
       <div className="px-8 py-4 space-y-2 flex flex-col justify-center items-start">
-        <h1 className="text-3xl font-bold">{product.name}</h1>
+        <h1 className="text-2xl font-bold md:text-3xl">{product.name}</h1>
         <h2 className="text-md font-semibold text-black dark:text-white">
           <span className="text-lg">{product.sellPrice} AZN</span> /{" "}
           <span className="font-normal">{product.unit}</span>

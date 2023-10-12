@@ -6,7 +6,7 @@ import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Pencil } from "lucide-react";
 import { fetchUser } from "@/app/actions/auth";
-import CompanyAvatar from "@/components/company/CompanyAvatar";
+import CompanyAvatar from "@/components/edit_company/CompanyAvatar";
 import Pagination from "@/components/ui/Pagination";
 import Link from "@/components/ui/Link";
 import Avatar from "@/components/utils/Avatar";

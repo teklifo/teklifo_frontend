@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { deleteCookie } from "cookies-next";
-import { Briefcase, LogOut } from "lucide-react";
+import { User, Briefcase, LogOut } from "lucide-react";
 import Dropdown from "@/components/ui/Dropdown";
 import MenuLink from "@/components/utils/MenuLink";
 import MenuButton from "@/components/utils/MenuButton";
@@ -35,13 +35,20 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
       menu={[
         <MenuLink
           key={1}
+          href="/edit_user"
+          icon={<User size={18} />}
+          label={t("userProfile")}
+          onClick={() => {}}
+        />,
+        <MenuLink
+          key={2}
           href="/user_companies"
           icon={<Briefcase size={18} />}
           label={t("userCompanies")}
           onClick={() => {}}
         />,
         <MenuButton
-          key={1}
+          key={3}
           icon={<LogOut size={18} />}
           label={t("logout")}
           onClick={logout}

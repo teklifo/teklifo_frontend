@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useLocale } from "next-intl";
 import { usePathname } from "next-intl/client";
 import Link from "next-intl/link";
@@ -12,11 +11,11 @@ const UserDropdown = () => {
 
   const languages = [
     {
-      name: "Azərbaycan",
+      name: "AZ",
       locale: "az",
     },
     {
-      name: "Русский",
+      name: "RU",
       locale: "ru",
     },
   ];
@@ -33,14 +32,8 @@ const UserDropdown = () => {
         href={pathname}
         locale={language.locale}
         key={language.locale}
-        className="flex justify-start items-center space-x-5 px-4 py-2 hover:bg-zinc-100 w-full dark:hover:bg-zinc-600"
+        className="px-4 py-2 hover:bg-zinc-100 w-full dark:hover:bg-zinc-600"
       >
-        <Image
-          src={`/languages/${language.locale}.png`}
-          alt={language.name}
-          width={24}
-          height={24}
-        />
         <span className="font-semibold">{language.name}</span>
       </Link>
     );
@@ -49,17 +42,12 @@ const UserDropdown = () => {
   return (
     <Dropdown
       trigger={
-        <div className="flex justify-start items-center space-x-5 px-4 py-2 cursor-pointer">
-          <Image
-            src={`/languages/${currentLocale}.png`}
-            alt={currentLanguage.name}
-            width={24}
-            height={24}
-          />
+        <div className="px-4 py-2 cursor-pointer">
           <span>{currentLanguage.name}</span>
         </div>
       }
       menu={menu}
+      classes="w-auto"
     />
   );
 };

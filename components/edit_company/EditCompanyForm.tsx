@@ -8,6 +8,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
+import CompanyAvatar from "@/components/edit_company/CompanyAvatar";
 import DeleteCompanyModal from "@/components/edit_company/DeleteCompanyModal";
 import CompanyContacts from "@/components/edit_company/CompanyContacts";
 import {
@@ -128,11 +129,16 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
   return (
     <>
       {company && (
-        <DeleteCompanyModal
-          company={company}
-          isOpen={openDeleteModal}
-          onClose={onDeleteModalClose}
-        />
+        <>
+          <DeleteCompanyModal
+            company={company}
+            isOpen={openDeleteModal}
+            onClose={onDeleteModalClose}
+          />
+          <div className="flex justify-center items-center">
+            <CompanyAvatar company={company} />
+          </div>
+        </>
       )}
       <form
         onSubmit={handleSubmit(onSubmit)}

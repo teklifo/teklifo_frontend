@@ -30,7 +30,7 @@ export async function generateMetadata({
     };
 
   return {
-    title: `${company.name} | ${t("editCompanyTitle")} | ${t("projectName")}`,
+    title: `${company.name} | ${t("editCompanyTitle")}`,
     description: t("editCompanyDescription"),
   };
 }
@@ -50,13 +50,12 @@ async function getCompany(companyId: string) {
   }
 }
 
-export default async function EditCompany({ params: { id } }: Props) {
+export default async function EditCompany({ params: { id, locale } }: Props) {
   const company = await getCompany(id);
   if (!company) return notFound();
 
   const nextCookies = cookies();
   const token = nextCookies.get("token")?.value ?? "";
-  const locale = nextCookies.get("NEXT_LOCALE")?.value ?? "az";
 
   const user = token ? await fetchUser(token, locale) : null;
 
@@ -78,7 +77,7 @@ function EditCompanyContent({ company }: CompanyContentProps) {
       <div className="mx-4 md:mx-8">
         <div className="flex flex-row items-start space-x-3">
           <Briefcase size={36} />
-          <h1 className="text-3xl font-bold">{t("editTitle")}</h1>
+          <h1 className="text-2xl font-bold md:text-3xl">{t("editTitle")}</h1>
         </div>
         <h3 className="text-zinc-500 mt-1 mb-4">{t("editSubtitle")}</h3>
         <EditCompanyForm company={company} />
