@@ -18,8 +18,6 @@ type EditUserFormProps = {
 };
 
 const EditUserForm = ({ user }: EditUserFormProps) => {
-  console.log(user);
-
   const t = useTranslations("EditUser");
 
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
@@ -27,12 +25,18 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
 
   const schema = object({
     name: string().required(t("nameIsRequired")),
+    currentPassword: string(),
+    newPassword: string().matches(/.{6,}/, {
+      excludeEmptyString: true,
+      message: t("invalidPassword"),
+    }),
     image: object<ImageType>(),
   });
 
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -42,6 +46,26 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    let invalidPasswords = false;
+
+    if (data.currentPassword && !data.newPassword) {
+      invalidPasswords = true;
+      setError("newPassword", {
+        type: "manual",
+        message: t("newPasswordIsRequired"),
+      });
+    }
+
+    if (data.newPassword && !data.currentPassword) {
+      invalidPasswords = true;
+      setError("currentPassword", {
+        type: "manual",
+        message: t("currentPasswordIsRequired"),
+      });
+    }
+
+    if (invalidPasswords) return;
+
     setIsLoading(true);
 
     const config = {
@@ -87,15 +111,28 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
       <div className="flex justify-center items-center">
         <UserAvatar user={user} />
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 md:max-w-5xl"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <Input
           id="name"
           label={t("name")}
           disabled={isLoading}
           register={register}
+          errors={errors}
+        />
+        <Input
+          id="currentPassword"
+          label={t("currentPassword")}
+          disabled={isLoading}
+          register={register}
+          type="password"
+          errors={errors}
+        />
+        <Input
+          id="newPassword"
+          label={t("newPassword")}
+          disabled={isLoading}
+          register={register}
+          type="password"
           errors={errors}
         />
         <Button

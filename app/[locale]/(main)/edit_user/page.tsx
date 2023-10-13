@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { User } from "lucide-react";
+import { UserIcon } from "lucide-react";
 import { fetchUser } from "@/app/actions/auth";
 import EditUserForm from "@/components/edit_user/EditUserForm";
 import { UserType } from "@/types";
@@ -50,10 +50,10 @@ function EditUserContent({ user }: CompanyContentProps) {
   const t = useTranslations("EditUser");
 
   return (
-    <div className="flex flex-col items-center my-0 md:my-5">
-      <div className="mx-4 md:mx-8">
+    <div className="flex flex-col items-center my-2 mx-4 md:my-5 md:mx-8">
+      <div className="mx-4 md:mx-8 min-w-[100%] lg:min-w-[50%]">
         <div className="flex flex-row items-start space-x-3">
-          <User size={36} />
+          <UserIcon size={36} />
           <h1 className="text-2xl font-bold md:text-3xl">{t("title")}</h1>
         </div>
         <h3 className="text-zinc-500 mt-1 mb-4">{t("subtitle")}</h3>

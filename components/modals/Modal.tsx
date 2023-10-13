@@ -42,8 +42,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, body }) => {
           inset-0 
           z-50 
           outline-none 
-          bg-neutral-800/70
           focus:outline-none
+          backdrop-blur-sm
+          bg-zinc-200/70
+          dark:bg-zinc-800/70 
         "
       >
         <div

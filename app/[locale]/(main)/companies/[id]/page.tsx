@@ -166,7 +166,7 @@ function CompanyContent({
             </div>
           </div>
           {isMember && (
-            <div className="h-fit">
+            <div className="h-fit my-2">
               <Link href={`/edit_company/${company.id}`} type="secondary">
                 <div className="flex space-x-2">
                   <Pencil />
