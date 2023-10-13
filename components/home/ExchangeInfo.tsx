@@ -18,11 +18,13 @@ const Exchange = () => {
           />
         </div>
         <div className="md:w-1/2 text-center space-y-6 md:text-left">
-          <h2 className="text-4xl font-bold">{t("1cExchangeTitle")}</h2>
-          <p className="px-2 max-w-lg text-zinc-500">
+          <h2 className="text-5xl font-bold">{t("1cExchangeTitle")}</h2>
+          <p className="px-2 max-w-lg text-lg text-zinc-500">
             {t("1cExchangeTextSubtitle")}
           </p>
-          <p className="px-2 max-w-lg text-zinc-500">{t("1cExchangeText")}</p>
+          <p className="px-2 max-w-lg text-lg text-zinc-500">
+            {t("1cExchangeText")}
+          </p>
           <Link href="/1c_exchange" type="primary">
             {t("1cExchangeMore")}
           </Link>

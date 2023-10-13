@@ -20,8 +20,8 @@ const Feature = ({ number, title, text }: FeatureProps) => {
         </div>
       </div>
       <div>
-        <h3 className="hidden mb-4 text-lg font-bold md:block">{title}</h3>
-        <p className="text-zinc-500">{text}</p>
+        <h3 className="hidden mb-4 text-xl font-bold md:block">{title}</h3>
+        <p className="text-lg text-zinc-500">{text}</p>
       </div>
     </div>
   );
@@ -36,10 +36,10 @@ const Features = () => {
       className="flex flex-col px-4 mt-20 space-y-12 md:space-y-0 md:flex-row"
     >
       <div className="flex flex-col space-y-12 md:w-1/2">
-        <h2 className="max-w-md text-4xl font-bold text-center md:text-left">
+        <h2 className="max-w-md text-5xl font-bold text-center md:text-left">
           {t("featuresTitle")}
         </h2>
-        <p className="max-w-sm text-center text-zinc-500 md:text-left">
+        <p className="max-w-sm text-lg text-zinc-500 text-center md:text-left">
           {t("featuresText")}
         </p>
       </div>
