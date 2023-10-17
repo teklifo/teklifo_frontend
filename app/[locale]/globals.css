@@ -16,3 +16,11 @@ body {
   height: 8px;
   background-size: contain;
 }
+
+@layer base {
+  img,
+  video {
+    width: auto;
+    height: auto;
+  }
+}

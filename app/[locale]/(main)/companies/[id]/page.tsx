@@ -140,9 +140,9 @@ function CompanyContent({
   return (
     <div className="my-2 mx-4 md:my-5 md:mx-8">
       {/* About company */}
-      <div className="px-8 py-4 space-y-3 border border-zinc-300 rounded-lg dark:border-zinc-700">
+      <div className="p-8 space-y-3 border bg-white border-zinc-300 rounded-lg dark:bg-zinc-800 dark:border-zinc-700">
         <div className="flex flex-col items-center md:justify-between md:flex-row">
-          <div className="flex flex-col justify-start space-x-0 items-center w-full bg-whitedark:bg-zinc-800 md:flex-row md:justify-start md:space-x-6">
+          <div className="flex flex-col justify-start space-x-0 items-center w-full md:flex-row md:justify-start md:space-x-6">
             <div>
               {isMember ? (
                 <CompanyAvatar company={company} />
@@ -225,6 +225,7 @@ function CompanyContent({
               width="400"
               height="400"
               priority
+              className="max-w-md"
             />
             <h5 className="max-w-md text-xl text-center text-zinc-500">
               {t("noProducts")}

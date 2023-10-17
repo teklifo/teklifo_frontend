@@ -22,10 +22,10 @@ export default function EmailVerificationContent({
   return (
     <>
       <div className="space-y-6">
-        <h1 className="text-5xl font-bold px-16 text-center">
+        <h1 className="text-5xl font-bold mx-16 text-center">
           {token ? t("titleSuccess") : t("titleError")}
         </h1>
-        <h3 className="max-w-sm text-center mx-auto text-zinc-500">
+        <h3 className="max-w-sm text-center px-4 mx-auto text-zinc-500">
           {token ? t("subtitleSuccess") : t("subtitleError")}
         </h3>
         <div className="flex justify-center">
@@ -50,6 +50,7 @@ export default function EmailVerificationContent({
         width="600"
         height="600"
         priority
+        className="max-w-2xl"
       />
     </>
   );

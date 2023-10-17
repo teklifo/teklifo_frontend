@@ -25,6 +25,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               width="350"
               height="350"
               alt={product.name}
+              priority
               className="absolute w-full h-full inset-0 object-contain bg-transparent"
             />
           ) : (

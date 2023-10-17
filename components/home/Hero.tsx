@@ -24,7 +24,7 @@ const Hero = () => {
           </Link>
         </div>
       </div>
-      <div className="md:w-1/2">
+      <div className="w-full md:w-1/2">
         <Image src="/hero.svg" alt="hero" width="600" height="600" priority />
       </div>
     </section>

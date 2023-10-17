@@ -34,10 +34,12 @@ const Dropdown = ({ trigger, menu, classes }: DropdownType) => {
             {menu.map((menuItem, index) => (
               <li key={index}>
                 {React.cloneElement(menuItem, {
-                  onClick: () => {
-                    menuItem.props.onClick();
-                    setOpen(false);
-                  },
+                  onClick: menuItem.props.onClick
+                    ? () => {
+                        menuItem.props.onClick();
+                        setOpen(false);
+                      }
+                    : null,
                 })}
               </li>
             ))}

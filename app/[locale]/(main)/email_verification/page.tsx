@@ -49,7 +49,7 @@ export default async function EmailVerification({
 
   return (
     <main>
-      <div className="flex flex-col-reverse justify-center items-center h-[80vh] m-4 lg:flex-row">
+      <div className="flex flex-col-reverse justify-center items-center min-h-[80vh] m-4 lg:flex-row">
         <EmailVerificationContent token={token} />
       </div>
     </main>

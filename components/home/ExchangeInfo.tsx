@@ -8,13 +8,14 @@ const Exchange = () => {
   return (
     <section id="features" className="my-20 py-10 mx-2">
       <div className="flex flex-col justify-center items-center px-8 space-y-12 md:flex-row md:space-y-0 md:space-x-12">
-        <div className="md:w-1/2 flex justify-center items-center">
+        <div className="w-full md:w-1/2 flex justify-center items-center">
           <Image
             src="/1c_exchange.svg"
             alt="hero"
             width="300"
             height="300"
             priority
+            className="max-w-sm"
           />
         </div>
         <div className="md:w-1/2 text-center space-y-6 md:text-left">
