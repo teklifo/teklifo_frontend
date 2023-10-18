@@ -49,7 +49,6 @@ async function getCompanies(searchParams: SearchParams) {
     return await request<PaginatedData>(
       `/api/companies?page=${page || 1}&limit=10&${query}`,
       {
-        cache: "no-cache",
         headers: { "Accept-Language": locale },
       }
     );
