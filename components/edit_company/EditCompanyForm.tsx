@@ -37,26 +37,46 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
     company?.contacts ?? []
   );
 
-  const schema = object({
-    name: string().required(t("nameIsRequired")),
-    tin: string()
-      .required(t("tinIsRequired"))
-      .matches(/^\d+$/, t("invalidTin"))
-      .length(10, t("invalidTin")),
-    entityType: string<EntityType>().required(t("entityTypeIsRequired")),
-    image: object<ImageType>(),
-    description: string()
-      .required(t("descriptionIsRequired"))
-      .min(200, t("invalidDescription")),
-    shortDescription: string()
-      .required(t("shortDescriptionIsRequired"))
-      .max(100, t("invalidShortDescription")),
-    contacts: object<ContactsType>(),
-    instagram: string().url(t("invalidWebsait")),
-    facebook: string().url(t("invalidWebsait")),
-    youtube: string().url(t("invalidWebsait")),
-    linkedin: string().url(t("invalidWebsait")),
-  });
+  const schema = object().shape(
+    {
+      name: string().required(t("nameIsRequired")),
+      tin: string()
+        .required(t("tinIsRequired"))
+        .matches(/^\d+$/, t("invalidTin"))
+        .length(10, t("invalidTin")),
+      entityType: string<EntityType>().required(t("entityTypeIsRequired")),
+      image: object<ImageType>(),
+      description: string()
+        .required(t("descriptionIsRequired"))
+        .min(200, t("invalidDescription")),
+      descriptionRu: string()
+        .nullable()
+        .notRequired()
+        .when("descriptionRu", {
+          is: (value: string) => value?.length,
+          then: (rule) => rule.min(200, t("invalidDescription")),
+        }),
+      shortDescription: string()
+        .required(t("shortDescriptionIsRequired"))
+        .max(100, t("invalidShortDescription")),
+      shortDescriptionRu: string()
+        .nullable()
+        .notRequired()
+        .when("shortDescriptionRu", {
+          is: (value: string) => value?.length,
+          then: (rule) => rule.max(100, t("invalidShortDescription")),
+        }),
+      contacts: object<ContactsType>(),
+      instagram: string().url(t("invalidWebsait")),
+      facebook: string().url(t("invalidWebsait")),
+      youtube: string().url(t("invalidWebsait")),
+      linkedin: string().url(t("invalidWebsait")),
+    },
+    [
+      ["descriptionRu", "descriptionRu"],
+      ["shortDescriptionRu", "shortDescriptionRu"],
+    ]
+  );
 
   const {
     register,
@@ -68,7 +88,9 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
       name: company?.name,
       tin: company?.tin,
       description: company?.description,
+      descriptionRu: company?.descriptionRu ?? "",
       shortDescription: company?.shortDescription ?? "",
+      shortDescriptionRu: company?.shortDescriptionRu ?? "",
       entityType: company?.entityType,
       image: company?.image ?? undefined,
       facebook: company?.socials.facebook,
@@ -174,11 +196,27 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
           label={t("description")}
           disabled={isLoading}
           register={register}
+          row={8}
+          errors={errors}
+        />
+        <Textarea
+          id="descriptionRu"
+          label={t("descriptionRu")}
+          disabled={isLoading}
+          register={register}
+          row={8}
           errors={errors}
         />
         <Textarea
           id="shortDescription"
           label={t("shortDescription")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Textarea
+          id="shortDescriptionRu"
+          label={t("shortDescriptionRu")}
           disabled={isLoading}
           register={register}
           errors={errors}

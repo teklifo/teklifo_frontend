@@ -27,7 +27,7 @@ export default function Login() {
   return (
     <main>
       <div className="flex flex-col h-screen md:flex-row">
-        <div className="hidden px-8 flex-col justify-center items-center bg-sky-400 w-full xl:flex text-white dark:text-black">
+        <div className="hidden px-8 flex-col justify-center items-center bg-sky-400 w-full lg:flex text-white dark:text-black">
           <div className="absolute top-0 left-0 px-8 py-4">
             <NextLink href="/" className="text-sky-500">
               <Logo className="text-white dark:text-zinc-900" />
@@ -41,9 +41,16 @@ export default function Login() {
             priority
             className="max-w-xl my-8"
           />
-          <h1 className="text-5xl font-bold mx-16 text-center">{t("title")}</h1>
+          <h1 className="text-5xl font-bold mx-auto max-w-md text-center">
+            {t("title")}
+          </h1>
         </div>
         <div className="flex flex-col w-full justify-center items-center space-y-4 px-8 my-8 md:my-0 md:space-y-8">
+          <div className="block lg:hidden mb-16">
+            <NextLink href="/" className="text-sky-500">
+              <Logo className="text-black dark:text-white" />
+            </NextLink>
+          </div>
           <h3 className="text-4xl text-center">{t("welcome")}</h3>
           <p className="max-w-sm text-center text-zinc-500">
             {t("welcomeSubtitle")}

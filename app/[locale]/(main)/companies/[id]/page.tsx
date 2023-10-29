@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Pencil } from "lucide-react";
@@ -120,6 +121,7 @@ function CompanyContent({
   isMember: boolean;
   productsData: PaginatedData;
 }) {
+  const currentLocale = useLocale();
   const t = useTranslations("Company");
 
   const { result: products, pagination } = productsData;
@@ -136,6 +138,16 @@ function CompanyContent({
   const websites = company.contacts?.filter(
     (contact) => contact.type === "website"
   );
+
+  let description = company.description;
+  if (currentLocale === "ru" && company.descriptionRu) {
+    description = company.descriptionRu;
+  }
+
+  let shortDescription = company.shortDescription;
+  if (currentLocale === "ru" && company.shortDescriptionRu) {
+    shortDescription = company.shortDescriptionRu;
+  }
 
   return (
     <div className="my-2 mx-4 md:my-5 md:mx-8">
@@ -161,7 +173,7 @@ function CompanyContent({
                 </h2>
               </div>
               <h3 className="text-center text-zinc-500 mb-4 md:text-start">
-                {company.shortDescription}
+                {shortDescription}
               </h3>
             </div>
           </div>
@@ -180,9 +192,7 @@ function CompanyContent({
           <h4 className="text-lg font-extrabold text-start">
             {t("aboutSupplier")}
           </h4>
-          <h2 className="text-sm text-start text-zinc-500">
-            {company.description}
-          </h2>
+          <h2 className="text-sm text-start text-zinc-500">{description}</h2>
         </div>
         {company.contacts && company.contacts.length > 0 && (
           <div className="flex flex-col justify-start items-start space-y-3 w-full bg-whitedark:bg-zinc-800">
@@ -190,10 +200,18 @@ function CompanyContent({
               {t("contacts")}
             </h4>
             <div className="grid grid-cols-1 gap-4 pt-4  md:grid-cols-2 md:w-2/3">
-              <ContactsBlock array={phones} label={t("phones")} />
-              <ContactsBlock array={emails} label={t("emails")} />
-              <ContactsBlock array={addresses} label={t("addresses")} />
-              <ContactsBlock array={websites} label={t("websites")} />
+              <ContactsBlock array={phones} label={t("phones")} type="tel" />
+              <ContactsBlock array={emails} label={t("emails")} type="mailto" />
+              <ContactsBlock
+                array={addresses}
+                label={t("addresses")}
+                type="address"
+              />
+              <ContactsBlock
+                array={websites}
+                label={t("websites")}
+                type="url"
+              />
             </div>
           </div>
         )}
@@ -211,10 +229,7 @@ function CompanyContent({
               ))}
             </div>
             <div className="w-full flex flex-row justify-center items-center py-10">
-              <Pagination
-                href="/user_companies?page="
-                pagination={pagination}
-              />
+              <Pagination href="/companies?page=" pagination={pagination} />
             </div>
           </>
         ) : (
@@ -240,21 +255,42 @@ function CompanyContent({
 function ContactsBlock({
   array,
   label,
+  type,
 }: {
   array: ContactsType[] | undefined;
   label: String;
+  type: "mailto" | "tel" | "url" | "address";
 }) {
   return (
     array &&
     array.length > 0 && (
       <div className="space-y-1">
         <h6 className="text-sm text-zinc-500">{label}</h6>
-        {array.map((element, index) => (
-          <span key={index} className="block">
-            {element.value}
-          </span>
-        ))}
+        {array.map((element, index) => {
+          if (type === "address") {
+            return (
+              <address key={index} className="block">
+                {element.value}
+              </address>
+            );
+          }
+
+          return (
+            <a
+              key={index}
+              className="block underline text-sky-500"
+              href={`${type === "url" ? "" : `${type}:`}${element.value}`}
+              target="_blank"
+            >
+              {removeHttp(element.value)}
+            </a>
+          );
+        })}
       </div>
     )
   );
+}
+
+function removeHttp(url: string) {
+  return url.replace(/^https?:\/\//, "");
 }

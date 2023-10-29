@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import Avatar from "@/components/utils/Avatar";
 import Link from "@/components/ui/Link";
 import Card from "@/components/ui/Card";
@@ -9,7 +10,13 @@ type CompanyCardProps = {
 };
 
 const CompanyCard = ({ company }: CompanyCardProps) => {
+  const currentLocale = useLocale();
   const t = useTranslations("Companies");
+
+  let shortDescription = company.shortDescription;
+  if (currentLocale === "ru" && company.shortDescriptionRu) {
+    shortDescription = company.shortDescriptionRu;
+  }
 
   return (
     <Card key={company.id} classes="h-full">
@@ -22,7 +29,7 @@ const CompanyCard = ({ company }: CompanyCardProps) => {
           {company.tin}
         </span>
         <span className="mt-3 text-sm text-center text-zinc-500 dark:text-zinc-500">
-          {company.shortDescription?.slice(0, 100)}
+          {shortDescription?.slice(0, 100)}
         </span>
         <div className="flex mt-4 space-x-3 md:mt-6">
           <Link href={`/companies/${company.id}`} type="primary">

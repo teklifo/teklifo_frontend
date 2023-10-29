@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import useOutsideClick from "@/utils/hooks/useOutsideClick";
 
 type DropdownType = {
@@ -8,13 +8,14 @@ type DropdownType = {
 };
 
 const Dropdown = ({ trigger, menu, classes }: DropdownType) => {
+  const ref = useRef(null);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const ref = useOutsideClick(() => {
+  useOutsideClick(ref, () => {
     setOpen(false);
   });
 

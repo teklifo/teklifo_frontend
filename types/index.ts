@@ -45,7 +45,9 @@ export type CompanyType = {
   entityType: EntityType;
   image: ImageType | null;
   description: string;
+  descriptionRu: string | null;
   shortDescription: string | null;
+  shortDescriptionRu: string | null;
   contacts: ContactsType[] | null;
   socials: SocialsType | SocialsType;
   createdAt: Date;

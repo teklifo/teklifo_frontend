@@ -30,6 +30,12 @@ const AvatarUpload = ({ image, name, onUpload }: AvatarUploadProps) => {
     [onUpload]
   );
 
+  let firstLetter = "T";
+  const match = name.match(/[A-Za-z]/);
+  if (match) {
+    firstLetter = match[0].toUpperCase();
+  }
+
   return (
     <CldUploadWidget
       onUpload={handleUpload}
@@ -58,9 +64,7 @@ const AvatarUpload = ({ image, name, onUpload }: AvatarUploadProps) => {
                 />
               ) : (
                 <div className="w-24 h-24 flex justify-center items-center bg-sky-500 text-white dark:text-black">
-                  <span className="text-3xl font-extrabold">
-                    {name[0].toUpperCase()}
-                  </span>
+                  <span className="text-3xl font-extrabold">{firstLetter}</span>
                 </div>
               )}
             </div>

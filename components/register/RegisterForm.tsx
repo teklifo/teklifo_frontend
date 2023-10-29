@@ -61,7 +61,7 @@ const RegisterForm = () => {
 
   return (
     <form
-      className="flex flex-col w-full space-y-6 md:w-2/3"
+      className="flex flex-col w-full space-y-6 md:max-w-md lg:max-w-lg"
       onSubmit={handleSubmit(onSumbit)}
     >
       <Input

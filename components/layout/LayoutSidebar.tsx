@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import NextLink from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -19,6 +19,8 @@ type LayoutSidebarProps = {
 };
 
 const LayoutSidebar = ({ user }: LayoutSidebarProps) => {
+  const ref = useRef(null);
+
   const t = useTranslations("Layout");
 
   const [displaySidebar, setDisplaySidebar] = useState(false);
@@ -26,7 +28,7 @@ const LayoutSidebar = ({ user }: LayoutSidebarProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const ref = useOutsideClick(() => {
+  useOutsideClick(ref, () => {
     if (displaySidebar) {
       setDisplaySidebar(false);
     }
@@ -74,6 +76,14 @@ const LayoutSidebar = ({ user }: LayoutSidebarProps) => {
           </div>
         </Sidebar>
       </div>
+      {displaySidebar && (
+        <div
+          className="h-screen w-full fixed top-0 backdrop-blur-sm
+        bg-zinc-200/70
+        dark:bg-zinc-800/70
+        z-10"
+        ></div>
+      )}
     </>
   );
 };

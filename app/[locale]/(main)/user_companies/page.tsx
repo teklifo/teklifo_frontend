@@ -91,7 +91,7 @@ function UserCompaniesContent({ data }: { data: PaginatedData }) {
             width="400"
             height="400"
             priority
-            className="max-w-2xl"
+            className="max-w-md"
           />
           <h5 className="max-w-md text-xl text-center text-zinc-500">
             {t("noCompanies")}

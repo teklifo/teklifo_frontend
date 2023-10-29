@@ -25,8 +25,8 @@ const ContactModal = ({
   const t = useTranslations("CreateEditCompany");
 
   const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
-  const websaitRegExp =
-    /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
+  const urlRegExp =
+    /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
 
   const schema = object({
     type: mixed()
@@ -40,7 +40,7 @@ const ContactModal = ({
       })
       .when("type", {
         is: "website",
-        then: (schema) => schema.matches(websaitRegExp, t("invalidWebsait")),
+        then: (schema) => schema.matches(urlRegExp, t("invalidWebsait")),
       })
       .when("type", {
         is: "phone",
