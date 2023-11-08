@@ -31,6 +31,7 @@ export type SocialsType = {
   instagram: string;
   youtube: string;
   linkedin: string;
+  whatsapp: string;
 };
 
 export type UserAndCompanyType = {
@@ -162,4 +163,9 @@ export type ApiError = {
       param?: string;
     }
   ];
+};
+
+export type SEOData = {
+  id: number;
+  updatedAt: Date;
 };

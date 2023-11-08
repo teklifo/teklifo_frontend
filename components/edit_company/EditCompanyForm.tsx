@@ -37,6 +37,8 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
     company?.contacts ?? []
   );
 
+  const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
+
   const schema = object().shape(
     {
       name: string().required(t("nameIsRequired")),
@@ -71,10 +73,18 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
       facebook: string().url(t("invalidWebsait")),
       youtube: string().url(t("invalidWebsait")),
       linkedin: string().url(t("invalidWebsait")),
+      whatsapp: string()
+        .nullable()
+        .notRequired()
+        .when("whatsapp", {
+          is: (value: string) => value?.length,
+          then: (rule) => rule.matches(phoneRegExp, t("invalidPhone")),
+        }),
     },
     [
       ["descriptionRu", "descriptionRu"],
       ["shortDescriptionRu", "shortDescriptionRu"],
+      ["whatsapp", "whatsapp"],
     ]
   );
 
@@ -97,6 +107,7 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
       instagram: company?.socials.instagram,
       linkedin: company?.socials.linkedin,
       youtube: company?.socials.youtube,
+      whatsapp: company?.socials.whatsapp,
     },
   });
 
@@ -118,6 +129,7 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
           facebook: data.facebook,
           youtube: data.youtube,
           linkedin: data.linkedin,
+          whatsapp: data.whatsapp,
         },
       }),
     };
@@ -257,7 +269,13 @@ const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
           register={register}
           errors={errors}
         />
-        <Divider />
+        <Input
+          id="whatsapp"
+          label={t("whatsapp")}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
         <Button
           title={company ? t("editBtn") : t("createBtn")}
           btnType="submit"

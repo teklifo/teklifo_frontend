@@ -29,18 +29,23 @@ const ProductCard = ({ product }: ProductCardProps) => {
               className="absolute w-full h-full inset-0 object-contain bg-transparent"
             />
           ) : (
-            <div className="w-full h-full bg-zinc-300 flex justify-center items-center dark:bg-zinc-700">
-              <PackageSearch size={64} className="text-white dark:text-black" />
+            <div className="w-full h-full bg-white flex justify-center items-center dark:bg-zinc-800">
+              <PackageSearch
+                size={64}
+                className="text-zinc-300 dark:text-zinc-300"
+              />
             </div>
           )}
         </div>
         <Divider />
-        <div className="px-5 py-4 space-y-2">
-          <h5 className="text-md font-semibold text-black dark:text-white">
+        <div className="px-5 py-4 space-y-2 w-[300px] h-[100px]">
+          <h5 className="text-md font-semibold truncate text-black dark:text-white">
             <span>{product.sellPrice} AZN</span> /{" "}
             <span className="font-normal">{product.unit}</span>
           </h5>
-          <h5 className="text-xs text-black dark:text-white">{product.name}</h5>
+          <h5 className="text-xs line-clamp-2 text-black dark:text-white">
+            {product.name}
+          </h5>
         </div>
         <Divider />
         <div className="w-full flex flex-row justify-center items-center my-4 space-x-2">

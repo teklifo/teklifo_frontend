@@ -1,11 +1,19 @@
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
+import NextLink from "next/link";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Pencil } from "lucide-react";
+import {
+  Pencil,
+  Instagram,
+  Facebook,
+  Youtube,
+  Linkedin,
+  Phone,
+} from "lucide-react";
 import { fetchUser } from "@/app/actions/auth";
 import CompanyAvatar from "@/components/edit_company/CompanyAvatar";
 import Pagination from "@/components/ui/Pagination";
@@ -167,12 +175,12 @@ function CompanyContent({
                 <h1 className="text-center text-3xl font-bold md:text-start">
                   <span>{company.name}</span>
                 </h1>
-                <h2 className="flex flex-col text-sm text-center text-zinc-500 md:text-start">
+                <h2 className="flex flex-col text-sm text-center text-zinc-500 md:text-start dark:text-zinc-400">
                   <span>{`${t("tin")}: ${company.tin}`}</span>
                   <span>{t(company.entityType)}</span>
                 </h2>
               </div>
-              <h3 className="text-center text-zinc-500 mb-4 md:text-start">
+              <h3 className="text-center text-zinc-500 mb-4 md:text-start dark:text-zinc-400">
                 {shortDescription}
               </h3>
             </div>
@@ -188,11 +196,41 @@ function CompanyContent({
             </div>
           )}
         </div>
+        {/* Socials */}
+        <div className="flex flex-row items-center space-x-3 text-zinc-700 dark:text-zinc-300">
+          {company.socials.instagram && (
+            <NextLink href={company.socials.instagram}>
+              <Instagram size={24} />
+            </NextLink>
+          )}
+          {company.socials.facebook && (
+            <NextLink href={company.socials.facebook} target="_blank">
+              <Facebook size={24} />
+            </NextLink>
+          )}
+          {company.socials.youtube && (
+            <NextLink href={company.socials.youtube} target="_blank">
+              <Youtube size={24} />
+            </NextLink>
+          )}
+          {company.socials.linkedin && (
+            <NextLink href={company.socials.linkedin} target="_blank">
+              <Linkedin size={24} />
+            </NextLink>
+          )}
+          {company.socials.whatsapp && (
+            <NextLink href={`tel:${company.socials.whatsapp}`} target="_blank">
+              <Phone size={24} />
+            </NextLink>
+          )}
+        </div>
         <div className="flex flex-col justify-start items-start space-y-3 w-full bg-whitedark:bg-zinc-800">
           <h4 className="text-lg font-extrabold text-start">
             {t("aboutSupplier")}
           </h4>
-          <h2 className="text-sm text-start text-zinc-500">{description}</h2>
+          <h2 className="text-sm text-start text-zinc-500 dark:text-zinc-400">
+            {description}
+          </h2>
         </div>
         {company.contacts && company.contacts.length > 0 && (
           <div className="flex flex-col justify-start items-start space-y-3 w-full bg-whitedark:bg-zinc-800">
@@ -242,7 +280,7 @@ function CompanyContent({
               priority
               className="max-w-md"
             />
-            <h5 className="max-w-md text-xl text-center text-zinc-500">
+            <h5 className="max-w-md text-xl text-center text-zinc-500 dark:text-zinc-400">
               {t("noProducts")}
             </h5>
           </div>
@@ -265,11 +303,11 @@ function ContactsBlock({
     array &&
     array.length > 0 && (
       <div className="space-y-1">
-        <h6 className="text-sm text-zinc-500">{label}</h6>
+        <h6 className="text-sm text-zinc-500 dark:text-zinc-400">{label}</h6>
         {array.map((element, index) => {
           if (type === "address") {
             return (
-              <address key={index} className="block">
+              <address key={index} className="block not-italic">
                 {element.value}
               </address>
             );

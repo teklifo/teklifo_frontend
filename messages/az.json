@@ -6,7 +6,7 @@
     "loginTitle": "Avtorizasiya | Teklifo",
     "loginDescription": "Teklifo-da işi başlamaq üçün daxil olun",
     "registerTitle": "Qeydiyyat | Teklifo",
-    "registerDescription": "Teklifo-da qeydiyyatdan keçin. Faydalı satışlar və alışlar",
+    "registerDescription": "Teklifo-da qeydiyyatdan keçin. Sərfəli satışlar və alışlar",
     "verifyEmailTitle": "Teklifo-da avtorizasiyanı təsdiqliyin",
     "verifyEmailDescription": "Sizin Email ünvanınıza qeydiyyatı təsdiqləmək üçün məktub göndərildi",
     "emailVerificationTitle": "Email təsdiqi | Teklifo",
@@ -38,7 +38,7 @@
     "home": "Əsas səhifəyə qayıtmaq"
   },
   "Home": {
-    "title": "Faydalı şatışlar və alşlar üçün",
+    "title": "Sərfəli şatışlar və alşlar üçün",
     "projectName": "Teklifo",
     "subtitle": "B2B-marketpleys. Alın. Satın. Hər şey asandır.",
     "getStartedBtn": "Başlayaq?",
