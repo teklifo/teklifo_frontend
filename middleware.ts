@@ -7,6 +7,7 @@ const publicPages = [
   "/",
   "/login",
   "/register",
+  "/1c_exchange",
   "/user_verification",
   "/verify_email",
   "/email_verification",

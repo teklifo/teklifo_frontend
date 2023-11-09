@@ -22,7 +22,9 @@
     "companiesTitle": "Поиск поставщиков | Teklifo",
     "companiesDescription": "Поиск поставщиков на Teklifo. Оптовые продажи и покупки. Прайс-листы, цены",
     "editUserTitle": "Изменить профиль | Teklifo",
-    "editUserDescription": "Измените профиль своего пользователя на Teklifo"
+    "editUserDescription": "Измените профиль своего пользователя на Teklifo",
+    "1cexchangeTitle": "Настройка обмена между Teklifo и 1С",
+    "1cexchangeDescription": "Настройка обмена товарами между Teklifo и 1С:предприятие - Управление торговлей 10.3 и 11, УПП, Комплексная автоматизация (КА), ERP, Бухгалтерия"
   },
   "Layout": {
     "getStartedBtn": "Войти",

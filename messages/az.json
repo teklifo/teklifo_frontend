@@ -22,7 +22,9 @@
     "companiesTitle": "Təchizatçıların axtarışı | Teklifo",
     "companiesDescription": "Təchizatçıların axtarışı. Topdan alışlar və satışlar. Qiymət siyahıları",
     "editUserTitle": "Profili dəyişdirmək | Teklifo",
-    "editUserDescription": "İstifadəçinin profilinizi dəyişdirin"
+    "editUserDescription": "İstifadəçinin profilinizi dəyişdirin",
+    "1cexchangeTitle": "Teklifo və 1C arasında mübadilənin qurulması",
+    "1cexchangeDescription": "Teklifo və 1C arasında malların mübadiləsinin qurulması: Ticarətin idarə edilməsi 10.3 və 11, UPP, Kompleks avtomatlaşdırma (KA), ERP, Mühasibat"
   },
   "Layout": {
     "getStartedBtn": "Daxil ol",
