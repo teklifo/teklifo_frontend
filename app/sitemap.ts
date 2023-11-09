@@ -33,7 +33,7 @@ export default async function sitemap() {
   });
 
   const pages: MetadataRoute.Sitemap = [];
-  const routes = ["", "/login", "/register", "1c_exchange"];
+  const routes = ["", "login", "register", "1c_exchange"];
   routes.forEach((route) => {
     locales.map((locale) => {
       pages.push({

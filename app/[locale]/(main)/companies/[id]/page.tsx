@@ -267,7 +267,10 @@ function CompanyContent({
               ))}
             </div>
             <div className="w-full flex flex-row justify-center items-center py-10">
-              <Pagination href="/companies?page=" pagination={pagination} />
+              <Pagination
+                href={`/companies/${company.id}?page=`}
+                pagination={pagination}
+              />
             </div>
           </>
         ) : (
