@@ -20,7 +20,7 @@ export async function generateMetadata({
 
 export default function Home() {
   return (
-    <div>
+    <div className="px-4">
       <div className="space-y-6 my-6">
         <h1 className="text-4xl font-bold">Обмен данными между Teklifo и 1С</h1>
         <p>
@@ -273,7 +273,7 @@ export default function Home() {
           width="800"
           height="800"
         />
-        <div className="inline-block bg-sky-100 p-4 rounded-md dark:bg-sky-900 space-y-4">
+        <div className="inline-block bg-sky-100 p-4 rounded-md space-y-4 dark:bg-sky-900">
           <p>
             Обратите внимание, что некоторые старые конфигурации не поддерживают
             по умолчанию обмен по защищенному протоколу https. В таком случае
@@ -286,13 +286,13 @@ export default function Home() {
             <span className="font-bold">HTTPУстановитьСоединение</span> замените
             строчку
           </p>
-          <p className="italic">
+          <p className="italic break-all">
             Соединение = Новый HTTPСоединение(СтруктураПараметровСайта.Сервер,
             Порт, СтруктураПараметровСайта.ИмяПользователя,
             СтруктураПараметровСайта.Пароль, ИнтернетПрокси);
           </p>
           <p>...на строчку</p>
-          <p className="italic">
+          <p className="italic break-all">
             Соединение = Новый HTTPСоединение(СтруктураПараметровСайта.Сервер,,
             СтруктураПараметровСайта.ИмяПользователя,
             СтруктураПараметровСайта.Пароль, ИнтернетПрокси,, Новый
